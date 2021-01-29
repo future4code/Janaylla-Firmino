@@ -1,0 +1,4 @@
+<h2><b> Aprendizados da semana</b> por Janaylla Firmino</h2>
+
+-------------------------------------------------
+Nessa semanana eu aprendi sobre o terminal para que serve e alguns comandos que estou usando inclusive nesta atividade. Aprendi sobre o git eu ainda estou um pouco confuso sobre como ele funciona, imagino que vamos utiliza-lo com frequencia então eu espero entende-lo logo. E hoje eu fui apresentada ao VSCode e algumas extensões. Eu aprendi sobre como funcionara minha rotina na Labenu, foi uma semana muito importante para eu conseguir entender a dinamica do curso e as plataformas utilizadas.

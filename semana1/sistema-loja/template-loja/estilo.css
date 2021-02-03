@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
+html {
+  box-sizing: border-box;
+}
+
+body,
+html {
+    min-height: 100vh;
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  font-size: 25px;
+}
+#menu #logo{
+    width: 300px;
+    top: 0px;
+    position: absolute;
+    left: 0px;
+}
+#menu p{
+    font-family: 'Potta One', cursive;
+    font-size: 30px;
+}
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  height: 100px;
+  list-style: none;
+  border-bottom: rgb(5, 99, 103) solid 2px;
+}
+#menu a {
+  width: 250px;
+  height: 50px;
+  text-align: end;
+    font-size: 22px;
+    color: black;
+    text-decoration: none;
+    transition: all 0.45s;
+  }  
+  #menu a:hover{
+      color: rgb(5, 99, 103);
+      text-decoration: underline;
+}  
+
+#menu .icone{
+    width: 25px;
+}
+
+#menu2 {
+    display: none;
+    }
+@media screen and (max-width:900px){
+#menu2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    height: 50px;
+    list-style: none;
+    border-bottom: rgb(5, 99, 103) solid 2px;
+  }
+  #menu2 a {
+      width: 50px;
+    height: 50px;
+    text-align: end;
+      font-size: 22px;
+      text-decoration: none;
+      transition: all 0.45s;
+    }  
+
+  
+  #menu2 .icone{
+      width: 25px;
+  }
+  
+    #menu {
+    display: none;
+    }
+
+}
+form{
+    /* background: blueviolet; */
+    display: inline-block;
+    text-align: left;
+    width: 500px;
+    max-width: 80%;
+}
+form input{
+    width: 100%;
+    height: 25px;
+    border-radius: 6px;
+    /* color: chartreuse; */
+}
+form label{
+    margin: 0px;
+    padding: 0px;
+    /* background-color: chartreuse; */
+    position: relative;
+    font-size: 20px;
+}
+form div{
+    margin-top:10px;
+    /* background-color: chocolate; */
+    display: block;
+    position: relative;
+}
+form button{
+    margin-top:10px;
+    /* background-color: chocolate; */
+    display: block;
+    position: relative;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 20px;
+    background-color: rgb(5, 99, 103);
+    color: white;
+}
+table{
+    border-collapse: collapse;
+    /* background: blueviolet; */
+    display: inline-block;
+    text-align: left;
+    border: black 2px solid;
+    font-size: 20px;
+    text-align: center;
+}
+
+table tr th{
+    background-color: rgb(5, 99, 103);
+    color: white;
+    border: black 2px solid;
+}
+table tr td{
+    max-width: 160px;
+    border: black 2px solid;
+}
+table img{
+    width: 64px;
+}
+ul li{
+    list-style-type: none;
+    font-size: 20px;
+}
+#rodape{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(5, 99, 103);
+    bottom: 0px;
+    margin-top: 10px;
+}
+#rodape div p{
+   /* background-color: yellow; */
+   margin: 0px;
+   padding: 0px;
+}
+#rodape div{
+    /* background-color: red; */
+}
+#contedo{
+    max-width: 800px;
+    width: 100vw;
+    display: inline-block;
+}
+#contedo img{
+    width: 100%;
+}
+#conteudo table{
+    width: 80%;
+}
+#contedo ul{
+    width: 100%;
+}

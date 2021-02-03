@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Adicionar Produto</title>
+    <title>Adicionar Vendas</title>
+    
     <link rel="stylesheet" href="estilo.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">  
 </head>
 <body>
-   
-
-   
+    
+     
     <div id="menu"> 
        
         <a href="index.html"> <img src="img/Logo.png" id="logo"></a>
@@ -34,44 +33,63 @@
         <a href="ctrl-estoque.html">Controle de Estoque</a>
         <a href="funcionarios.html">Funcionários</a>
     </div>
-    <div id="contedo">
-    
-    <h2>Adicionar Produto</h2>
-    <form action="#" id="form">
-        <div>
-            <label for="link-foto">Link para foto: </label><br>
-            <input type="url" id="link-foto" name="link-foto">
-        </div>
-        
-        <div>
-            <label for="descricao">Descrição do <br> produto: </label><br>
-            <!-- Adicione o id apropriado para o input abaixo -->
-            <input type="text" id="descricao" name="descrição">
-        </div>
-        
-        <div>
-            <label for="preco">Preço (em R$): </label><br>
-            <!-- Adicione o id apropriado e o type para receber números abaixo -->
-            <input type="text" placeholder="00000.00" id="preco" name="preço">
-        </div>
-        
-        <div>
-            <!-- Preencha as propriedades necessárias para os elementos abaixo -->
-            <label>Quantidade disponível: </label><br>
-            <input type="number">
-        </div>
 
-        <div class="form-add">
-            <!-- Adicione ao type do botão abaixo o valor para que ele submeta o formulário -->
-            <button type="submit">Adicionar</button>
+    <div id="contedo">
+        <h2>Adicionar Vendas</h2>
+        <div id="add-lista">
+            <h4>Lista</h4>
+            <table>
+                <tr> 
+                    <th>Produtos</th>
+                    <th>Quantidade</th>
+                </tr>
+        
+                <tr>
+                    <td>Caneta</td>
+                    <td>4</td>
+                </tr>
+        
+                <tr>
+                    <td>Tesoura</td>
+                    <td>1</td>
+                </tr>
+        
+                    <td>Caderno</td>
+                    <td>1</td>
+                </tr>
+        
+            </table>
         </div>
-       
-    </form>
+       <div id="add-vendas">
+        
+        <form action="#" id="form">
+            
+            <div>
+                <select name="select">
+                    <option value="Caneta">Caneta</option>
+                    <option value="Tesoura" selected>Tesoura</option>
+                    <option value="Lapís">Lapís</option>
+                    <option value="Cola">Cola</option>
+                    <option value="Caderno">Caderno</option>
+                  </select>
+                  <input type="number" minlength="0" class="number">
+            </div>
+        
+
+            <div class="form-add">
+        
+                <button>Adicionar</button>
+                <button style="background-color: red;">Retirar produto da Lista</button>
+            </div>
+        </form>
     </div>
-     
+    
+    </div>
+      
     <div id="rodape">
             <div>
             <p>Siga-nos nas redes sociais!</p>
+    
         </div>
             <div>
                 <img width="30px" src="https://image.flaticon.com/icons/png/512/25/25305.png"/>

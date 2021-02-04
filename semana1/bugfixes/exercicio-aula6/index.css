@@ -44,10 +44,17 @@ div img {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    display: block;
+    margin: 100px auto;
+    
 }
 
 .botao-amarelo:hover {
     background-color: #c44f00;
+}
+/*<a> que envolve o botão amarelo*/
+#container-para-comprar > a{
+    text-decoration: none;
 }
 
 .container {

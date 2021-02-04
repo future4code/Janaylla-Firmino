@@ -1,6 +1,6 @@
-/** 
+/**
   *
-  *  ESTILOS GERAIS 
+  *  ESTILOS GERAIS
   *
   **/
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -25,15 +25,15 @@ input {
 button:focus {
     color: white;
 }
-
+/*
 img {
-    /* width: 100px; */
+     width: 100px;
 }
-
+ */
 div>p:first-child {
     display: inline;
 }
-/* 
+/*
 div img {
      background: black;
 } */
@@ -47,7 +47,7 @@ div img {
     color: white;
     display: block;
     margin: 100px auto;
-    
+
 }
 
 .botao-amarelo:hover {
@@ -56,6 +56,7 @@ div img {
 /*<a> que envolve o botão amarelo*/
 #container-para-comprar > a{
     text-decoration: none;
+    
 }
 
 .container {
@@ -68,9 +69,9 @@ div img {
 }
 
 
-/** 
+/**
   *
-  *  ESTILOS HOME 
+  *  ESTILOS HOME
   *
   **/
 
@@ -87,9 +88,9 @@ div img {
 }
 
 #container-de-descricao>ol {
+    display: inline-block;
     padding: 15px 0px;
 }
-
 #container-para-comprar {
     background-color: #e7eb90;
 }
@@ -104,7 +105,7 @@ div img {
 
 /**
   *
-  *  ESTILOS COMPRAR 
+  *  ESTILOS COMPRAR
   *
   **/
 
@@ -128,7 +129,7 @@ td button {
 }
 td button:hover {
     background-color: #ffaf43;
-    
+
 }
 
 .container-do-search {

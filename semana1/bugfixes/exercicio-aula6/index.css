@@ -66,6 +66,10 @@ div img {
 
 .icone {
     height: 15px;
+    cursor: pointer;
+}
+.icone:hover{
+    opacity: 0.4;
 }
 
 
@@ -94,7 +98,6 @@ div img {
 #container-para-comprar {
     background-color: #e7eb90;
 }
-
 
 #container-para-comprar>p {
     color: #c44f00;

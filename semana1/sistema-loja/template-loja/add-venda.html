@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Vendas</title>
     
+<link rel="icon" href="img/Logo-pequena.png" type="image/gif">
+ 
     <link rel="stylesheet" href="estilo.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">  
@@ -35,27 +37,31 @@
     </div>
 
     <div id="contedo">
-        <h2>Adicionar Vendas</h2>
+        <h2>Adicionar Venda</h2>
         <div id="add-lista">
-            <h4>Lista</h4>
+        
             <table>
                 <tr> 
                     <th>Produtos</th>
                     <th>Quantidade</th>
+                    <th>&nbsp;</th>
                 </tr>
         
                 <tr>
                     <td>Caneta</td>
                     <td>4</td>
+                    <td><img src="img/delete.jpg"></td>
                 </tr>
         
                 <tr>
                     <td>Tesoura</td>
                     <td>1</td>
+                    <td><img src="img/delete.jpg"></td>
                 </tr>
         
                     <td>Caderno</td>
                     <td>1</td>
+                    <td><img src="img/delete.jpg"></td>
                 </tr>
         
             </table>
@@ -79,8 +85,15 @@
             <div class="form-add">
         
                 <button>Adicionar</button>
-                <button style="background-color: red;">Retirar produto da Lista</button>
+              
             </div>
+            <div id="pagamento">
+                <input type="radio" id="cartao" name="pagamento" value="cartao">
+                <label for="cartao">Cartão de credito</label><br>
+                <input type="radio" id="dinheiro" name="pagamento" value="dinheiro">
+                <label for="dinheiro">Dinheiro</label><br>
+                </div>
+                <button type="submit">Finalizar venda</button>
         </form>
     </div>
     

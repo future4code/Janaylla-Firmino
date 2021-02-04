@@ -145,3 +145,6 @@ td button {
 table{
     text-align: center;
 }
+table img{
+    width: 64px;
+}

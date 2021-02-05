@@ -1,0 +1,92 @@
+[33mcommit fde0eb990c74f0c072faa052d408b69cc6c1bff8[m[33m ([m[1;36mHEAD -> [m[1;32msemana1-aula6[m[33m)[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:45:23 2021 -0300
+
+    Concertei o icone de busca comentando o width e o background que definiam as imagens, o que removeu tambem o fundo preto de uma das imagens da tabela
+
+[33mcommit 13af17c95547532e4d64970076b28bf18436629b[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:35:49 2021 -0300
+
+    6. Troquei o tamanho das imagens, utilizando o width para todas as imagens da tabela
+
+[33mcommit 40de47eeb81ecc18e6072aa14696091bdd8c81a3[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:31:44 2021 -0300
+
+    5. Centralizei os texto da tabela, ultilizando o text-aling center
+
+[33mcommit b636abf54345d79377b9e69b968531904444fda6[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:27:47 2021 -0300
+
+    4. Concertei a formatação da mensagem trocando o display do elemento p, definindo uma largura para o elemento e um mergem auto
+
+[33mcommit 396956d027ea624ac24c92717ae22e80c53e7d22[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:17:44 2021 -0300
+
+    Concertei a posição adicionando ao conteiner de descrição um box-sizing e padding-top
+
+[33mcommit fd8a0c19334f6388c914341cc283a8d394a6d5de[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 13:10:33 2021 -0300
+
+    2. Arrumei a posição do do botão comprar, trocando o display dele para block e trocando a margem
+
+[33mcommit c356d3a38d5540cf5412a7eee6a9ae6bebebeef8[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Thu Feb 4 12:56:51 2021 -0300
+
+    Arrumei o botão voltar, colacando ele dentro de <a> como o link da pagina Home
+
+[33mcommit 0bf474bba5f96ed484e9b0800d5f83f4392f95b8[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: b3147f1 23a1db3
+Author: Janaylla <77745607+Janaylla@users.noreply.github.com>
+Date:   Wed Feb 3 19:23:23 2021 +0300
+
+    Merge pull request #8 from future4code/semana1-aula4
+    
+    Estilizei a lojinha
+
+[33mcommit 23a1db348210351284ce9b65ae38061aff95f44d[m[33m ([m[1;31morigin/semana1-aula4[m[33m, [m[1;32msemana1-aula4[m[33m)[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Tue Feb 2 15:53:12 2021 -0300
+
+    Estilizei a lojinha
+
+[33mcommit b3147f1c4c1a43806f6e18b28d8b2970da5b67f2[m
+Merge: c0639ca 9baf704
+Author: Janaylla <77745607+Janaylla@users.noreply.github.com>
+Date:   Tue Feb 2 18:19:12 2021 +0300
+
+    Merge pull request #6 from future4code/projeto-onboarding
+    
+    Adicionei um Markdown descrevendo meus aprendizados da semana
+
+[33mcommit c0639ca26d21171af25a68a84bcddbc11cc515fa[m
+Merge: 7c5fe13 ef1b7ec
+Author: Janaylla <77745607+Janaylla@users.noreply.github.com>
+Date:   Tue Feb 2 18:18:41 2021 +0300
+
+    Merge pull request #7 from future4code/semana1-aula1
+    
+    Sistema interno de loja somente com html
+
+[33mcommit ef1b7ec61f0c4a8aa3213588ff7a9050b6ebf576[m[33m ([m[1;31morigin/semana1-aula1[m[33m, [m[1;32msemana1-aula1[m[33m)[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Mon Feb 1 14:55:21 2021 -0300
+
+    Sistema interno de loja somente com html
+
+[33mcommit 9baf7045df16eae7d039b09c951859212011ce27[m[33m ([m[1;31morigin/projeto-onboarding[m[33m, [m[1;32mprojeto-onboarding[m[33m)[m
+Author: Janaylla Firmino <janayllaf@gmail.com>
+Date:   Fri Jan 29 15:08:48 2021 -0300
+
+    Adicionei um Markdown descrevendo meus aprendizados da semana
+
+[33mcommit 7c5fe13f116d2807ef7f079c51edc0d4977a0b2b[m
+Author: João Vinicius Alves <jvp.alves@hotmail.com>
+Date:   Sun Jan 24 14:45:55 2021 -0300
+
+    Initial commit

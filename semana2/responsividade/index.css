@@ -10,16 +10,17 @@ body {
 
 #main-container{
     display: grid;
-    grid-template: repeat(6, 200px) / repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     flex-grow: 1;
 }
 #main-container > div{
     padding: 10px;
-    margin: 20px;
+    margin: 10px;
     border: 1px solid black;
+    height: 150px;
 }
 #barra-lateral{
-    width: 300px;
+    width: 150px;
     height: 100vh;
     position: static;
     background-color: cornflowerblue;
@@ -38,30 +39,29 @@ body {
 }
 @media screen and (min-device-width: 421px) and (max-device-width: 800px){
     #main-container{
-        grid-template: repeat(9, 200px) / repeat(2, 1fr);
+        display: grid;
+        flex-grow: 1;
     }
     .blue-block, .yellow-block, .white-block{
-        grid-column-end: span 1;
+        grid-column-end: span 3;
     }
     .green-block{
-        grid-column-end: span 2;
+        grid-column-end: span 6;
     }
     .black-block{
-        grid-column-end: span 1;
+        grid-column-end: span 3;
     }
     #main-container div:last-child{
-        grid-column-end: span 2;
+        grid-column-end: span 6;
     }
 }
 @media screen and (max-device-width: 420px){
+
     #barra-lateral{
         display: none;
     }
-    #main-container{
-        grid-template: repeat(13, 200px) / 1fr;
-    }
     #main-container div{
-        grid-column-end: span 1;
+        grid-column-end: span 6;
     }
 }
 

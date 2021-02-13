@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 20px;
+    height: 70px;
+    background-color: #e3e8eb;
+    align-items: center;
+}
+#logo{
+    display: flex;
+    align-items: center;
+}
+#logo a{
+    
+    color: #45525b;
+}
+#logo img{
+    width: 50px;
+}
+#pesquisa{
+    display: flex;
+    align-items: center;
+}
+#pesquisa img
+{
+    width: 30px;
+margin-left: 10px;
+cursor: pointer;
+}
+
+header input{
+    height: 40px;
+    width: 400px;
+    max-width: 400px;
+    border-radius: 8px;
+    border: #fe7e02 solid 2px;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding: 50px 10px;
+    justify-content: center
+}
+#videos{
+    align-self: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width:  850px;
+}
+.video-box{
+    width: 200px;
+    margin: 5px;
+}
+.video-box video{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video-box a{
+    position: relative;
+}
+a:hover .filtro{
+    display: block;
+}
+.filtro{
+    display: none;
+    position: absolute;
+    width: 180px;
+    background-color: #fe7e0269;
+    height: 101px;
+    margin: 10px;
+    left:50%;
+    top:50%;
+    padding: 30px 70px;
+}
+footer{
+    display: flex;
+    height: 70px;
+    background-color: #45525b;
+    color: #fe7e02;
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+}
+
+#exibe-video {
+    max-width: 850px;
+    margin: 20px;
+}
+#exibe-video video{
+    width: 100%;
+}
+#exibe-video h2{
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+#videos2{
+    align-self: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width:  850px;
+}

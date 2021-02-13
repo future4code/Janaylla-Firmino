@@ -1,0 +1,91 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    display: flex;
+}
+
+#main-container{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    flex-grow: 1;
+}
+#main-container > div{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    height: 150px;
+}
+#barra-lateral{
+    width: 150px;
+    height: 100vh;
+    position: static;
+    background-color: cornflowerblue;
+}
+#first-block{
+    margin: 0px !important;
+    grid-column-end: span 6;
+    height: 200px;
+}
+.blue-block, .yellow-block, .green-block, .white-block{
+    grid-column-end: span 2;
+}
+.black-block{
+    grid-column-end: span 3;
+    grid-row-end: span 2;
+}
+@media screen and (min-device-width: 421px) and (max-device-width: 800px){
+    #main-container{
+        display: grid;
+        flex-grow: 1;
+    }
+    .blue-block, .yellow-block, .white-block{
+        grid-column-end: span 3;
+    }
+    .green-block{
+        grid-column-end: span 6;
+    }
+    .black-block{
+        grid-column-end: span 3;
+    }
+    #main-container div:last-child{
+        grid-column-end: span 6;
+    }
+}
+@media screen and (max-device-width: 420px){
+
+    #barra-lateral{
+        display: none;
+    }
+    #main-container div{
+        grid-column-end: span 6;
+    }
+}
+
+#first-block {
+    background-color: red;
+}
+
+.blue-block {
+    background-color: blue;
+}
+
+.yellow-block {
+    background-color: yellow;
+}
+
+.green-block {
+    background-color: green;
+}
+
+.black-block {
+    background-color: black;
+    color: white;
+}
+
+.white-block {
+    background-color: white;
+}

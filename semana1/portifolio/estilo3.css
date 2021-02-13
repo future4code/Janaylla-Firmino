@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+/* Config gerais */
+
+h1{
+  font-family:'Yusei Magic', sans-serif;
+  margin: 0px;
+}
+/*subtitulo se precisar*/
+h2{
+  font-family:'Yusei Magic', sans-serif;
+  font-weight: 400;
+}
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+box-sizing: border-box;
+}
+body{
+  width: 100%;
+  height: 100vh;
+}
+/* Header  */
+#direito{
+  
+margin: 0px;
+background-size: 100%;
+height : 100%;
+
+min-width: 300px;
+min-height: 200px;
+width: 50%;
+
+background-color: #93425A;
+
+align-items: center;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: right;
+float: left;
+}
+
+#esquerdo{
+  margin: 0px;
+  min-width: 300px;
+  background-size: 100%;
+  height: 100%;
+  min-height: 200px;
+  width: 50%;
+  background-color: #F8F8F1;
+
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  float: left;
+}
+  /* Menu */
+  nav{
+    position: absolute;
+    top: 0px;
+    width: 50%;
+  }
+
+  nav ul{
+    margin: 10px;
+    display:inline-block;
+  }
+  nav ul li{
+    text-align: center;
+    list-style: none;
+    font-size: 20px;
+    height: 40px;
+    float: left;
+    margin: 10px;
+  }
+
+  nav ul li img{
+    margin: 5px 4px;
+  }
+
+ /* redes */
+ #redes{
+  position: absolute;
+  bottom: 10px;
+  width: 50%;
+  
+align-items: center;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: right;
+}
+
+#redes ul{
+  margin: auto;
+  display:inline-block;
+}
+#redes ul li{
+  list-style: none;
+  height: 40px;
+  float: left;
+  margin: 10px;
+}
+
+#redes ul li img{
+  border-radius: 30px;
+  background-color: #F8F8F150;
+  margin: 5px 4px;
+  width: 40px;
+}
+#redes ul li img:hover{
+  background-color: #F8F8F1;
+}
+
+
+  nav ul li:hover img{
+    background-color: #F8F8F1;
+  }
+  nav ul li *:hover{
+    color: #F8F8F1;
+  }
+  nav ul li a{
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-decoration: none;
+      color: black;
+  }
+  nav ul li a img{
+    border: 2px black solid;
+    border-radius: 20px;
+    width: 40px;
+  }
+  nav ul li a h3{
+    display: inline;
+  }
+  .selecao img{
+    background-color: #F8F8F1;
+  }
+  .selecao h3{
+    color: #F8F8F1;
+  }
+/*Nome-------------------------*/
+#nome{
+  color: #FFFEF5;
+  width: 100%;
+  font-size: 50px;
+  /*valor do menu menos o valor do recuo do conteudo ------------------------*/
+  text-align: center;
+}
+/*Sobre mim-------------------------*/
+
+  #sobreMim-img{
+    margin-left: auto;
+    margin-right: 30px;
+    width: 300px;
+    height:  300px;
+    display: block;
+  }
+  #sobreMim-txt{
+  padding: 20px;
+  margin-left: 20px;
+  width: 500px;
+  height:  auto;
+  float: left;
+  text-align: justify;
+  }
+  #sobreMim-txt h1{
+    margin-bottom: 20px;
+  color: #93425A;
+  }
+  #formacao{
+    padding: 20px;
+    max-width: 400px;
+  }
+  .titulo{
+    width: 100%;
+    margin-left: auto;
+    margin-right: 30px;
+    display: block;
+      color: white;
+      font-size: 40px;
+      padding: 20px;
+      text-align: right;
+      text-transform: uppercase;
+  }
+  .formacao-item{
+    display: block;
+    border: solid #93425A 1px;
+    margin: 20px 0px;
+    padding: 8px;
+  }
+  .formacao-item h3:first-of-type{
+    margin-bottom: 20px;
+  }
+#site-1{
+  background-image: url(imagens/site-1.jpg);
+
+}
+#site-2{
+  background-image: url(imagens/site-2.jpg);
+}
+  .galeria-item a div{    
+    width:100%;
+    height: 100%;
+    padding: 10px;
+    background-color: #93425Aaa;
+  }
+  .galeria-item a:hover div h4{    
+    display: none;
+  }
+  .galeria-item a{
+    width: 300px;
+    height: 150px;
+    margin: 10px 0px 30px 0px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    background-position: center;
+    background-size: cover;
+    border: 2px #93425A solid;
+  }
+  .galeria-item a div:hover{
+    background-color: #F8F8F100;
+  }
+  .galeria-item > h3{
+    margin-bottom: 0px;
+    display: inline-block;
+  }
+  .galeria-item{
+    align-items: center;
+  }
+  #cotanto-form form > *{
+    display: block;
+    font-size: 20px;
+    margin: 10px 0px;
+    max-height: 100%;
+  }
+
+
+  button{
+    cursor: pointer;
+    padding: 8px;
+    font-size: 20px;
+    padding: 4px 12px;
+    font-weight: 900;
+    border-radius: 4px;
+  }
+  input, textarea{
+    padding: 8px;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    max-width: 3200px;
+    width: 100%;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  }
+  #cotanto-form {
+    width: 400px;
+      margin: 20px;
+  }
+  
+  #btnEnviar {
+    margin: 0px;
+    float: right;
+  background-color: white;
+  border: 2px solid #4CAF50;
+  color: #4CAF50;
+}
+#btnEnviar:hover, #btnEnviar:focus {
+  color: #fff;
+  outline: 0;
+  box-shadow: 0 0 40px 40px #4CAF50 inset;
+}
+#btnEnviar:focus {
+  background-color: #29632b;
+}
+.transicao {
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+@media screen and (max-width: 750px) {
+  #direito{
+    width: 100%;
+    
+    height: auto;
+    min-height: 50vh;
+    margin: 0px !important;
+    top:0px;
+  }
+  #esquerdo{
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
+    margin: 0px !important;
+    
+  }
+  *{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  padding: 0px;
+}
+#sobreMim-img{
+  margin: auto;
+}
+nav, #redes{
+  position: relative;
+  width: 100%;
+}
+nav ul li a h3{
+  display: none;
+}
+#sobreMim-txt{
+  margin: auto;
+  max-width: 100%;
+}
+title{
+  display: none;
+}
+.formacao-item, .galeria-item a, .habilidade-item{
+  margin: 10px auto;
+  width: 100%;
+  text-align: justify;
+}
+}

@@ -205,6 +205,7 @@ if (!erro) {
     console.log("Tipo de jogo:", tipoJogo);
     console.log("Etapa do jogo:", etapaJogoExtenso);
     console.log("Categoria: " + categoria);
+    console.log("Quantidade de ingressos: " + quantidade + " ingressos");
     console.log("---Valores---");
     console.log("Valor do ingresso:", valorUnidadeMoeda);
     console.log("Valor total:", valorTodalMoeda);

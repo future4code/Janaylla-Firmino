@@ -74,6 +74,7 @@ console.log("O maior número é "+maiorNumero+" e o menor é "+menorNumero);
 
 // DESAFIO 1
 
+console.log("---DESAFIO 1---");
 let num = Number(prompt("Escolha um numero sem deixar o seu amigo ver:"));
 while (isNaN(num)) {
     num = Number(prompt("Escolha um numero VALIDO:"));
@@ -103,7 +104,10 @@ for(let tentativas=1; num !== chute; tentativas++){
 }
 
 // DESAFIO 2
-console.log("---DESAFIO 2");
+// Quando resolver o exercício, pare e faça a seguinte reflexão: foi fácil fazer esta alteração? O que você poderia ter feito para que fosse mais fácil? Deixe comentários no seu código sobre esta reflexão.
+// Sim. Ter pesquisado como retirar as casas decimais, em vez de tentar achar uma formula para isso só
+
+console.log("---DESAFIO 2---");
 num = Math.floor(Math.random()*100+1);
 chute;
 console.log("Vamos jogar");

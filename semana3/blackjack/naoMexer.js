@@ -13,7 +13,8 @@ function comprarCarta() {
   const numero = cartas[Math.floor(Math.random() * 13)]
 
   // Sorteia um naipe
-  const naipe = naipes[Math.floor(Math.random() * 4)]
+  sorteio = Math.floor(Math.random() * 4);
+  const naipe = naipes[sorteio];
 
   let valor
 
@@ -29,7 +30,8 @@ function comprarCarta() {
   // Cria um objeto da carta com as propriedades que vamos precisar: texto e valor
   const carta = {
     texto: numero + naipe,
-    valor: valor
+    valor: valor,
+    sorteio: sorteio
   }
 
   return carta

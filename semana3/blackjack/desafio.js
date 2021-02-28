@@ -10,12 +10,11 @@
  *
  *
  */
-const fontGrandeRed = "color: red; font-size: 30px; font-family: Arial, Helvetica, sans-serif;";
-const fontGrandeBlack = "color: black; font-size: 30px ;font-family: Arial, Helvetica, sans-serif;";
+const fontGrandeRed = "color: red; font-size: 25px; font-family: Arial, Helvetica, sans-serif;";
+const fontGrandeBlack = "color: black; font-size: 25px ;font-family: Arial, Helvetica, sans-serif;";
 const fontTextoBlack = "color: black; font-size: 20px; font-family: Arial, Helvetica, sans-serif;";
 const fontTextoRed = "color: red; font-size: 20px; font-family: Arial, Helvetica, sans-serif;";
 const fontIcon = "font-size: 100px;";
-
 
 let vencedor = "";
 let novaRodada = confirm("Quer iniciar uma nova rodada?");
@@ -74,7 +73,7 @@ while (novoSorteio || novaRodada) {
       }
 
       mostrar(cartasJogador, cartasComputador, false, true);
-      
+
 
    }
    else {
@@ -99,42 +98,42 @@ function cartasIcones(cartas, esconder = false) {
    let ind2 = 0;
    stringIconeCartas = "";
 
-   let i = 0;
+   let iCores = 0; // indice das cores
    let cores = ["", "", "", "", "", "", "", "", "", ""];
    // console.log("esconder:", esconder, i);
 
    for (let carta of cartas) {
-      if (esconder == false || i == 0) {
+      if (esconder == false || iCores == 0) {
          // console.log("carta", carta.texto);
-         //  posição 0 "♠️"
+         //  posição 0 "♦️"
          //  posição 1 "♥️"
-         //  posição 2 "♦️"
-         //  posição 3 "♣️"
-         const iconesCartas = [["🂡", "🂢", "🂣", "🂤", "🂥", "🂦", "🂧", "🂨", "🂩", "🂪", "🂫", "🂭", "🂮"],
+         //  posição 2 "♣️"
+         //  posição 3 "♠️"
+         const iconesCartas = [["🃁", "🃂", "🃃", "🃄", "🃅", "🃆", "🃇", "🃈", "🃉", "🃊", "🃋", "🃍", "🃎"],
          ["🂱", "🂲", "🂳", "🂴", "🂵", "🂶", "🂷", "🂸", "🂹", "🂺", "🂻", "🂽", "🂾"],
-         ["🃁", "🃂", "🃃", "🃄", "🃅", "🃆", "🃇", "🃈", "🃉", "🃊", "🃋", "🃍", "🃎"],
-         ["🃑", "🃒", "🃓", "🃔", "🃕", "🃖", "🃗", "🃘", "🃙", "🃚", "🃛", "🃝", "🃞"]];
-         const naipe = carta.texto[carta.texto.length - 2];
-         switch (carta.sorteio) {
-            case 0:
-               ind1 = 2;
-               cores[i] = "color: red;" + fontIcon;
-               break;
-            case 1:
-               ind1 = 1;
-               cores[i] = "color: red; " + fontIcon;
-               break;
-            case 2:
-               cores[i] = "color: black;" + fontIcon;
-               ind1 = 3;
-               break;
-            case 3:
-               cores[i] = "color: black;" + fontIcon;
-               ind1 = 0;
-               break;
-         }
-         i++;
+         ["🃑", "🃒", "🃓", "🃔", "🃕", "🃖", "🃗", "🃘", "🃙", "🃚", "🃛", "🃝", "🃞"],
+         ["🂡", "🂢", "🂣", "🂤", "🂥", "🂦", "🂧", "🂨", "🂩", "🂪", "🂫", "🂭", "🂮"]
+      ];
+         // console.log("%c-🃁 🂱 🃑 🂡"+ cartinha, fontIcon);
 
+         const naipeCarta = carta.texto.substring(carta.texto.length-2);
+
+         const naipes = ["♦️", "♥️", "♣️", "♠️"];
+
+         for(let a=0; a<naipes.length; a++)
+         {
+            if(naipes[a] == naipeCarta){
+               ind1 = a;
+               if(a <2){
+                  cores[iCores] = "color: red;" + fontIcon;
+               }
+               else{
+                  cores[iCores] = "color: black;" + fontIcon;
+               }
+            }
+           
+         }
+          iCores++;
          cartaSemNaipe = carta.texto.substring(0, carta.texto.length - 2);
          switch (cartaSemNaipe) {
             case "A":
@@ -157,8 +156,8 @@ function cartasIcones(cartas, esconder = false) {
       }
       else {
          stringIconeCartas = stringIconeCartas + "%c" + "🂠";
-         cores[i] = "color: black;" + fontIcon;
-         i++;
+         cores[iCores] = "color: black;" + fontIcon;
+         iCores++;
       }
    }
    // console.log(cores);
@@ -167,13 +166,8 @@ function cartasIcones(cartas, esconder = false) {
 }
 
 function mostrar(jogador, computador, esconde, mostrarPontuacao){
-   let pontoJogador = "";
-   let pontoComputador = "";
-   
    console.clear();
- 
-  
-   
+
    if(mostrarPontuacao){
       console.log("%cFim da rodada! %c♠ %c♥ %c♦ %c♣", fontGrandeBlack, fontGrandeBlack, fontGrandeRed, fontGrandeBlack, fontGrandeRed);
    console.log("%c"+vencedor, fontGrandeRed);
@@ -188,7 +182,7 @@ function mostrar(jogador, computador, esconde, mostrarPontuacao){
 
    console.log("%c-----------------------------------------------------------------------", fontTextoRed);
    }
-   
+
    console.log("%cSuas cartas são: ", fontTextoBlack);
    cartasIcones(jogador);
    if(mostrarPontuacao)
@@ -199,5 +193,5 @@ function mostrar(jogador, computador, esconde, mostrarPontuacao){
    cartasIcones(computador, esconde);
    if(mostrarPontuacao)
    console.log("%c Pontuação = "+ valorComputador, fontTextoRed);
-   
+
 }

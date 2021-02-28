@@ -11,8 +11,8 @@
  *
  */
 
-const fontGrandeRed = "color: red; font-size: 30px; font-family: Arial, Helvetica, sans-serif;";
-const fontGrandeBlack = "color: black; font-size: 30px ;font-family: Arial, Helvetica, sans-serif;";
+const fontGrandeRed = "color: red; font-size: 25px; font-family: Arial, Helvetica, sans-serif;";
+const fontGrandeBlack = "color: black; font-size: 25px ;font-family: Arial, Helvetica, sans-serif;";
 const fontTextoBlack = "color: black; font-size: 20px; font-family: Arial, Helvetica, sans-serif;";
 const fontTextoRed = "color: red; font-size: 20px; font-family: Arial, Helvetica, sans-serif;";
 const fontIcon = "font-size: 100px;";
@@ -66,7 +66,7 @@ function cartasIcones(cartas, esconder = false) {
    let ind2 = 0;
    stringIconeCartas = "";
 
-   let i = 0;
+   let iCores = 0;
    let cores = ["", "", "", "", "", "", "", "", "", ""];
    // console.log("esconder:", esconder, i);
 
@@ -80,26 +80,25 @@ function cartasIcones(cartas, esconder = false) {
          ["🂱", "🂲", "🂳", "🂴", "🂵", "🂶", "🂷", "🂸", "🂹", "🂺", "🂻", "🂽", "🂾"],
          ["🃁", "🃂", "🃃", "🃄", "🃅", "🃆", "🃇", "🃈", "🃉", "🃊", "🃋", "🃍", "🃎"],
          ["🃑", "🃒", "🃓", "🃔", "🃕", "🃖", "🃗", "🃘", "🃙", "🃚", "🃛", "🃝", "🃞"]];
-         const naipe = carta.texto[carta.texto.length - 2];
-         switch (carta.sorteio) {
-            case 0:
-               ind1 = 2;
-               cores[i] = "color: red;" + fontIcon;
-               break;
-            case 1:
-               ind1 = 1;
-               cores[i] = "color: red; " + fontIcon;
-               break;
-            case 2:
-               cores[i] = "color: black;" + fontIcon;
-               ind1 = 3;
-               break;
-            case 3:
-               cores[i] = "color: black;" + fontIcon;
-               ind1 = 0;
-               break;
+       
+         const naipeCarta = carta.texto.substring(carta.texto.length-2);
+
+         const naipes = ["♦️", "♥️", "♣️", "♠️"];
+
+         for(let a=0; a<naipes.length; a++)
+         {
+            if(naipes[a] == naipeCarta){
+               ind1 = a;
+               if(a <2){
+                  cores[iCores] = "color: red;" + fontIcon;
+               }
+               else{
+                  cores[iCores] = "color: black;" + fontIcon;
+               }
+            }
+           
          }
-         i++;
+          iCores++;
 
          cartaSemNaipe = carta.texto.substring(0, carta.texto.length - 2);
          switch (cartaSemNaipe) {
@@ -127,9 +126,7 @@ function cartasIcones(cartas, esconder = false) {
 }
 
 function mostrar(jogador, computador, esconde, mostrarPontuacao=true){
-   let pontoJogador = "";
-   let pontoComputador = "";
-   
+
    console.clear();
    
    console.log("%c"+vencedor, fontGrandeRed);

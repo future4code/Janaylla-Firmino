@@ -45,10 +45,15 @@ sobreMim();
 // b.  Agora escreva uma função que receba 4 parâmetros que correspondem às informações de uma pessoa: o nome (`string`), a idade (`number`), a cidade (`string`) e um `boolean` que representa se é estudante ou não. Ela deve retornar uma `string` que unifique todas as informações da pessoa em uma só mensagem com o template:
 console.log("EXERCÍCIO 4 - b");
 const sobreMimParametros = (nome, idade, estado, estudante) => {
+	if(estudante)
+		estudante = "sou";
+	
+	else
+		estudante = "não sou";
     console.log("Eu sou "+nome+", tenho "+idade+" anos, moro na "+estado+" e "+estudante+" estudante.");
 }
 
-sobreMimParametros("Janaylla", 19, "Bahia", "sou");
+sobreMimParametros("Janaylla", 19, "Bahia", true);
 
 // EXERCÍCIO 5
 // Escreva as funções explicadas abaixo:

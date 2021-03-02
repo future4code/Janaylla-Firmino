@@ -8,7 +8,6 @@ function criarOptionHora(){
 }
 criarOptionHora();
 
-
 function criarTarefa(){
     const tarefa = document.getElementById("tarefa").value;
   
@@ -30,7 +29,7 @@ function criarTarefa(){
     }
 }
 function feita(tarefaRiscar){
-    console.log(tarefaRiscar);    
+    // console.log(tarefaRiscar);    
     if(tarefaRiscar.className == ""){
         tarefaRiscar.className = "riscado";
     }

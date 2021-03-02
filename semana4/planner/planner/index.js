@@ -21,7 +21,7 @@ function criarTarefa(){
             ulDiaSemana[0].innerHTML += '<li onclick="feita(this)">'+tarefa+'</li>'; 
         }
         else{
-            ulDiaSemana[0].innerHTML += '<li onclick="feita(this)">'+hora+' '+tarefa+'</li>'; 
+            ulDiaSemana[0].innerHTML += '<li onclick="feita(this)">'+hora+'h '+tarefa+'</li>'; 
         }
     }
     else{

@@ -66,10 +66,8 @@ input:focus, textarea:focus {
     background-color: rgba(54,9,121,1);
     color: white;
     outline: none !important;   
-}
-#container-de-posts {
-    margin: 10px;
-    border-top: 3px double rgb(77, 77, 77);
+    
+    border: solid 1px white;
 }
 span{
     color: red;
@@ -81,31 +79,51 @@ span{
     background-color: rgba(54,9,121,1);
     color: white;
 }
-a #mudarPagina{
-    position: absolute;
+#boryPosts button{
+    width: 200px;
 }
 main{
     position: absolute;
     height: 200vh;
 }
 #container-de-posts{
-    margin-top: 400px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    text-align: center;
+    text-align: start;
+    margin-top: 60px;
+    padding: 20px;
 }
 
 #container-de-posts .post{
     width: 30%;
     background-color: beige;
     padding: 10px;
+    margin-top: 20px;
+}
+#container-de-posts .post img{
+    width: 90%;
+    
+}
+#container-de-posts .post button{
+    width: auto;
+    background-color: white;
+    padding: 10px;
+    color: red;
+    border: 1px solid  red;
+    
 }
 
+#container-de-posts .post button:hover{
+    background-color: red;
+    color: white;
+}
 #container-de-posts .post *{
     margin: 10px;
 }
-
 #boryPosts{
+    height: auto;
+    min-height: 100vh;
     background: none;
     background-color: rgba(54,9,121,1);
 }
@@ -116,5 +134,8 @@ main{
     }
     #formulario *{
     font-size: 15px;
-}
+    }
+    #container-de-posts .post{
+        width: 90%;
+    }
 }

@@ -109,6 +109,7 @@ function organizarDespesas(){
     arrDespesas = arrDespesas.sort(function (a, b) {
         return  b.valor - a.valor;
       });
+      limparFiltros();
       imprimirDespesas(arrDespesas);
 }
 

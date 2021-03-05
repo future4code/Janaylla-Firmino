@@ -31,6 +31,8 @@ function retornaNumerosPares (array) {
 
 function retornaMaiorNumero(array) {
    // implemente sua lógica aqui
+   
+
 }
 
 //Exercício 5

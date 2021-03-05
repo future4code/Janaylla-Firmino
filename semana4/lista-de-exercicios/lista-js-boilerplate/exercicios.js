@@ -70,6 +70,12 @@ function retornaExpressoesBooleanas() {
 
 function retornaNNumerosPares(n) {
    // implemente sua lógica aqui
+    
+   array = []
+   for(let i=0; i<n ; i++){
+      array.push(i*2);
+   }
+   return array;
 }
 
 // Exercício 8

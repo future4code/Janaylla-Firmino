@@ -254,7 +254,7 @@ function retornaPessoasAutorizadas() {
 
 function retornaPessoasNaoAutorizadas() {
    // implemente sua lógica aqui
-   return = pessoas.filter((pessoa) => {
+   return pessoas.filter((pessoa) => {
       return !(pessoa.idade > 14 && pessoa.idade < 60 && pessoa.altura >= 1.5);
    });
 }

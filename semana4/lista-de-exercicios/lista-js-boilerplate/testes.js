@@ -400,7 +400,7 @@ testEx18B()
 // Teste exercício 19
 
 function testEx19() {
-
+  
   const output = [
     "Olá, Sr. João. Estamos enviando esta mensagem para lembrá-lo da sua consulta no dia 01/10/2019. Por favor, acuse o recebimento deste-email.",
     "Olá, Sr. Pedro. Infelizmente sua consulta marcada para o dia 02/10/2019 foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.",

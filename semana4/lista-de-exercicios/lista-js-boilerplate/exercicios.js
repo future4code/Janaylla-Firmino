@@ -222,11 +222,10 @@ function verificaParidade(array) {
    // implemente sua lógica aqui
    array = array.map((item) => {
       if(item % 2 === 0)
-         return item + " é par";
+         return `${item} é par`;
       else
-         return item + " é impar";
-   })
-   console.log(array);
+         return `${item} é ímpar`;
+   });
    return array;
 }
 
@@ -243,14 +242,15 @@ const pessoas = [
 
 //Exercício 18, letra A
 
-function retornaPessoasAutorizadas(pessoas) {
+function retornaPessoasAutorizadas() {
    // implemente sua lógica aqui
+
 }
 
 
 // Exercício 18, letra B
 
-function retornaPessoasNaoAutorizadas(pessoas) {
+function retornaPessoasNaoAutorizadas() {
    // implemente sua lógica aqui
 }
 

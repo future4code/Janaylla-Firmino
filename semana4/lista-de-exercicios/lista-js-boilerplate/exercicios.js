@@ -119,7 +119,6 @@ function segundoMaiorEMenor(array) {
    array = array.sort((a, b) => b - a);
    maiorEMenor.push(array[1]);
    maiorEMenor.push(array[array.length - 2]);
-   console.log(array, maiorEMenor)
    return maiorEMenor;
 }
 
@@ -127,6 +126,7 @@ function segundoMaiorEMenor(array) {
 
 function ordenaArray(array) {
    // implemente sua lógica aqui
+   return array.sort((a, b) => a - b);
 }
 
 // Exercício 12

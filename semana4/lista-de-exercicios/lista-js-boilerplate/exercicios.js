@@ -212,7 +212,7 @@ function multiplicaArrayPor2(array) {
 function multiplicaArrayPor2S(array) {
    // implemente sua lógica aqui
    return array.map((num) => {
-      return num * 25;
+      return String(num * 2);
    });
 }
 
@@ -220,7 +220,14 @@ function multiplicaArrayPor2S(array) {
 
 function verificaParidade(array) {
    // implemente sua lógica aqui
-
+   array = array.map((item) => {
+      if(item % 2 === 0)
+         return item + " é par";
+      else
+         return item + " é impar";
+   })
+   console.log(array);
+   return array;
 }
 
 // Exercício 18

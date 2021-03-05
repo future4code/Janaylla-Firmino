@@ -211,6 +211,9 @@ function multiplicaArrayPor2(array) {
 
 function multiplicaArrayPor2S(array) {
    // implemente sua lógica aqui
+   return array.map((num) => {
+      return num * 25;
+   });
 }
 
 // Exercício 17, letra C

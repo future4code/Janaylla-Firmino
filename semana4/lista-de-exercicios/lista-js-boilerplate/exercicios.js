@@ -69,12 +69,13 @@ function retornaExpressoesBooleanas() {
 //Exercício 7
 
 function retornaNNumerosPares(n) {
-   // implemente sua lógica aqui
-    
+   // implemente sua lógica aqui 
    array = []
+
    for(let i=0; i<n ; i++){
       array.push(i*2);
    }
+
    return array;
 }
 
@@ -82,6 +83,12 @@ function retornaNNumerosPares(n) {
 
 function checaTriangulo(a, b, c) {
   // implemente sua lógica aqui
+  if(a === b && b === c)
+      return "Equilátero";
+   else if(a === b || a === c || b === c)
+      return "Isósceles";
+   else
+      return "Escaleno";
 }
 
 // Exercício 9

@@ -9,12 +9,22 @@ function inverteArray(array) {
 
 function retornaNumerosParesElevadosADois (array) {
    // implemente sua lógica aqui
+   array = array.filter((item) => {
+      return item % 2 == 0;
+   });
+   array = array.map((item) => {
+      return item*item;
+   })
+   return array;
 }
-
 //Exercício 3
 
 function retornaNumerosPares (array) {
    // implemente sua lógica aqui
+   array = array.filter((item) => {
+      return item % 2 == 0;
+   });
+   return array;
 }
 
 //Exercício 4

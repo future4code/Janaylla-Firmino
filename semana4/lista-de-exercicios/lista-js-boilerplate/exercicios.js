@@ -113,9 +113,9 @@ function comparaDoisNumeros(num1, num2) {
 function segundoMaiorEMenor(array) {
    // implemente sua lógica aqui
    let maiorEMenor = [];
-   array = array.sort((a, b) => b - a);
-   maiorEMenor.push(array[1]);
+   array = ordenaArray(array);
    maiorEMenor.push(array[array.length - 2]);
+   maiorEMenor.push(array[1]);
    return maiorEMenor;
 }
 
@@ -220,6 +220,7 @@ function multiplicaArrayPor2S(array) {
 
 function verificaParidade(array) {
    // implemente sua lógica aqui
+
 }
 
 // Exercício 18

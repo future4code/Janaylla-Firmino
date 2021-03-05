@@ -303,4 +303,13 @@ const contas = [
 
 function atualizaSaldo() {
    // implemente sua lógica aqui
+   contaAtualizada = contas.map((conta) => {
+      compraTotal = 0;
+      for(let i=0 ; i < conta.compras.length ; i++){
+         compraTotal += conta.compras[i];  
+      }    
+      conta.saldoTotal -= compraTotal;
+      return conta;
+   })
+   return contaAtualizada;
 }

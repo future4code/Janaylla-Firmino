@@ -152,11 +152,18 @@ function imprimeChamada() {
    return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores[0]}, ${filme.atores[1]}, ${filme.atores[2]}, ${filme.atores[3]}.`;
 }
 
-console.log(imprimeChamada())
 // Exercício 14
 
 function criaRetangulo(lado1, lado2) {
+  
    // implemente sua lógica aqui
+   retangulo = {
+      largura: lado1,
+      altura: lado2,
+      perimetro: lado1*2+lado2*2,
+      area: lado1*lado2
+   }
+   return retangulo;
 }
 
 // Exercício 15

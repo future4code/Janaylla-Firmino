@@ -115,6 +115,12 @@ function comparaDoisNumeros(num1, num2) {
 
 function segundoMaiorEMenor(array) {
    // implemente sua lógica aqui
+   let maiorEMenor = [];
+   array = array.sort((a, b) => b - a);
+   maiorEMenor.push(array[1]);
+   maiorEMenor.push(array[array.length - 2]);
+   console.log(array, maiorEMenor)
+   return maiorEMenor;
 }
 
 //Exercício 11

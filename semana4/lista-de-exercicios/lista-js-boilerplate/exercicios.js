@@ -244,7 +244,11 @@ const pessoas = [
 
 function retornaPessoasAutorizadas() {
    // implemente sua lógica aqui
-
+   pessoasAutorizadas = pessoas.filter((pessoa) => {
+         return pessoa.idade > 14 && pessoa.idade < 60 && pessoa.altura >= 1.5;
+   });
+   console.log(pessoasAutorizadas);
+   return pessoasAutorizadas;
 }
 
 

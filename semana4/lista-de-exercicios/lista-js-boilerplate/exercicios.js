@@ -33,8 +33,8 @@ function retornaMaiorNumero(array) {
    // implemente sua lógica aqui
    let maior = array[0];
    for(let i=1; i<array.length; i++ ){
-      if(array[i]>maior )
-      maior = array[i]
+      if(array[i]>maior)
+      maior = array[i];
    }
    return maior;
 }
@@ -43,6 +43,7 @@ function retornaMaiorNumero(array) {
 
 function retornaQuantidadeElementos (array) {
    // implemente sua lógica aqui
+   return array.length;
 }
 
 //Exercício 6

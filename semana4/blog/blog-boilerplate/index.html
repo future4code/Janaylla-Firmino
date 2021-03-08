@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>Blog</title>
+</head>
+
+<body>
+    <section id="formulario">
+        <a href="posts.html"> <button id="mudarPagina">Posts</button> </a>
+    <h3>Adicione um Post</h3>
+            <label for="titulo-post">Título<span>*</span>:</label>
+            <input type="text" id="titulo-post" onkeydown="aptEnter(event, this)">
+
+            <label for="autor-post">Autor<span>*</span>:</label>
+            <input type="text" id="autor-post" onkeydown="aptEnter(event, this)">
+
+            <label for="img-post">imagem (url):</label>
+            <input type="url" id="img-post" onkeydown="aptEnter(event, this)">
+
+            <label for="conteudo-post">Conteúdo<span>*</span>:</label>
+            <textarea id="conteudo-post" cols="30" rows="5" onkeydown="aptEnter(event, this)"></textarea>
+
+            <button id="btnPost" type="submit" onclick="capturaFormPost()">Criar Post</button>
+    </section>
+
+</body>
+
+</html>

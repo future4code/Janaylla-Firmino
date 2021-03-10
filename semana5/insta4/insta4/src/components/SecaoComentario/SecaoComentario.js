@@ -5,7 +5,7 @@ export class SecaoComentario extends Component {
 	state = {
 		textoComentario: ''
 	}
-	onChangeComentario = (event) => {
+	onChangeComentario = (event) =>{
 		console.log(event.target.value);
 
 		this.setState({
@@ -15,6 +15,7 @@ export class SecaoComentario extends Component {
 
 	render() {
 		return <div className={'comment-container'}>
+			<img></img>
 			<input
 				className={'input-comentario'}
 				placeholder={'Comentário'}

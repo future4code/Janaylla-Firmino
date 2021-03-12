@@ -8,3 +8,9 @@
     margin-right: 5px;
     flex-grow: 1fr;
 }
+.comment{
+    display: flex;
+    padding: 5px;
+    border-top: grey 1px solid;
+    font-size: 12px;
+}

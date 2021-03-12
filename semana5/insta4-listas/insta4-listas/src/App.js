@@ -1,3 +1,5 @@
+
+import './App.css';
 import React from 'react';
 import Post from './components/Post/Post';
 import { IconeSemContador } from './components/IconeSemContador/IconeSemContador'
@@ -5,6 +7,7 @@ import iconePlus from './img/Plus_icon-icons.com_71848.svg'
 import styled from 'styled-components'
 
 class App extends React.Component {
+  
   state = {
     posts: [
       {
@@ -37,12 +40,12 @@ class App extends React.Component {
       fotoUsuarioAdd: event.target.value
     });
   }
-  clickFotoPost = (event) => {
-    
-    this.setState({
-      fotoPostAdd: event.target.value
-    });
+  clickFotoPost = (event) =>{
+   this.setState({
+     fotoPostAdd: event.target.value
+   });
   }
+
   addPost = () =>{
     const listaPosts = this.state.posts;
     const listaNovaPosts = [...listaPosts];
@@ -57,53 +60,47 @@ class App extends React.Component {
       fotoUsuarioAdd: '',
       fotoPostAdd: ''
     });
+
+  
   }
+  
+ 
+ 
   render() {
-    const AppContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+   
+ const AdicionarPost = styled.div`
+     display:flex;
+     padding:10px;
     align-items: center;
-    text-align: center;
-    label, input{
-      padding:5px;
-      width:250px;
+    cursor: pointer;
+    img{
+      width:40px
     }`
-    ;
-
-
-   const posts = this.state.posts;
-   const AdicionarPost = styled.div`
-   display:flex;
-   padding:10px;
-   align-items: center;
-   cursor: pointer;
-   img{
-     width:40px
-   }`
-   const divPosts = posts.map((item) => {
-     return <Post key={item.nomeUsuario}
-       nomeUsuario={item.nomeUsuario}
-       fotoUsuario={item.fotoUsuario}
-       fotoPost={item.fotoPost}
-     />;
-   });
+     const posts = this.state.posts;
+    const divPosts = posts.map((item) => {
+      return <Post key={item.nomeUsuario}
+        nomeUsuario={item.nomeUsuario}
+        fotoUsuario={item.fotoUsuario}
+        fotoPost={item.fotoPost}
+      />;
+     });
+    
     return (
-      <AppContainer>
-        <label>Nome de usuario</label>
-        <input type={'text'} onChange={this.clickNomeUsuario} value={this.state.nomeUsuarioAdd} />
-        <label>Foto(url) de usuario</label>
-
-        <input type={'text'} onChange={this.clickFotoUsuario} value={this.state.fotoUsuarioAdd} />
-        <label>Foto(url) do post </label>
-        
-        <input type={'text'} onChange={this.clickFotoPost} value={this.state.fotoPostAdd}/>
-       
-        <AdicionarPost onClick={this.addPost}>
-          <img src={iconePlus}/> Adicionar Novo Post
-        </AdicionarPost>
-        {divPosts}
-      </AppContainer>
+      <div className={"app-container"}>
+               <label>Nome de usuario</label>
+               <input type={'text'} onChange={this.clickNomeUsuario} value={this.state.nomeUsuarioAdd} />
+              
+               <label>Foto(url) de usuario</label>
+               <input type={'text'} onChange={this.clickFotoUsuario} value={this.state.fotoUsuarioAdd} />
+              
+               <label>Foto(url) do post </label>
+               <input type={'text'} onChange={this.clickFotoPost} value={this.state.fotoPostAdd}/>
+             
+               <AdicionarPost onClick={this.addPost}>
+                 <img src={iconePlus}/> Adicionar Novo Post
+               </AdicionarPost>
+               {divPosts}
+        </div>
     );
   }
 }

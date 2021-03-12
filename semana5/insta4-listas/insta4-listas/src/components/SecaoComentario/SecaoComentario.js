@@ -21,7 +21,8 @@ export class SecaoComentario extends Component {
 		const novaLista = [...lista];
 		novaLista.push(this.state.textoComentario);
 		this.setState({
-			comentarios: novaLista
+			comentarios: novaLista,
+			textoComentario: ''
 		});
 		console.log(novaLista);
 	}

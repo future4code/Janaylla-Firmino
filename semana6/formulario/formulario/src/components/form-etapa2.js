@@ -1,18 +1,15 @@
 import React from "react";
 import styled from 'styled-components';
+import PerguntasAbertas from './perguntas-abertas.js'
+import PerguntasFechadas from './perguntas-fechadas.js'
 
 const Form = styled.div`
 display: flex;
 flex-direction: column;
 
 `;
-const LabelPegunta = styled.label`
-`;
-const InputResposta = styled.input``;
 
-const SelectResposta = styled.select``;
-
-export default class App extends React.Component {
+export default class FormEtapa2 extends React.Component {
     state = {
         curso:"",
         ensino: ""
@@ -32,12 +29,13 @@ export default class App extends React.Component {
     render() {
      return <Form key="form">
          <h1>Etapa 2 - informações do ensino superior</h1>
-            <label>5. Qual o curso?</label>
-            <InputResposta type="text" value={this.state.curso} onChange={this.onChangeCurso}></InputResposta>
+            <PerguntasAbertas pergunta ={"1. Qual o curso?"}
+         value={this.state.curso} onChange={this.onChangeCurso}></PerguntasAbertas>
             
-            <label>6 .Qual a unidade de ensino?</label>
-            <InputResposta type="text" value={this.state.ensino} onChange={this.onChangeUnidade}></InputResposta>
+            <PerguntasAbertas pergunta ={"2. Qual o qual a unidade de ensino?"}
+            type="text" value={this.state.ensino} onChange={this.onChangeUnidade}></PerguntasAbertas>
             
+
             <button onClick={this.props.etapa2}>Próxima Etapa</button>
         </Form>
     }

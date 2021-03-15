@@ -7,7 +7,23 @@ import FormAgradecimentos from './components/form-agradecimentos.js'
 
 const Todo = styled.div`
 /* background-color: green; */
+box-sizing: border-box;
 height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+
+:first-child{
+  margin: 10px;
+}
+:first-child input, :first-child select{
+  width: 100%;
+  margin: 10px;
+}
+*{
+  font-size: 30px;
+  font-family:Arial, Helvetica, sans-serif;
+}
 `
 export default class App extends React.Component {
   state = {
@@ -33,7 +49,7 @@ export default class App extends React.Component {
     const renderizaTela = () =>{
     switch(this.state.paginaAtual){
         case "form-etapa1":
-          return <FormEtapa1 etapa12={this.etapa1} etapa13={this.etapa2}></FormEtapa1>;
+          return <FormEtapa1 etapa1={this.etapa1}></FormEtapa1>;
           case "form-etapa2":
             return <FormEtapa2 etapa2={this.etapa2}></FormEtapa2>;
             

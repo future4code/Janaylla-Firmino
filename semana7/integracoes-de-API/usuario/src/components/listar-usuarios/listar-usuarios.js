@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import Delete from '../../img/delete.ico'
+import Editar from '../../img/delete.ico'
+import Buscar from '../../img/buscar.ico'
+import Fechar from '../../img/fechar.ico'
 import Detalhar from '../detalhar-usuarios/detalhar-usuarios'
 
 const DivLista = styled.fieldset`
@@ -38,14 +41,6 @@ li{
   align-items: center;
   justify-content: space-between;
 }
-li > img{
-  width: 25px;
-  cursor: pointer;
-  :hover{
-    background-color: red;
-    border-radius: 50%;
-  }
-}
 
 li > div{
     cursor: pointer;
@@ -55,17 +50,34 @@ li > div{
     :hover{
       color: black;
     }
-  } 
+  }
+
+  img{
+width: 20px;  
+filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(75%);
+    cursor: pointer;
+    }
+    img:hover{
+      -webkit-filter: grayscale(0%);
+  }
+
   `
 const Botao = styled.div`
 cursor:pointer;
 display: flex;
 align-items: center;
-font-size: 18px;
+font-size: 17px;
+margin-left: 5px;
+    img{
+width: 20px;  
+
+filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(75%);
+    }
 :hover{
   img{
-    background-color: red;
-    border-radius: 50%;
+    -webkit-filter: grayscale(0%);
   }
 }
 `
@@ -181,7 +193,9 @@ detalhar = () => {
     const lista = this.state.usuarios.map((item) =>{
         return <li>
           <div onClick={() => this.onClickdetalharUsuarioID(item.id)}>{item.name}</div>
+     
           <img src={Delete} onClick={() => this.onClickDelete(item.id, item.name)}></img>
+          
         </li>
       })
   return (
@@ -192,11 +206,11 @@ detalhar = () => {
        <DivPesquisa>
        <input type="text" value={this.state.inputBuscaUsuario} onChange={this.onChangeInputBusca}></input>
        <Botao onClick={this.onClickPesquisa}>
-       <img src={Delete}></img>
-       Pesquisa
+       <img src={Buscar}></img>
+       Buscar
        </Botao>
        {this.state.pesquisa && <Botao onClick={this.onClickLimparPesquisa}>
-       <img src={Delete}></img>
+       <img src={Fechar}></img>
        Limpar pesquisa
        </Botao>}
        </DivPesquisa>

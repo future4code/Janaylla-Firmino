@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import Delete from '../../img/delete.ico'
-import Fechar from '../../img/fechar.ico'
 import Editar from '../../img/editar.ico'
+import Salvar from '../../img/salvar.ico'
+import Fechar from '../../img/fechar.ico'
 
 const Todo = styled.div`
 position: fixed;
@@ -32,16 +33,6 @@ display: flex;
     display: flex;
     
   }
-img{
-  width: 25px;
-  cursor: pointer;
-  display: flex;
-  margin-left: 10px;
-  :hover{
-    background-color: red;
-    border-radius: 50%;
-  }
-}
 }
 
 `
@@ -59,13 +50,21 @@ li > img{
   cursor: pointer;
 }
 `
-
 const Botao = styled.div`
 cursor:pointer;
+display: flex;
+align-items: center;
+font-size: 17px;
+margin-left: 10px;
+    img{
+width: 20px;  
+
+filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(75%);
+    }
 :hover{
   img{
-    background-color: red;
-    border-radius: 50%;
+    -webkit-filter: grayscale(0%);
   }
 }
 `
@@ -132,8 +131,9 @@ class Detalhar extends React.Component{
       
    </UlUsuario>
    <DivBotao>
-    <Botao onClick={this.onClickEditarSalvar}>Salvar</Botao>
-    <Botao onClick={this.editar}>Cancelar</Botao>
+    <Botao onClick={this.onClickEditarSalvar}>  <img src={Salvar}></img>
+   Salvar</Botao>
+    <Botao onClick={this.editar}>  <img src={Fechar}></img>Cancelar</Botao>
     </DivBotao>
     </div>
     )

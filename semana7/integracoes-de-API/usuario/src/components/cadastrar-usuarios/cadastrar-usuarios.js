@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import Salvar from '../../img/salvar.ico'
 
 const FormCadastro = styled.fieldset`
 
@@ -37,6 +38,24 @@ button{
   font-size: 18px;
   cursor: pointer;
   padding: 3px 5px;
+}
+`
+
+const Botao = styled.div`
+cursor:pointer;
+display: flex;
+align-items: center;
+font-size: 17px;
+    img{
+width: 20px;  
+
+filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(75%);
+    }
+:hover{
+  img{
+    -webkit-filter: grayscale(0%);
+  }
 }
 `
 class Cadastro extends React.Component{
@@ -81,7 +100,7 @@ class Cadastro extends React.Component{
        <legend>Cadastro</legend>
          <input type="text" value={this.state.inputNomeUsuario} onChange={this.onChangeInputNome}></input>
          <input type="email" value={this.state.inputEmailUsuario} onChange={this.onChangeInputEmail}></input>
-         <button onClick={this.onClickEnviar}>Enviar</button>
+         <Botao onClick={this.onClickEnviar}><img src={Salvar}/>Enviar</Botao>
      </FormCadastro>
     </Todo>
   );

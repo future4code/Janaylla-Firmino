@@ -24,7 +24,6 @@ button:hover{
 
 }
 `
-
 const BotaoMudarPagina = styled.button`
 align-self: flex-start;
 margin: 15px;

@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import Delete from '../../img/delete.ico'
-import Editar from '../../img/delete.ico'
 import Buscar from '../../img/buscar.ico'
 import Fechar from '../../img/fechar.ico'
 import Detalhar from '../detalhar-usuarios/detalhar-usuarios'
@@ -191,7 +190,7 @@ detalhar = () => {
 
   render(){
     const lista = this.state.usuarios.map((item) =>{
-        return <li>
+        return <li key={item.id}>
           <div onClick={() => this.onClickdetalharUsuarioID(item.id)}>{item.name}</div>
      
           <img src={Delete} onClick={() => this.onClickDelete(item.id, item.name)}></img>

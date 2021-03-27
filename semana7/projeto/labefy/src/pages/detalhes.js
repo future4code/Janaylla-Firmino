@@ -33,12 +33,23 @@ const Conteudo = styled.div`
         }
     }
 `
+const FormAdd = styled.div`
+`
+const UlPlatList = styled.ul`
+    li{
+        display: flex;
 
+    }
+`
 export default class Detalhe extends React.Component{
     state = {
         playlist: this.props.playlist,
         tracks: [],
-        renderizou: false
+        renderizou: false,
+        mostrar: true,
+        inputNome: "",
+        inputCantor: "",
+        inputLink: ""
     }
     rederizarPlaylist = () => {
         console.log("RES", this.state.playlist.id);
@@ -59,19 +70,65 @@ export default class Detalhe extends React.Component{
         console.log("Aqui 2, ", this.state.playlist)
         this.rederizarPlaylist();
     }
+    onChangeAdd = () => {
+        this.setState({
+            mostrar: !this.state.mostrar
+        })
+    }
+    onChangeInputNome = (e) => {
+        this.setState({inputNome: e.target.value})
+    }
+    onChangeInputCantor = (e) => {
+        this.setState({inputCantor: e.target.value})
+    }
+    onChangeInputLink = (e) => {
+        this.setState({inputLink: e.target.value})
+    }
+    onClickEnviar = () => {
+        const bory = {
+            name: this.state.inputNome,
+            artist: this.state.inputCantor, 
+            url: this.state.inputLink
+        }
+        axios.post(`${baseLink}/${this.state.playlist.id}/tracks`, bory, autorizacao).then(res => {
+           alert("Deu certo");
+        }).catch(err => {
+            console.log(err.response);
+            this.props.mudarPagina("ViewPlaylists");
+        })
+    }
     render(){
         const viewPlaylist = this.state.tracks.map((item) => {
-            return (<li></li>)
+            console.log("o que tem no", item)
+            return (<li>
+                <p>{item.name}</p>
+                <p>{item.artist}</p>
+                <p><audio src={item.url} controls>
+                </audio></p>
+            </li>)
         })
+        const formAdd = <FormAdd>
+            <label>Nome</label>
+            <input value={this.state.inputNome} onChange={this.onChangeInputNome}/>
+            <label>Cantor/Banda</label>
+            <input value={this.state.inputCantor} onChange={this.onChangeInputCantor}/>
+            <label>Link da música</label>
+            <input value={this.state.inputLink} onChange={this.onChangeInputLink}/>
+            <button onClick={this.onClickEnviar}>Enviar</button>
+        </FormAdd>
+
         return (<Todo>
             <Header mudarPaginaTxt="Voltar para a Home" mudarPagina={this.props.mudarPagina} pagina="ViewPlaylists"/>
                 <Conteudo>
                    <div>
                    <div>
-                    <p>{this.state.playlist.name}</p>
-                    <ul>
+                    <p>{this.state.playlist.name}<input type="checkbox" onChange={this.onChangeAdd}>
+                        </input></p>  
+                        {!this.state.mostrar && formAdd}
+                    <UlPlatList>
+                      
                         {viewPlaylist}
-                    </ul>
+                    </UlPlatList>
                 </div>
 
                    </div>

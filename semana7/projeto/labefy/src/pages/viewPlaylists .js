@@ -61,26 +61,25 @@ export default class ViewPlaylist extends React.Component{
             
         }).catch(err => {
             console.log(err.response.data);
-         
         })
     }
-    onClickDelete = (id) => [
-        axios.get(baseLink+`/${id}`, autorizacao).then(res => {
+    onClickDelete = (id) => {
+     
+        axios.delete(baseLink+`/${id}`, autorizacao).then(res => {
             this.rederizarLista();
             
         }).catch(err => {
-            console.log(err.response.data);
-         
+            console.log(err);
         })
-    ]
+    }
     render(){
         const viewPlaylist = this.state.playlists.map(item => {
                 return (<li key={item.id}>
-                    <p>{item.name}</p><button onClick={() => this.onClickDelete(item.id)}>Delete</button>
+                    <p onClick={() => this.props.mudarPagina("Detalhe", item)}>{item.name}</p><button onClick={() => this.onClickDelete(item.id) }>Delete</button>
                 </li>)
             })
         return (<Todo>
-            <Header mudarPaginaTxt="Ver playlists" mudarPagina={this.props.mudarPagina} pagina="Home"/>
+            <Header mudarPaginaTxt="Voltar para a Home" mudarPagina={this.props.mudarPagina} pagina="Home"/>
             <Conteudo>
                 <div>
                     <p>Playlists</p>

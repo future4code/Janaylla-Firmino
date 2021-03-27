@@ -13,7 +13,7 @@ const HeaderDiv = styled.div`
 export default class Header extends React.Component{
     render(){
         return (<HeaderDiv>
-            <button onClick={() => this.props.mudarPagina(this.props.pagina)}>{this.props.mudarPaginaTxt}</button>
+            <button onClick={() => this.props.mudarPagina(this.props.pagina)} >{this.props.mudarPaginaTxt}</button>
         </HeaderDiv>)
     }
 }

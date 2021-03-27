@@ -81,7 +81,7 @@ export default class Home extends React.Component{
     }
     render(){
         return (<Todo>
-            <Header mudarPaginaTxt="Voltar para a Home" mudarPagina={this.props.mudarPagina} pagina="viewPlaylists"/>
+            <Header mudarPaginaTxt="Ver para a Playlists" mudarPagina={this.props.mudarPagina} pagina="ViewPlaylists"/>
                 <Conteudo>
                     <div>
                         <p>Criar playlists</p>

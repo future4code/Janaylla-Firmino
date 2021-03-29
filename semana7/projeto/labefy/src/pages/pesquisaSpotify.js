@@ -144,9 +144,11 @@ export default class PesquisaSpotify extends React.Component{
         this.setState({inputLink: e.target.value})
     }
     onChangeSelectPlaylist = (e) => {
+        // console.log(e.target.value)
         this.setState({idPlaylist: e.target.value})
     }
     musicaEscolhida = (nome, artista, link) => {
+        console.log(link)
         let artistas = artista[0].name;
        
         if(this.state.idPlaylist){
@@ -155,6 +157,7 @@ export default class PesquisaSpotify extends React.Component{
             artistas = artistas + artista[n].name + " - ";
         }     
         const musicaEscolhida = [nome, artistas, link]
+        console.log(musicaEscolhida)
         this.setState({musicaEscolhida: musicaEscolhida})
     }
     else{
@@ -196,16 +199,19 @@ export default class PesquisaSpotify extends React.Component{
         })
     }
     }
-    onClickEnviar = (musicaUrl) => {
-      
+    onClickEnviar = (link ,musicaUrl) => {
+     
         let bory = {
             name: this.state.musicaEscolhida[0],
             artist: this.state.musicaEscolhida[1], 
             url: this.state.musicaEscolhida[2]
         }
-          if(musicaUrl){
+        
+         
+          if(link){
             bory.url = musicaUrl
-          }
+          } 
+        //   console.log(bory)
         axios.post(`${baseLink}/${this.state.idPlaylist}/tracks`, bory, autorizacao).then(res => {
             this.setState({
                 musicaEscolhida: ["", "", ""],
@@ -214,8 +220,8 @@ export default class PesquisaSpotify extends React.Component{
             })
 
         }).catch(err => {
-            // console.log(err.response);
-            this.props.mudarPagina("ViewPlaylists");
+            //  console.log(err.response.data);
+            // this.props.mudarPagina("ViewPlaylists");
         })
     }
     onClickEnviarComLink = () => {
@@ -224,7 +230,7 @@ export default class PesquisaSpotify extends React.Component{
         this.setState({
            musicaEscolhida: musicas
         })
-        this.onClickEnviar(musicas[2])
+        this.onClickEnviar(true, musicas[2])
     }
     render(){
         const playlist = this.state.tracks.map((item) => {
@@ -265,7 +271,7 @@ export default class PesquisaSpotify extends React.Component{
                     {!this.state.musicaEscolhida[0] || !this.state.idPlaylist ?
                         <FormDiv>
                        <PesquisaInput onChange={this.onChangeInputPesquisa}/>
-                       <SelectInput  onChange={this.onChangeSelectPlaylist}>
+                       <SelectInput value={this.state.idPlaylist} onChange={this.onChangeSelectPlaylist}>
                            <option value="">-Selecione playlist-</option>
                            {playlists}
                        </SelectInput>
@@ -279,7 +285,7 @@ export default class PesquisaSpotify extends React.Component{
                            <input value={this.state.inputLink} onChange={this.onChangeInputLink}/> 
                            <ButtonDiv onClick={this.onClickEnviarComLink}>Adicionar música</ButtonDiv>
                            <h4>ou continuar e ser redirecionado quando for escultar a música</h4>
-                           <ButtonDiv onClick={this.onClickEnviar}>Continuar sem link</ButtonDiv>
+                           <ButtonDiv onClick={() => this.onClickEnviar(false)}>Continuar sem link</ButtonDiv>
                            </FormDivEscolherLink>
                            </FormDiv>}
                 

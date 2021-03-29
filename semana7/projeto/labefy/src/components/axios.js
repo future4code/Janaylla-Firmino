@@ -8,6 +8,6 @@ export const autorizacao = {
 
   export const autorizacaoSpotify = {
     headers: {
-      Authorization: "Bearer BQB-egCXwAnIFRceef3eb24lW5swB-9pIDQt-CK-QwtutBUb5CNPOMiW_D8XRPrl1HqzVgreo2rV2Z8TuGJqccRaAaCrXX8vtY7tLzYQ3aHoC-XqetBIDlUVA2Oey7C7vv7UdI9th83mud-CSy21wVAPvwQMh07seWE9P83tEuLd5ETCd0IjRBHAVNdZadWlmVfHiFYqAIrD3npFR0GYny23_O96rbhIsJPH4zy4cSPA6ZNMdAUwTpioGPiAyShFfXW9U3naToiLelN_7OFxAcYYeDcsqSeHf8bDUEcD"
+      Authorization: "Bearer BQCdxZok3gywMMhCSbrTh6VozHCSPQPBiTl3lqgFpYdIxUEUBR7_lGyM5AT1BzWDWhh8Nz_uGDQ-cKVjRxApkv9kE5ycbwEBAbnapUHF-iISCdXdO3CmEsjTP5EVYWs9XuyZMOSFP0wiDnF6e1u51_11DyoBID1Y0orVFSknj1LpTBn7rUkCbfDero66UK1ScXTQF4KXCJFVTrzuqc43WHhyOjqy2QcEQBG2SCpQtUaMbOYGFrpniIZVrHQuoDZx4GvUO6nGUOUo9MxpJhfpkP5thckHBzV_NOkS2uN-"
     }
   }

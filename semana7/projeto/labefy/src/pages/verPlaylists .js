@@ -244,6 +244,12 @@ export default class VerPlaylist extends React.Component {
         })
     }
     onClickDelete = (id) => {
+        if(id === this.state.playlist.id){
+        this.setState({
+            tracks: [],
+            playlist: {}
+        })
+    }
         axios.delete(baseLink + `/${id}`, autorizacao).then(res => {
             this.rederizarLista();
         }).catch(err => {

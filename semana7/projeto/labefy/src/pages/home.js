@@ -1,94 +1,49 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
-import Header from '../components/header'
 import Foter from '../components/footer'
-import {baseLink, autorizacao} from '../components/axios'
+import {Todo, ButtonDiv} from '../components/stylesComuns'
 
-const Todo = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-direction: column;
-    min-height: 100vh;
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-`
 const Conteudo = styled.div`
     display: flex;
     flex-grow: 1;
     justify-content: center;
     align-items: center;
-    div{
+    background-color: black;
+    background-size: 300px;
+
+     div{
         display: flex;
         justify-content: center;
-        align-items: stretch;
         text-align: center;
+        align-items: center;
         flex-direction: column;
-        *{
-            margin: 4px;
+        color: white;
+        > div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
     }
 `
-const Mensagem = styled.div`
-`
-
 export default class Home extends React.Component{
-    state = {
-        inputNomePlaylist: "",
-        mensagem: {
-            texto: "",
-            mostrar: true,
-            color: ""
-        }
-    }
-    
-    mensagem(texto, color, mostra){
-        const mensagemAtualizar = {...this.state.mensagem}
-        const mensagemRetornar =  {...this.state.mensagem}
-
-        mensagemAtualizar.texto = texto;
-        mensagemAtualizar.color = color;
-        mensagemAtualizar.mostrar = mostra;
-
-        setTimeout(() => this.setState({
-            mensagem: mensagemRetornar
-        }),2000);
-        this.setState({
-            mensagem: mensagemAtualizar
-        })
-    }
-
-    inputNomePlaylist = (e) =>{
-        this.setState({
-            inputNomePlaylist: e.target.value
-        })
-    }
-    onClickEnviar = () => {
-        const bory = {
-            name: this.state.inputNomePlaylist
-        }
-        axios.post(baseLink, bory, autorizacao).then(res => {
-            this.mensagem("Deu tudo certo", "green", true)
-        }).catch(err => {
-            console.log(err.response.data);
-            this.mensagem("Algo deu errado", "red", true)
-         
-        })
-    }
+   
     render(){
         return (<Todo>
-            <Header mudarPaginaTxt="Ver para a Playlists" mudarPagina={this.props.mudarPagina} pagina="ViewPlaylists"/>
                 <Conteudo>
                     <div>
-                        <p>Criar playlists</p>
-                        <label>Nome playlists </label>
-                        <input type="text" onChange={this.inputNomePlaylist} value={this.state.inputNomePlaylist}/>
-                        <button onClick={this.onClickEnviar}>Enviar</button>
-                        <Mensagem>{this.state.mensagem.texto}</Mensagem>
+                        <h3>Adicione uma nova playlist</h3>
+                        <ButtonDiv onClick={() => this.props.mudarPagina("NovaPlaylist")} >Nova playlist</ButtonDiv>
+                      
+                        <h3>Adicione uma novas músicas:</h3>  
+                        <div>
+                        <ButtonDiv   onClick={() => this.props.mudarPagina("NovaMusica")}>Novas músicas</ButtonDiv>
+                        <ButtonDiv onClick={() => this.props.mudarPagina("PesquisaSpotify")}>Pesquisar músicas do spotify</ButtonDiv>
+                        </div>
+                        <h3>Navegue por suas músicas:</h3>  
+                        <div>
+                        <ButtonDiv onClick={() => this.props.mudarPagina("VerPlaylist")}>Playlists</ButtonDiv>
+                        <ButtonDiv onClick={() => this.props.mudarPagina("TodasMusicas")}>Todas as músicas</ButtonDiv>
+                        </div>
                     </div>
                 </Conteudo>
             <Foter></Foter>

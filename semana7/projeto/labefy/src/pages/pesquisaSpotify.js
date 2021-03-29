@@ -131,7 +131,6 @@ export default class PesquisaSpotify extends React.Component{
         inputPesquisa: "",
         inputLink: "",
         musicas: [],
-        ref: "",
         playlists: [],
         musicaEscolhida: ["", "", ""],//name, artita, url
         idPlaylist: ""
@@ -149,14 +148,12 @@ export default class PesquisaSpotify extends React.Component{
     }
     musicaEscolhida = (nome, artista, link) => {
         let artistas = artista[0].name;
-        console.log(artista)
        
         if(this.state.idPlaylist){
       
         for(let n=1; n<artista.length;n++){
             artistas = artistas + artista[n].name + " - ";
         }     
-        console.log(artistas)
         const musicaEscolhida = [nome, artistas, link]
         this.setState({musicaEscolhida: musicaEscolhida})
     }
@@ -166,12 +163,9 @@ export default class PesquisaSpotify extends React.Component{
     }
     rederizarListaPesquisa = (pesquisa) => {
         axios.get(`https://api.spotify.com/v1/search?q=${pesquisa}&type=track%2Cartist&market=BR&limit=30&offset=0`, autorizacaoSpotify).then(res => {
-             console.log(res.data.tracks.items[0])
-            const ref = res.data.tracks.items[0].external_urls.spotify;
 
-            this.setState({ref: ref, tracks: res.data.tracks.items})
+            this.setState({ tracks: res.data.tracks.items})
             
-            console.log(ref)
         }).catch(err => {
             console.log(err.response.data);
             this.setState({tracks:[]})
@@ -220,7 +214,7 @@ export default class PesquisaSpotify extends React.Component{
             })
 
         }).catch(err => {
-            console.log(err.response);
+            // console.log(err.response);
             this.props.mudarPagina("ViewPlaylists");
         })
     }

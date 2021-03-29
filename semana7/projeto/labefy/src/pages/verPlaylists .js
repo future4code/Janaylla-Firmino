@@ -181,7 +181,7 @@ const PlaylistsUl = styled.ul`
         flex-direction: row;
         text-align: start;
         h4{
-            font-size: 15px;
+            font-size: 12px;
             margin: 0;
             text-align: start;
         }
@@ -240,27 +240,26 @@ export default class VerPlaylist extends React.Component {
             })
 
         }).catch(err => {
-            console.log(err.response.data);
+            // console.log(err.response.data);
         })
     }
     onClickDelete = (id) => {
-
         axios.delete(baseLink + `/${id}`, autorizacao).then(res => {
             this.rederizarLista();
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
         })
     }
     mostrarPlaylist = (playlist) => {
         axios.get(`${baseLink}/${playlist.id}/tracks`, autorizacao).then(res => {
-            console.log("RES", res.data.result.tracks);
+            // console.log("RES", res.data.result.tracks);
             this.setState({
                 renderizou: true,
                 tracks: [...res.data.result.tracks]
             })
-            console.log("Coonteudo", this.state.traks)
+            // console.log("Coonteudo", this.state.traks)
         }).catch(err => {
-            console.log(err.response);
+            // console.log(err.response);
         })
     }
     trocaPlaylist = (playlist) => {
@@ -269,7 +268,7 @@ export default class VerPlaylist extends React.Component {
         play.name = playlist.name;
         this.setState({ playlist: { ...play } });
         this.mostrarPlaylist(playlist);
-        console.log("playlist clicada", playlist)
+        // console.log("playlist clicada", playlist)
     }
     onChangeAddMusica = () => {
         this.setState({
@@ -284,11 +283,11 @@ export default class VerPlaylist extends React.Component {
     }
     onChangeInputLink = (e) => {
         this.setState({ inputLink: e.target.value })
-        console.log("link", this.state.inputLink)
+        // console.log("link", this.state.inputLink)
     }
     onChangeInputLinkPlay = (e) => {
         this.setState({ inputLinkPlay: e.target.value })
-        console.log("link", this.state.inputLinkPlay)
+        // console.log("link", this.state.inputLinkPlay)
     }
     onClickEnviar = () => {
         const bory = {
@@ -299,9 +298,13 @@ export default class VerPlaylist extends React.Component {
         axios.post(`${baseLink}/${this.state.playlist.id}/tracks`, bory, autorizacao).then(res => {
             this.mostrarPlaylist(this.state.playlist)
             this.mensagem("Musica Adicionada", true, true);
-            this.setState({ addMusica: false })
+            this.setState({ addMusica: false,
+                inputCantor: "",
+                inputLink: "",
+                inputNome: ""
+            })
         }).catch(err => {
-            console.log(err.response);
+            // console.log(err.response);
             this.mensagem("Algo deu errado", false, true)
         })
     }

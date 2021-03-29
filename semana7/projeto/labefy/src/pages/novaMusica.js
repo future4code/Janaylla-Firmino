@@ -94,7 +94,6 @@ export default class NovaMusica extends React.Component {
     }
     onChangeInputLink = (e) => {
         this.setState({ inputLink: e.target.value })
-        console.log("link", this.state.inputLink)
     }
     componentDidMount() {
         this.rederizarLista();
@@ -108,7 +107,6 @@ export default class NovaMusica extends React.Component {
             })
 
         }).catch(err => {
-            console.log(err.response.data);
         })
     }
     onChangeSelectPlaylist = (e) => {
@@ -140,7 +138,6 @@ export default class NovaMusica extends React.Component {
            
             this.mensagem("Musica Adicionada", true, true);
         }).catch(err => {
-            console.log(err);
             this.mensagem("Algo deu errado", false, true)
         })
     }

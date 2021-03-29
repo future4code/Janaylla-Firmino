@@ -13,16 +13,12 @@ class App extends React.Component {
     id: undefined,
     playlist: undefined
   }
-  mudarPagina = (pagina, playlist) =>{
-  console.log("playlist obj", playlist)
+  mudarPagina = (pagina) =>{
     this.setState({
-      pagina: pagina,
-      playlist: playlist
+      pagina: pagina
     })
-    
   }
   pagina = () =>{
-    console.log(this.state.pagina)
     switch(this.state.pagina){
       case "NovaPlaylist":
         return(<NovaPlaylist mudarPagina={this.mudarPagina}></NovaPlaylist>)

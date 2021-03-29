@@ -5,7 +5,7 @@ import Header from '../components/header'
 import Foter from '../components/footer'
 import { baseLink, autorizacao } from '../components/axios'
 import { FormDiv, MensagemErro, MensagemSucesso, Todo, ButtonDiv } from '../components/stylesComuns'
-
+import IconePlay from '../img/round_play_circle_black_24dp.png'
 const Conteudo = styled.div`
     display: flex;
     flex-grow: 1;
@@ -14,7 +14,6 @@ const Conteudo = styled.div`
     flex-wrap: wrap;
     
     >div{
-       
         display: flex;
         justify-content: flex-start;
         text-align: center;
@@ -58,7 +57,7 @@ const MusicasUl = styled.ul`
         display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+
     }
     #background{
         width: 100%;
@@ -69,6 +68,7 @@ const MusicasUl = styled.ul`
         font-size: 25px;
         flex-direction: row;
         text-align: start;
+        cursor: pointer;
         :hover{
             background-color: #ff000020;
         }
@@ -83,6 +83,19 @@ const MusicasUl = styled.ul`
         padding: 0;
     }
 `
+
+const IconPlay = styled.div`
+background-image: url(${IconePlay});
+width: 40px;
+height: 40px;
+background-size: 100%;
+background-color: red;
+border-radius: 50%;
+`
+const IconPlaySpoty = styled(IconPlay)`
+background-color: green;
+`
+
 export default class TodasMusicas extends React.Component {
     state = {
         playlists: [],
@@ -95,14 +108,13 @@ export default class TodasMusicas extends React.Component {
     mostrarPlaylist = (playlists) => {
         playlists.forEach((item) => {
              axios.get(`${baseLink}/${item.id}/tracks`, autorizacao).then(res => {
-                 console.log("RES", res.data.result.tracks);
                  this.setState({
                      renderizou: true,
                      tracks: [...this.state.tracks, ...res.data.result.tracks]
                  })
-                 console.log("Coonteudo", this.state.traks)
+                //  console.log("Coonteudo", this.state.traks)
              }).catch(err => {
-                 console.log(err.response);
+                //  console.log(err.response);
              })
          })
         
@@ -116,28 +128,31 @@ export default class TodasMusicas extends React.Component {
             })
             this.mostrarPlaylist(res.data.result.list)
         }).catch(err => {
-            console.log(err.response.data);
+            // console.log(err.response.data);
         })
     }
 
     onChangeInputLinkPlay = (e) => {
         this.setState({ inputLinkPlay: e.target.value })
-        console.log("link", this.state.inputLinkPlay)
+        // console.log("link", this.state.inputLinkPlay)
     }
 
     render() {
         const musicaOrdem= this.state.tracks.sort((a, b) => {return a.name.localeCompare(b.name)});
-        const verMusicas = musicaOrdem.map(item => {
+        const verMusicas = this.state.tracks.map(item => {
             if(item.url.substring(0, 31) === "https://open.spotify.com/track/"){
                 return (<li key={item.id}>
-                    <a target="_blank" href={item.url}>
+                    <a target="_blank" href={item.url}  >
                     
                     <label for={item.id} id="background">
                         <div>
                     <h4>{item.name}</h4>
                     <h6>{item.artist}</h6>
-                    </div>
+                  
+                    </div>  
+                     <IconPlaySpoty/>
                 </label>
+             
                </a>
                     </li>)
             }
@@ -147,8 +162,12 @@ export default class TodasMusicas extends React.Component {
                 <div>
             <h4>{item.name}</h4>
             <h6>{item.artist}</h6>
+            
             </div>
+            
+            <IconPlay/>
         </label>
+       
             </li>)
         })
         return (<Todo>

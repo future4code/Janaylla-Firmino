@@ -8,7 +8,7 @@ const CardImg = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    position: absolute;
     img{
         max-height: 100%;
         max-width: 100%;
@@ -27,20 +27,34 @@ const CardDescricao = styled.div`
     }
 `
 const CardProfile = styled.div`
-     height: calc(70% - 40px);
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    margin: 20px;
-    width: calc(100% - 40px);
+height: calc(70% - 40px);
+display: flex;
+justify-content: flex-start;
+align-items: flex-start;
+position: relative;
+margin: 20px;
+width: calc(100% - 40px);
 `
 function Index(props) {
+    const CardImgBlur = styled.div`
+    background-size: 100% 100%;
+     background-image: url(${props.photo}); 
+  height: 100%;
+    position: absolute;
+    bottom: 0px;
+    padding: 10px !important;
+    color: white;
+    width: 100%;
+    filter: blur(10px);
+`
         return (
         <CardProfile>
+        <CardImgBlur />
+             
         <CardImg >
           <img src={props.photo}/>
-        </CardImg>
+         
+        </CardImg> 
         <CardDescricao>
              <h2> <Box color="primary.light">
             {props.name}, {props.age} </Box></h2> 

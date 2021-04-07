@@ -7,11 +7,9 @@ const Nav = styled.nav`
     justify-content: space-around;
     align-items: center;
     position: relative;
-    padding: 0;
-    height: 10%;
     display: flex;
     border-bottom: 1px solid black;
-
+    height: 10%;
     > #match{
     font-size: 40px;
     width: 80px;
@@ -59,21 +57,22 @@ const Nav = styled.nav`
         
        align-self: flex-start;
      }
-     h2{
-      font-size: 40px !important;
+  
+  }
+  h2{
+      font-size: 30px;
       display: flex;
       flex-wrap:nowrap;
     justify-content: space-around;
     align-items: center;
-
-     }
-  }
+  cursor: pointer;
+      }
 `
 function Index(props) {
    
     return (
       <Nav>
-       <Box color="primary.main"><h2>astroMatch</h2></Box>
+       <Box color="primary.main"><h2 onClick={() => props.setPage("match")}>astroMatch</h2></Box>
        { props.page === "match" ?
         <span class="material-icons" id="match" onClick={() => props.setPage("home")}>
              <Box>perm_identity</Box>
@@ -82,8 +81,7 @@ function Index(props) {
          </span>     
        :
         <span class="material-icons" id="home" onClick={() => props.setPage("match")}>
-     
-     <Box>perm_identity</Box>
+        <Box>perm_identity</Box>
           <Box color="primary.main">favorite</Box>
           <Box>add</Box>
         </span> 

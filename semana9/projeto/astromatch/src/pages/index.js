@@ -1,7 +1,6 @@
 import CardProfile from '../components/CardProfile'
 import styled from "styled-components"
 import Choose from '../components/Choose'
-import Nav from '../components/Nav'
 import Carregando from '../components/Carregando'
 import React, { useState, useEffect } from 'react';
 
@@ -10,7 +9,7 @@ const Bory = styled.div`
    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 90%;
     width: 100%;
     flex-direction: column;
 `

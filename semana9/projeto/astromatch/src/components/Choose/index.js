@@ -17,13 +17,17 @@ function Index(props) {
       <CardChoose>
           <ICon
             color="red"
-            iconeHover="close"
             icone="close"
+            choosePerson={props.choosePerson}
+            id={props.id}
+            chooseValue={false}
           />
           <ICon
             color="green"
-            iconeHover="favorite"
-            icone="favorite_border"
+            icone="favorite"
+            choosePerson={props.choosePerson}
+            id={props.id}
+            choose={true}
           />
           
       </CardChoose>

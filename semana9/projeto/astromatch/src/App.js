@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ThemeProvider } from "@material-ui/core/styles"
 import styled from "styled-components"
 import { Theme } from "./Theme"
 import Coracao from './img/coracao.png'
 import Index from './pages/index'
+import Match from './pages/match'
+import Nav from './components/Nav'
 const Todo = styled.div`
   background-image: url(${Coracao});
   background-size: 30px;
@@ -25,6 +27,7 @@ const Todo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
   }
  
 `
@@ -37,15 +40,23 @@ const Tela = styled.div`
   background-color: white;
   border-radius: 20px; 
   border: black 1px solid; 
+  flex-direction: column;
 `
 function App() {
+  const [page, setPage] = useState("Home");
+
+  const setPages = (page2) => {
+    setPage(page2);
+  }
+
   return (
-    
     <Todo>
       <div>
     <ThemeProvider  theme={Theme}>
       <Tela>
-        <Index/>
+        <Nav setPage={setPages} page={page}/>
+        {page !== "match" ?
+        <Match/>  :  <Index/>}
       </Tela>
     </ThemeProvider>
     </div>

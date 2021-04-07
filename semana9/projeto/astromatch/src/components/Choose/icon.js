@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import React from 'react';
-import { PinDropSharp } from "@material-ui/icons";
 
 
 function Index(props) {
@@ -10,17 +9,7 @@ function Index(props) {
         display: flex;
         justify-content: center;
         align-items: center;
-    :hover{
-       span:first-of-type{
-             display: none;
-         }
-         span:last-of-type{
-           display: initial;
-         }
-      }
-      span:last-of-type{
-           display: none;
-      }
+   
     
   span{
    
@@ -39,11 +28,8 @@ function Index(props) {
   `
     return (
       <CardChoose>
-        <span class="material-icons">
+        <span class="material-icons" onClick={() => props.choosePerson(props.id, props.choose)}>
             {props.icone}
-        </span>
-        <span class="material-icons">
-        {props.iconeHover}
         </span>
     </CardChoose>
       

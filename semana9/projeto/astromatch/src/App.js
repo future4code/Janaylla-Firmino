@@ -37,26 +37,30 @@ const Tela = styled.div`
   align-items: center;
   height: 100%;
   width: 500px;
+  max-width: 100%;
   background-color: white;
   border-radius: 20px; 
   border: black 1px solid; 
   flex-direction: column;
+  overflow: hidden;
 `
 function App() {
-  const [page, setPage] = useState("Home");
-
-  const setPages = (page2) => {
-    setPage(page2);
+  const [page, setPage] = useState("home");
+  const [matchesLength, setMatchesLength] = useState(0);
+  const setPages = (page) => {
+    setPage(page);
   }
-
+const matchesLengthFuctons = (matchesLength) => {
+  setMatchesLength(matchesLength);
+}
   return (
     <Todo>
       <div>
     <ThemeProvider  theme={Theme}>
       <Tela>
-        <Nav setPage={setPages} page={page}/>
-        {page !== "match" ?
-        <Match/>  :  <Index/>}
+        <Nav setPage={setPages} page={page} matchesLength={matchesLength}/>
+        {page === "match" ?
+        <Match matchesLengthFuctons={matchesLengthFuctons}/>  :  <Index matchesLength={matchesLengthFuctons}/>}
       </Tela>
     </ThemeProvider>
     </div>

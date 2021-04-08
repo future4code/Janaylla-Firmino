@@ -1,6 +1,19 @@
 import styled from "styled-components"
 import React from 'react';
 import {Box} from '@material-ui/core';
+
+function Index(props) {
+    const CardImgBlur = styled.div`
+    background-size: 100% 100%;
+     background-image: url(${props.photo}); 
+     height: 100%;
+    position: absolute;
+    bottom: 0px;
+    padding: 10px !important;
+    color: white;
+    width: 100%;
+    filter: blur(10px);
+`
 const CardImg = styled.div`
     height: 100%;
     width: 100%;
@@ -13,6 +26,8 @@ const CardImg = styled.div`
         max-height: 100%;
         max-width: 100%;
     }
+    
+padding: 10px 10px;
 `
 const CardDescricao = styled.div`
     position: absolute;
@@ -27,25 +42,13 @@ const CardDescricao = styled.div`
     }
 `
 const CardProfile = styled.div`
-height: calc(70% - 40px);
+height: calc(70%);
 display: flex;
 justify-content: flex-start;
 align-items: flex-start;
 position: relative;
 margin: 20px;
 width: calc(100% - 40px);
-`
-function Index(props) {
-    const CardImgBlur = styled.div`
-    background-size: 100% 100%;
-     background-image: url(${props.photo}); 
-  height: 100%;
-    position: absolute;
-    bottom: 0px;
-    padding: 10px !important;
-    color: white;
-    width: 100%;
-    filter: blur(10px);
 `
         return (
         <CardProfile>

@@ -12,14 +12,15 @@ function Index(props) {
    
     
   span{
-   
-     
       font-size: 80px;
       cursor: pointer;
       color:${props.color};
+      opacity: 0.8;
       /* content: 'favorite' !important; */
+      transition: 0.3s ease-in;
       :hover{
           font-size: 100px;
+          opacity: 1;
       }
   }
   h3{

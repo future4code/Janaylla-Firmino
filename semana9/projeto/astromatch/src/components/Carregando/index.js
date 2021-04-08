@@ -17,8 +17,6 @@ const IconesCarregando = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90%;
-
   span{
       font-size: 40px;
       

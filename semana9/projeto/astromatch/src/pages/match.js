@@ -1,7 +1,7 @@
 import CardProfile from '../components/CardProfile';
 import styled from "styled-components";
 import Choose from '../components/Choose';
-import CardMatch from '../components/CardMatch' ;
+import CardMatch from '../components/CardMatch';
 import Carregando from '../components/Carregando';
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
@@ -14,35 +14,62 @@ function Match() {
    align-items: center;
    width: 100%;
    flex-direction: column;
-   overflow: auto;
-    
-    height: 90%;
+   height: 90%;
+   position: relative;
     /* background-color: yellow; */
-   >div{
-     bottom: 10px;
-      height: 100%;
-      width: 100%;
-      display: flex; 
-      padding: 0px 0px;
+    overflow: auto;  
+    
+   ::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #dd3333aa;        /* color of the tracking area */
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d50000;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid #950000;  /* creates padding around scroll thumb */
+}
+  >div{
+    height: auto;
+    min-height:100%;
+    width: 100%;
+    display: flex; 
+    padding: 0px 0px;
       /* background-color: red; */
     justify-content: center; 
     align-items: center;
-     flex-direction:column;
-    margin: 10px 0px ;
+    flex-direction:column;
+     align-self: center;
+     top: 0px;
+     position: absolute;
      button{
        margin: 20px 0px ;
+       transition: 0.3s ease-in;
+       :hover{
+         transform: scale(1.05);
+       }
      }
    }
+   h3{
+      text-align: center;
+      width: 100%;
+   }
 `
-const CardMatches = styled.div`
-   display: flex;
-   justify-content: flex-start;
-   align-items: flex-start;
+
+  const CardMatches = styled.div`
    position: relative;
    flex-direction: column;
    width: 100%;
+   top: 0px;
+   
+   /* background-color: yellow; */
+ 
 `
   const [match, setMatch] = useState([]);
+  const [redenrizou, setRedenrizou] = useState(false);
 
 
   const getMatch = async () => {
@@ -50,9 +77,11 @@ const CardMatches = styled.div`
       const response = await axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Janaylla/matches`);
       console.log(response.data.matches);
       setMatch(response.data.matches);
-     console.log(Object.keys(response.data.profile).length === 0)
+      setRedenrizou(true);
     } catch (error) {
       // console.log(error.message)
+      
+      setRedenrizou(true);
     }
   }
   useEffect(() => {
@@ -61,9 +90,10 @@ const CardMatches = styled.div`
 
   const putClear = async () => {
     try {
-       await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Janaylla/clear`);
+      await axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/Janaylla/clear`);
+      getMatch();
     } catch (error) {
-     alert("Erouuu");
+      alert("Erouuu");
     }
   }
   const onClickClear = () => {
@@ -73,22 +103,25 @@ const CardMatches = styled.div`
     <Bory>
       <div>
         <CardMatches>
-          {match.map((person) => {
-            return (<CardMatch
-            photo={person.photo}
-            name={person.name}
-            />)
-          }
-          )}
-      
-        
-        </CardMatches>
-          <div>
+          {match.length !== 0 ?
+
+            match.map((person) => {
+              return (<CardMatch
+                photo={person.photo}
+                name={person.name}
+              />)
+            }
+            )
+            :<>
+            {redenrizou &&<> <h3>Você não tem nenhum matche :{"("}</h3><h3>
+            (O limpar serve para matches dados)</h3> </>}
+            <Carregando />
+            </>
+          }</CardMatches>
         <Button variant="outlined" size="medium" color="primary" onClick={onClickClear}>
-            Limpar Matches
+          Limpar Matches
         </Button>
-        </div>
-        </div>
+      </div>
     </Bory>
 
   );

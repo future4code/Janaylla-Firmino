@@ -3,7 +3,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
-
 const useStyles = makeStyles((theme) => ({
   
   root: {
@@ -43,7 +42,7 @@ function Index(props) {
 
         return (
                 <CardMatche>
-                <Avatar alt="Remy Sharp" src={props.photo} className={classes.large} />
+                <Avatar alt={"foto de " + props.name} src={props.photo} className={classes.large} />
                 <h3>{props.name}</h3>
                 </CardMatche>
               );

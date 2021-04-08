@@ -9,7 +9,7 @@ const CardChoose = styled.div`
     align-items: center;
     position: relative;
     padding: 0;
-    height: 30%;
+    height: 20%;
 `
 function Index(props) {
    

@@ -114,12 +114,13 @@ function Match() {
             )
             :<>
             {redenrizou &&<> <h3>Você não tem nenhum matche :{"("}</h3><h3>
-            (O limpar serve para matches dados)</h3> </>}
+            (O deletar serve para matches dados mesmo os não correspondidos)</h3> </>}
             <Carregando />
             </>
           }</CardMatches>
         <Button variant="outlined" size="medium" color="primary" onClick={onClickClear}>
-          Limpar Matches
+          <spam class="material-icons">delete</spam>
+          Matches
         </Button>
       </div>
     </Bory>

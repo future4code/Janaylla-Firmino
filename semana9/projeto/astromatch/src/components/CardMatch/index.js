@@ -4,22 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
-  
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
 }));
+
 function Index(props) {
   
   const CardMatche = styled.div`
@@ -29,8 +19,10 @@ function Index(props) {
     display: flex;
     padding: 10px 50px;
     cursor: pointer;
+  
     h3{
       margin-left: 10px;
+      text-align: start;
     }
     :hover{
       background-color: #880e4f20;

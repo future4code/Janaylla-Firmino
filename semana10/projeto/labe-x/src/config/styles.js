@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdornment } from '@material-ui/core'
+import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdornment, TextField } from '@material-ui/core'
 import Background from '../assets/background.png'
-const colorPrimary = "rebeccapurple";
+const colorPrimary = "663399";
 const sizeNav = "80";
 export const Bory = styled.div`
     width: 100vw;
@@ -90,10 +90,40 @@ export const Filtro = styled.div`
 `
 export const ListTrips = styled.section`
     display: flex;
+    align-items: flex-start;
+    justify-content: center;
 
 `
 export const Trip = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
+    ul{
+    background-color: #${colorPrimary}20;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 300px;
+    height: 100%;
+      font-family: 'Fauna One', serif;
+      font-size: 17px;
+      font-weight: 600;
+    
+    li:first-of-type{
+        color: #${colorPrimary};;
+        text-align: center;
+        font-size: 18px;
+        margin: 2px;
+        font-weight: 900;
+    }
+    li:nth-of-type(2){
+        text-align: justify;
+        margin: 2px 0;
+    }
+    li > span{
+        color: #${colorPrimary}bb;
+    }
+    }
     
 `
 export const Form = styled.div`
@@ -132,5 +162,18 @@ span{
         color: ${colorPrimary};
         }
 
+}`
+export const TextFieldLogin = styled(TextField)`
+    margin: 5px !important;
+`
+export const FormCreate = styled(Form)`
+    width: 600px;
+`
+
+export const DivFormDois = styled.div`
+display: flex;
+align-items: center;
+p{
+    color: #${colorPrimary};
 }
 `

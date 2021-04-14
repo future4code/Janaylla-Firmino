@@ -34,9 +34,9 @@ const NavAdm = (props) => {
       <ul>
         {menu.map((item) => {
             if(item.page === props.currentPage)
-                return <li onClick={() => item.function(history)}>{item.text}</li>
+                return <li  id="currentPage" onClick={() => item.function(history)}>{item.text}</li>
             else
-            return <li id="currentPage" onClick={() => item.function(history)}>{item.text}</li>
+            return <li onClick={() => item.function(history)}>{item.text}</li>
         })}
       </ul>
     </Nav>

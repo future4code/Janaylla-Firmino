@@ -5,7 +5,10 @@ import { goToAdminHome, goToTripDetails, goToCreateTrip, goToHome} from "../cons
 
 const NavAdm = (props) => {
   const history = useHistory();
-    
+  const logOut = () =>{
+     window.localStorage.removeItem('token');
+     goToHome(history);
+  }
   const menu =
     [ 
         {
@@ -24,7 +27,7 @@ const NavAdm = (props) => {
         page: "CreateTrip"
         },
         {
-            function: goToHome,
+            function: logOut,
             text: "Logout",
             page: "Home"
         }

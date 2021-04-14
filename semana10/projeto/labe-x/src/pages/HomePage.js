@@ -24,8 +24,9 @@ const HomePage = () => {
       luggage
       </span>}
       onClick={() => goToListTrip(history)}>Viagens Disponiveis</ButtonApresetation>
+      
       <ButtonApresetation 
-       color="primary"
+      color="primary"
       variant="contained"
       size="large" 
       startIcon={<span class="material-icons">

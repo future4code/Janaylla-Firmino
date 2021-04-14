@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {Button} from '@material-ui/core'
+import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdornment } from '@material-ui/core'
 import Background from '../assets/background.png'
-
+const colorPrimary = "rebeccapurple";
 const sizeNav = "80";
 export const Bory = styled.div`
     width: 100vw;
@@ -34,7 +34,7 @@ export const Nav = styled.nav`
           margin: 0 10px;
           cursor: pointer;
           :hover{
-              color: rebeccapurple;
+              color: ${colorPrimary};
           }
       }
       #currentPage{
@@ -61,7 +61,7 @@ export const ButtonApresetation = styled(Button)`
     font-size: 20px !important;
     border-radius: 200px !important;
     :hover{
-        /* background-color: #ffffff !important; */
+        transform: scale(1.05) !important;
     }
 `
 export const TextApresentation = styled.div`
@@ -75,6 +75,8 @@ export const DivButtons = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
+  
 `
 export const Main = styled.div`
     display: flex;
@@ -85,5 +87,50 @@ export const Filtro = styled.div`
     background-color: #dddddd;
     width: 250px;
     height: 100%;
+`
+export const ListTrips = styled.section`
+    display: flex;
 
+`
+export const Trip = styled.div`
+    display: flex;
+    
+`
+export const Form = styled.div`
+    background-color: #ffffffaa;
+    padding: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+`
+export const FormControlLogin = styled(FormControl)`
+margin: 10px !important;
+`
+export const InputLabelLogin = styled(InputLabel)`
+
+`
+export const FormHelperTextLogin = styled(FormHelperText)`
+`
+export const FilledInputLogin = styled(FilledInput)`
+`
+export const ButtonLogin = styled(Button)`
+margin: 10px !important;
+
+border-radius: 200px !important;
+:hover{
+        transform: scale(1.05) !important;
+    }
+`
+export const InputAdornmentLogin = styled(InputAdornment)`
+span{
+    cursor: pointer;
+    
+    :hover{
+        color: ${colorPrimary};
+        }
+
+}
 `

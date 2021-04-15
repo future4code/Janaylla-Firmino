@@ -42,7 +42,6 @@ export const Nav = styled.nav`
       }
       }
 `
-
 export const Apresetation = styled.div`
     width: 100%;
     height: 100%;
@@ -169,11 +168,51 @@ export const TextFieldLogin = styled(TextField)`
 export const FormCreate = styled(Form)`
     width: 600px;
 `
-
 export const DivFormDois = styled.div`
 display: flex;
 align-items: center;
 p{
     color: #${colorPrimary};
 }
+>:first-child{
+    width: calc(50% - 5px);
+    padding: 0 10px 0 0;
+}
+>:last-child{
+    width: calc(50% - 5px);
+    padding: 0 0 0 10px;
+}
+`
+export const Centalizar = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+`
+
+export const MainLeft = styled.div`
+    width: 50%;
+    background-color: #${colorPrimary}50;
+`
+export const MainRight = styled.div`
+   width: 50%;
+`
+export const TripInform = styled.div`
+    
+`
+export const MenuDetails = styled.div`
+display: flex;
+h3{
+    cursor: pointer;
+    margin: 3px 5px;
+}
+#current{
+    color: #${colorPrimary};
+}
+`
+export const CardCandidates = styled.div`
+
+`
+export const CardsCandidates = styled.div`
+
 `

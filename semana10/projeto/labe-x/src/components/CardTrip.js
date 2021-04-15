@@ -1,7 +1,7 @@
-import {FormControlLogin, InputLabelLogin, FilledInputLogin, Form, ButtonLogin, InputAdornmentLogin, DivButtons} from '../config/styles'
+import {ButtonLogin} from '../config/styles'
 import {Trip} from '../config/styles'
 
-const CardTrip = ({trip, textButon}) => {
+const CardTrip = ({trip, textButon, onClick}) => {
 return (<Trip>
     <ul>
       <li>
@@ -25,7 +25,9 @@ return (<Trip>
       <ButtonLogin
         variant="contained"
         color="primary"
-        startIcon={<span class="material-icons"></span>}>
+        startIcon={<span class="material-icons"></span>}
+        onClick={() => onClick(trip.id)}
+        >
           {textButon}</ButtonLogin>
     </ul>
 

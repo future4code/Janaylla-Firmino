@@ -17,11 +17,6 @@ const NavAdm = (props) => {
           page: "AdminHome"
         },
         {
-        function: goToTripDetails,
-        text: "Viagem",
-        page: "TripDetails"
-        },
-        {
         function: goToCreateTrip,
         text: "Adicionar Viagem",
         page: "CreateTrip"

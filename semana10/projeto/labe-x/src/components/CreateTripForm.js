@@ -1,40 +1,15 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
-import { goToHome, goToListTrip, goToApplicationForm} from "../constants/routs";
-
+import { goToAdminHome} from "../constants/routs";
+import {planet} from '../constants/const'
 import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois} from '../config/styles'
 import {TextField, MenuItem} from '@material-ui/core'
-const currencies = [
-    {
-      value: 'USD',
-      label: '$',
-    },
-    {
-      value: 'EUR',
-      label: '€',
-    },
-    {
-      value: 'BTC',
-      label: '฿',
-    },
-    {
-      value: 'JPY',
-      label: '¥',
-    },
-  ];
-  
+
 const CreateTrip = (props) => {
     
-  const [typePassaword, setTypePassaword] = useState(false);
-  const handleClickShowPassword = () => {
-    setTypePassaword(!typePassaword);
-  };
-  const [currency, setCurrency] = React.useState('EUR');
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
   const history = useHistory();
+
+
   return(
     <FormCreate>
       <FormControlLogin variant="filled" fullWidth>
@@ -46,18 +21,20 @@ const CreateTrip = (props) => {
             InputLabelProps={{
             shrink: true,
             }}
+            value={props.name}
+            onChange={props.setName}
         />
            <TextFieldLogin
           id="filled-select-currency"
           select
           label="Planeta"
-          value={currency}
-          onChange={handleChange}
+          value={props.planet}
+          onChange={props.setPlanet}
           variant="filled"
         >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {planet.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
             </MenuItem>
           ))}
         </TextFieldLogin>
@@ -65,35 +42,28 @@ const CreateTrip = (props) => {
           id="filled-multiline-static"
           label="Descrição"
           multiline
-          rows={3}
+          rows={2}
           variant="filled"
+          onChange={props.setDescription}
+          value={props.description}
         />
-       
-      </FormControlLogin >
-     <DivFormDois>
+          <DivFormDois>
+            <div>
       <TextFieldLogin
     id="date"
     label="Data da Viagem"
     type="date"
-    defaultValue="2020-05-24"     
     variant="filled"
+    value={props.date}
+    onChange={props.setDate}
     InputLabelProps={{
       shrink: true,
     }}
-  />
-  <p>até</p>
-   <TextFieldLogin
-    id="date"
-    label="Data do fim viagem"
-    type="date"
-    defaultValue="2020-05-24"     
-    variant="filled"
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-  </DivFormDois>
+    fullWidth
+  /></div>
+  <div>
   <TextFieldLogin
+  fullWidth
   id="date"
   label="Quandade de dias:"
   type="number"  
@@ -101,19 +71,28 @@ const CreateTrip = (props) => {
   InputLabelProps={{
   shrink: true,
   }}
+  value={props.durationInDays}
+  onChange={props.setDurationInDays}
+  
 />
+</div>
+  </DivFormDois>
+      </FormControlLogin >
+  
+ 
           <DivButtons>
             <ButtonLogin 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
+            onClick={props.onClickEnviar}
           >Nova Viagem
           </ButtonLogin>
           <ButtonLogin 
           variant="outlined"
           color="primary"
-          onClick={() => goToHome(history)}
+          onClick={() => goToAdminHome(history)}
           startIcon={<span class="material-icons">
           </span>}
           >Cancelar

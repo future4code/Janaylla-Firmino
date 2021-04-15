@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import {baseUrl} from '../constants/axios';
 import CardTrip from "../components/CardTrip";
 import axios from 'axios';
-
+import {goToTripDetails} from '../constants/routs'
 const AdminHomePage = () => {
  const history = useHistory();
 
@@ -23,7 +23,9 @@ const AdminHomePage = () => {
   useEffect(()=>{
     getTrips();
   }, [])
-
+const onClick = (id) =>{
+  goToTripDetails(history, id)
+}
  if(logado()){
   return <Bory>
      <Nav currentPage="AdminHome"/>
@@ -37,7 +39,8 @@ const AdminHomePage = () => {
           return (
             <CardTrip
             trip={trip}
-            textButon="Ver mais"
+            textButon="Ver detalhes"
+            onClick={onClick}
             />
           )
         })

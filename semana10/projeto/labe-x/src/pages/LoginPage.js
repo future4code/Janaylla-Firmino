@@ -12,7 +12,8 @@ const LoginPage = () => {
   const [password, setPassword] = useInputControl(""); 
   const history = useHistory();
 
-  const onClickLogin = () =>{
+  const onClickLogin = (e) =>{
+    e.preventDefault();
     console.log("Ema", email, "S", password);
     const body = {
       email: email,

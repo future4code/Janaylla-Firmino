@@ -1,13 +1,15 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
-import {planetList} from '../constants/const'
+import {planetList, planetListChaves} from '../constants/const'
 import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, FormFiltro} from '../config/styles'
 import {TextField, MenuItem, Typography, Slider, FormGroup, FormControlLabel, Checkbox} from '@material-ui/core'
 // import {planetList} from '../constants/const'
 
-const Filter = ({name, planet, date, description, durationInDays, onChange, onClickEnviar, checkedA, checkedB, handleChange}) => {
+const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias}) => {
   const history = useHistory();
+  
+  
   const data = new Date();
   let dataString = data.getFullYear() + "-";
   if(data.getMonth() < 10)
@@ -20,8 +22,14 @@ const Filter = ({name, planet, date, description, durationInDays, onChange, onCl
   else
     dataString += (data.getDate()+ 1);
   // alert(dataString)
+  const ordenacao = [
+    "",
+    "Nome",
+    "Data",
+    "Dias"
+  ]
   return(
-    <FormFiltro onSubmit={onClickEnviar}>
+    <FormFiltro >
       <FormControlLogin variant="filled" fullWidth>
             <TextFieldLogin
              minlength="5"
@@ -33,8 +41,9 @@ const Filter = ({name, planet, date, description, durationInDays, onChange, onCl
             shrink: true,
             }}
             name={"name"}
-            value={name}
+            value={filtro.name}
             onChange={onChange} 
+
         />
          <Typography  gutterBottom>
         Remuneração
@@ -43,30 +52,51 @@ const Filter = ({name, planet, date, description, durationInDays, onChange, onCl
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         // getAriaValueText={"100"}
-        defaultValue={[0, 12]}
-        max={12}
-        // value={[this.props.minimum, this.props.maximum]}
-        // onChange={nChageRemuneration}
+        defaultValue={dias}
+        min={0}
+        max={filtro.max}
+         value={dias}
+        onChange={onChangeDias}
         fullWidth
       />
         <FormGroup row>
      { 
-     planetList.map((planet) => {
+     planetList.map((planet, index) => {
           return ( <FormControlLabel
+          
             control={
               <Checkbox
-                 checked={checkedB}
-                onChange={handleChange}
-                name="checkedB"
+                checked={planets[index]}
+                 onChange={() => onChangePlanets(index)}
+                //  name={planetListChaves[index]}
                 color="primary"
               />
             }
             label={planet}
           />)
       })
-      }
-     
+      }     
       </FormGroup>
+      <Typography  gutterBottom>
+        Ordenação
+      </Typography>
+      <TextFieldLogin
+          id="filled-select-currency"
+          select
+          label="País de origem"
+          value={filtro.ordenacao}
+          variant="filled"
+          fullWidth
+          name="ordenacao"
+          onChange={onChange}
+        >
+          {ordenacao.map((option) => (
+            <MenuItem key={option} value={option} >
+              {option}
+            </MenuItem>
+          ))
+          }
+        </TextFieldLogin>
            </FormControlLogin >
          
       </FormFiltro>

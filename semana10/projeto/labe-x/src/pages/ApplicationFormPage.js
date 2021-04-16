@@ -35,20 +35,18 @@ const ApplicationFormPage = () => {
   })
 }
 const AppyTrips = () => {
-  const bory = {
+  const body = {
     name: form.name,
     age: form.age,
     applicationText: form.applicationText,
     profession: form.profession,
     country: form.country
   }
-  console.log(bory, form.id)
-  axios.post(`${baseUrl}/trips/${form.id}/apply`, bory)
+  console.log(body, form.id)
+  axios.post(`${baseUrl}/trips/${form.id}/apply`, body)
   .then((res) => {
     console.log("Deu Certo")
-    
     goToListTrip(history);
-      
   })
   .catch((err) =>{
     console.log(err)

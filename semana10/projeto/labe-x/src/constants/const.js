@@ -224,3 +224,13 @@ export const imgPlanets = [
     'Urano',
     'Vênus' 
  ]
+ export const planetListChaves = [
+   'Jupiter',
+   'Lua',
+   'Marte',
+   'Mercurio',
+   'Neturno',
+   'Saturno',
+   'Urano',
+   'Venus'
+]

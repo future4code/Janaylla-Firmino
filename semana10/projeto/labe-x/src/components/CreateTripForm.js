@@ -7,17 +7,19 @@ import {TextField, MenuItem} from '@material-ui/core'
 
 const CreateTrip = ({name, planet, date, description, durationInDays, onChange, onClickEnviar}) => {
   const history = useHistory();
+
   const data = new Date();
   let dataString = data.getFullYear() + "-";
-  if(data.getMonth() < 10)
+  if(data.getMonth() < 9)
     dataString += "0"+ (data.getMonth()+ 1)+"-";
   else
      dataString += (data.getMonth()+ 1) + "-";
 
-  if(data.getDate() < 10)
+  if(data.getDate() < 9)
     dataString += "0"+ (data.getDate()+ 1);
   else
     dataString += (data.getDate()+ 1);
+  
   // alert(dataString)
   return(
     <FormCreate onSubmit={onClickEnviar}>
@@ -78,7 +80,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
       shrink: true,
     }}
     fullWidth
-    required 
+    required
     inputProps={{ min: dataString }}
   /></div>
   <div>

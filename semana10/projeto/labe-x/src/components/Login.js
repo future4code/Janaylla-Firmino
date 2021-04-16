@@ -15,7 +15,7 @@ const Login = (props) => {
   };
   const history = useHistory();
   return(
-    <Form onSubmit={props.onClickLogin}>
+    <Form onSubmit={props.onClickLogin}> 
       <FormControlLogin variant="filled" fullWidth>
         <InputLabelLogin htmlFor="component-filled" >Login</InputLabelLogin>
         <FilledInputLogin 
@@ -39,6 +39,7 @@ const Login = (props) => {
             }
             value={props.inputPassaword}
             onChange={props.inputSetPassaword}
+            required
           />
           </FormControlLogin> 
           <DivButtons>

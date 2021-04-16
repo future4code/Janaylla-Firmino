@@ -1,3 +1,12 @@
+import Jupiter from '../assets/jupiter_96159.ico'
+import Marte from '../assets/mars_96191.ico'
+import Mercurio from '../assets/mercury_9123.ico'
+import Lua from '../assets/moonfullmoon_96213.ico'
+import Neturno from '../assets/neptune_96229.ico'
+import Saturno from '../assets/saturn_96158.ico'
+import Venus from '../assets/venus_96156.ico'
+import Urano from '../assets/uranus_96171.ico'
+
 export const paises = ["","Afeganistão", 
  "África do Sul", 
  "Albânia", 
@@ -195,14 +204,23 @@ export const paises = ["","Afeganistão",
  "Vietname", 
  "Zâmbia", 
  "Zimbábue"]
-
- export const planet = [
-    'Mercúrio',
-    'Vênus',
-    'Marte',
-    'Júpiter',
+export const imgPlanets = [
+   Jupiter,
+   Lua,
+   Marte,
+   Mercurio,
+   Neturno,
+   Saturno,
+   Urano,
+   Venus
+]
+ export const planetList = [
+   'Júpiter',
+   'Lua',
+   'Marte', 
+   'Mercúrio',
+   'Neturno',
     'Saturno',
     'Urano',
-    'Neturno',
-    'Lua'
+    'Vênus' 
  ]

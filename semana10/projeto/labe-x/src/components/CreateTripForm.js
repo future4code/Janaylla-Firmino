@@ -1,19 +1,29 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
-import {planet} from '../constants/const'
+import {planetList} from '../constants/const'
 import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois} from '../config/styles'
 import {TextField, MenuItem} from '@material-ui/core'
 
-const CreateTrip = (props) => {
-    
+const CreateTrip = ({name, planet, date, description, durationInDays, onChange, onClickEnviar}) => {
   const history = useHistory();
+  const data = new Date();
+  let dataString = data.getFullYear() + "-";
+  if(data.getMonth() < 10)
+    dataString += "0"+ (data.getMonth()+ 1)+"-";
+  else
+     dataString += (data.getMonth()+ 1) + "-";
 
-
+  if(data.getDate() < 10)
+    dataString += "0"+ (data.getDate()+ 1);
+  else
+    dataString += (data.getDate()+ 1);
+  // alert(dataString)
   return(
-    <FormCreate>
+    <FormCreate onSubmit={onClickEnviar}>
       <FormControlLogin variant="filled" fullWidth>
             <TextFieldLogin
+             minlength="5"
             id="date"
             label="Nome"
             type="text"  
@@ -21,31 +31,37 @@ const CreateTrip = (props) => {
             InputLabelProps={{
             shrink: true,
             }}
-            value={props.name}
-            onChange={props.setName}
+            name={"name"}
+            value={name}
+            onChange={onChange}
+            required 
         />
            <TextFieldLogin
           id="filled-select-currency"
           select
           label="Planeta"
-          value={props.planet}
-          onChange={props.setPlanet}
+          value={planet}
+          onChange={onChange}
           variant="filled"
+          name={"planet"}
+          required 
         >
-          {planet.map((option) => (
+          {planetList.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
           ))}
         </TextFieldLogin>
           <TextFieldLogin
+          required 
           id="filled-multiline-static"
           label="Descrição"
           multiline
           rows={2}
           variant="filled"
-          onChange={props.setDescription}
-          value={props.description}
+          onChange={onChange}
+          value={description}
+          name={"description"}
         />
           <DivFormDois>
             <div>
@@ -53,13 +69,17 @@ const CreateTrip = (props) => {
     id="date"
     label="Data da Viagem"
     type="date"
-    variant="filled"
-    value={props.date}
-    onChange={props.setDate}
+    variant="filled" 
+    min="2020-01-02"
+    value={date}
+    onChange={onChange}
+    name={"date"}
     InputLabelProps={{
       shrink: true,
     }}
     fullWidth
+    required 
+    inputProps={{ min: dataString }}
   /></div>
   <div>
   <TextFieldLogin
@@ -71,22 +91,23 @@ const CreateTrip = (props) => {
   InputLabelProps={{
   shrink: true,
   }}
-  value={props.durationInDays}
-  onChange={props.setDurationInDays}
-  
+  inputProps={{ min: 50}}
+  name={"durationInDays"}
+  value={durationInDays}
+  onChange={onChange}
+  required 
 />
 </div>
   </DivFormDois>
       </FormControlLogin >
-  
- 
           <DivButtons>
             <ButtonLogin 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
-            onClick={props.onClickEnviar}
+        
+          type="submit"
           >Nova Viagem
           </ButtonLogin>
           <ButtonLogin 

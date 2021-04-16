@@ -6,27 +6,26 @@ import { useHistory } from "react-router-dom";
 import CreateTripForm from '../components/CreateTripForm'
 import {useInputControl} from '../hooks/useInputControl'
 import axios from 'axios'
-
+import {useForm} from '../hooks/useForm'
 import {baseUrl} from '../constants/axios'
 const CreateTripPage = () => {
 
   const history = useHistory();
   
-  const [name, setName] = useInputControl(""); 
-  const [planet, setPlanet] = useInputControl(""); 
-  const [date, setDate] = useInputControl(""); 
-  const [description, setDescription] = useInputControl(""); 
-  const [durationInDays, setDurationInDays] = useInputControl("");
+  const formInicial = {
+    name: "",
+    planet: "",
+    date: "",
+    description: "",
+    durationInDays: ""
+  }
   
-  const onClickEnviar = () =>{
-    const body = {
-      name, planet, date, date, description, durationInDays
-    };
-   
-     console.log(body)
+  const [form, setForm, resetForm] = useForm(formInicial)
+  const onClickEnviar = (e) =>{
+    e.preventDefault();
     axios
     .post(
-      `${baseUrl}/trips`,body, {
+      `${baseUrl}/trips`, form, {
         headers: {
           auth: window.localStorage.getItem('token')
         }
@@ -34,7 +33,7 @@ const CreateTripPage = () => {
     )
     .then((res) => {
       console.log(res.data);
-      console.log("Deuu certo")
+      console.log("Deu certo")
       history.push('/admin/trips/list')
     })
     .catch((err) => {
@@ -48,16 +47,11 @@ const CreateTripPage = () => {
    <Main>
      <Centalizar>
    <CreateTripForm
-   name={name}
-   setName={setName}
-   planet={planet}
-   setPlanet={setPlanet}
-   date={date}
-   setDate={setDate}
-   description={description}
-   setDescription={setDescription}
-   durationInDays={durationInDays}
-   setDurationInDays={setDurationInDays}
+   name={form.name}
+   planet={form.planet}
+   date={form.date}
+   durationInDays={form.durationInDays}
+   onChange={setForm}
    onClickEnviar={onClickEnviar}
    />
    </Centalizar>

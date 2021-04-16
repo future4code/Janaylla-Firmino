@@ -91,18 +91,21 @@ export const ListTrips = styled.section`
     display: flex;
     align-items: flex-start;
     justify-content: center;
-
+    flex-wrap: wrap;   
+    width: 100%;
+    /* background-color: red; */
 `
 export const Trip = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+ 
     ul{
+        width: 350px;
     background-color: #${colorPrimary}20;
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
-    width: 300px;
     height: 100%;
       font-family: 'Fauna One', serif;
       font-size: 17px;
@@ -118,6 +121,7 @@ export const Trip = styled.div`
     li:nth-of-type(2){
         text-align: justify;
         margin: 2px 0;
+        height: 40px;
     }
     li > span{
         color: #${colorPrimary}bb;
@@ -125,7 +129,7 @@ export const Trip = styled.div`
     }
     
 `
-export const Form = styled.div`
+export const Form = styled.form`
     background-color: #ffffffaa;
     padding: 20px;
     width: 400px;
@@ -196,12 +200,45 @@ export const MainLeft = styled.div`
 `
 export const MainRight = styled.div`
    width: 50%;
+   overflow-y: auto;
+    height: 100%;
+    padding-top: 50px;
+
 `
 export const TripInform = styled.div`
-    
+/* background-color: aliceblue; */
+min-height: 100%;
+display: flex;
+justify-content: center;
+align-items: center; 
+ul:first-child{
+    align-self: center;
+}
+    ul{
+display: flex;
+justify-content: center;
+align-items: flex-start; 
+flex-direction: column;
+font-size: 20px;
+width: 300px;
+img{
+    width: 150px;
+}
+
+        li{
+            span{
+                color: #${colorPrimary};
+            }
+        }
+    }
 `
 export const MenuDetails = styled.div`
 display: flex;
+position: fixed;
+margin-top: -50px;
+padding: 10px;
+background-color: #ffffffaa;
+width: 100%;
 h3{
     cursor: pointer;
     margin: 3px 5px;

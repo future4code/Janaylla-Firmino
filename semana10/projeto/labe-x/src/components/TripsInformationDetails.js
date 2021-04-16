@@ -4,7 +4,6 @@ import { goToAdminHome} from "../constants/routs";
 import {TripInform, Centalizar} from '../config/styles'
 import {TextField, MenuItem} from '@material-ui/core'
 import {imgPlanets, planetList} from '../constants/const'
-import Urano from '../assets/uranus_96171.ico'
 
 const CreateTrip = ({id, trips}) => {
 

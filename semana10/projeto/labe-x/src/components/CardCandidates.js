@@ -1,5 +1,5 @@
 import {Bory, Main, MainLeft, MainRight, MenuDetails, CardCandidates, CardsCandidates, Trip, ButtonLogin, Centalizar} from '../config/styles'
-const cardCandidates = ({candidates}) => {
+const cardCandidates = ({candidates, onClickAprovar}) => {
 return (    
 <CardsCandidates>
     {candidates && candidates.map(item =>{
@@ -10,11 +10,12 @@ return (
           <li><span>País: </span>{item.country}</li>
           <li><span>Profissão: </span>{item.profession}</li>
           <li><span>Idade: </span>{item.age}</li>
+        {onClickAprovar && <>
           <ButtonLogin
   variant="contained"
   color="primary"
   startIcon={<span class="material-icons"></span>}
-  // onClick={() => onClick(trip.id)}
+   onClick={() => onClickAprovar(item.id, true)}
   >
     Aprovar
     </ButtonLogin>
@@ -23,12 +24,13 @@ return (
   color="primary"
   startIcon={<span class="material-icons"></span>}
   // onClick={() => onClick(trip.id)}
+  onClick={() => onClickAprovar(item.id, false)}
   >
     Desaprovar
     </ButtonLogin>
+    </>}
         </ul>
 
-   
     </Trip>)
   })}
   </CardsCandidates>)

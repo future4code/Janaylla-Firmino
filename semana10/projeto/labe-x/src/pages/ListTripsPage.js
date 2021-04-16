@@ -6,6 +6,8 @@ import CardTrip from "../components/CardTrip";
 import {baseUrl} from '../constants/axios'
 import {goToApplicationForm} from '../constants/routs'
 import {useHistory} from 'react-router-dom'
+import Filter from '../components/Filter'
+
 const ListTripsPage = () => {
   const history = useHistory();
   const [trips, setTrips] = useState([]);
@@ -30,7 +32,7 @@ const ListTripsPage = () => {
   <Nav currentPage="ListTrips"/>
   <Main>
     <Filtro>
-    
+      <Filter/>
     </Filtro>
     <ListTrips>
     {

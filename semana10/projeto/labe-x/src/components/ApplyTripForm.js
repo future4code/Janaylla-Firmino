@@ -10,7 +10,7 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
   const history = useHistory();
  
   return(
-    <FormCreate>
+    <FormCreate onSubmit={onClickEnviar}>
       <FormControlLogin variant="filled" fullWidth>
            <TextFieldLogin
           id="filled-select-currency"
@@ -20,6 +20,7 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           onChange={onChange}
           variant="filled"
           name={"id"}
+          required
         >
           {trips.map((option) => (
             <MenuItem key={option.id} value={option.id}>
@@ -35,6 +36,8 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           onChange={onChange}
           name={"name"}
           value={name}
+          required
+          inputProps={{ minlength: 3}}
         />
          <DivFormDois>
             <div>
@@ -47,6 +50,7 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           fullWidth
           name="country"
           onChange={onChange}
+          required
         >
           {paises.map((option) => (
             <MenuItem key={option} value={option} >
@@ -67,18 +71,22 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
     InputLabelProps={{
       shrink: true,
     }}
+    inputProps={{ min: 18}}
+    required
     fullWidth
     name={"age"}
   />
          </div>
          </DivFormDois>
          <TextFieldLogin
+         required
           id="filled-multiline-static"
           label="Profissão"
           variant="filled"
           onChange={onChange}
           value={profession}
           name={"profession"}
+          inputProps={{ minlength: 10}}
         />
          <TextFieldLogin
           id="filled-multiline-static"
@@ -89,15 +97,17 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           onChange={onChange}
           value={applicationText}
           name={"applicationText"}
+          required
+          inputProps={{ minlength: 30}}
         />
-</FormControlLogin >
+        </FormControlLogin >
           <DivButtons>
             <ButtonLogin 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
-            onClick={onClickEnviar}
+          type="submit"
           >Nova Viagem
           </ButtonLogin>
           <ButtonLogin 

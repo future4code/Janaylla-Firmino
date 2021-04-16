@@ -15,13 +15,14 @@ const Login = (props) => {
   };
   const history = useHistory();
   return(
-    <Form>
+    <Form onSubmit={props.onClickLogin}>
       <FormControlLogin variant="filled" fullWidth>
         <InputLabelLogin htmlFor="component-filled" >Login</InputLabelLogin>
         <FilledInputLogin 
           type="email"
         value={props.inputEmail}
         onChange={props.inputSetEmail}
+        required
         />
       </FormControlLogin >
       <FormControlLogin variant="filled" fullWidth>
@@ -46,7 +47,7 @@ const Login = (props) => {
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
-          onClick={props.onClickLogin}
+          type="submit"
           >Logar
           </ButtonLogin>
           <ButtonLogin 

@@ -38,6 +38,29 @@ const TripDetailsPage = () => {
     setAprovados(!aprovados);
   }
 
+  const onClickAprovar = (idCandidate, approve) => {
+    console.log(idCandidate)
+    const bory = {
+      approve: approve
+    } 
+    axios
+    .put(
+      `${baseUrl}/trips/${id}/candidates/${idCandidate}/decide`, bory, {
+        headers: {
+          auth: window.localStorage.getItem('token')
+        }
+      }
+    )
+    .then((res) => {
+      getTrip();
+      // console.log(res.data);
+      console.log("Deu certo")
+      // history.push('/admin/trips/list')
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   if(logado()){
   return <Bory>
     <Nav currentPage="AdminHome"/>
@@ -59,6 +82,7 @@ const TripDetailsPage = () => {
              candidates={trip.approved}
            />:
         <CardCandidates
+        onClickAprovar={onClickAprovar}
           candidates={trip.candidates}
         />}
         </Centalizar>

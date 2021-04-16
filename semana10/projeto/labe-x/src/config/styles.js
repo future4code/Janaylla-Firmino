@@ -84,7 +84,7 @@ export const Main = styled.div`
 `
 export const Filtro = styled.div`
     background-color: #dddddd;
-    width: 250px;
+    width: 350px;
     height: 100%;
 `
 export const ListTrips = styled.section`
@@ -93,6 +93,7 @@ export const ListTrips = styled.section`
     justify-content: center;
     flex-wrap: wrap;   
     width: 100%;
+    overflow-y: auto;
     /* background-color: red; */
 `
 export const Trip = styled.div`
@@ -172,6 +173,10 @@ export const TextFieldLogin = styled(TextField)`
 export const FormCreate = styled(Form)`
     width: 600px;
 `
+export const FormFiltro = styled.div`
+width: 100%;
+padding-right: 20px;
+` 
 export const DivFormDois = styled.div`
 display: flex;
 align-items: center;

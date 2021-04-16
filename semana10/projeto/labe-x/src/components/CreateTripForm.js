@@ -23,7 +23,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
     <FormCreate onSubmit={onClickEnviar}>
       <FormControlLogin variant="filled" fullWidth>
             <TextFieldLogin
-             minlength="5"
+           inputProps={{ minlength: 5}}
             id="date"
             label="Nome"
             type="text"  
@@ -62,6 +62,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
           onChange={onChange}
           value={description}
           name={"description"}
+          inputProps={{ minlength: 30}}
         />
           <DivFormDois>
             <div>
@@ -70,7 +71,6 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
     label="Data da Viagem"
     type="date"
     variant="filled" 
-    min="2020-01-02"
     value={date}
     onChange={onChange}
     name={"date"}

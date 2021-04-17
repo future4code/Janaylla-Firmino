@@ -165,7 +165,7 @@ const onClickVerDetalhes = (id) =>{
       onChangeDias={onChangeDias}
       max={max}
       />
-    </Filtro>
+    </Filtro> 
     <ListTrips>
       <h4>Quantidade de viagens encontradas: {tripsOrdenado.length}</h4>
       

@@ -3,6 +3,7 @@ import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdorn
 import Background from '../assets/background.png'
 const colorPrimary = "663399";
 const sizeNav = "80";
+const sizeNavMobile = "40";
 
 export const Bory = styled.div`
     width: 100vw;
@@ -26,6 +27,42 @@ export const Nav = styled.nav`
       height: ${sizeNav}px;
       align-items: center;
       display: flex;
+      
+      span{
+          display: none;
+      }
+    @media(max-width: 600px){
+        min-height: ${sizeNavMobile}px; 
+        height: auto;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        flex-direction: column;
+        position: fixed;
+        @media(max-width: 600px){
+            z-index: 1;
+            #mobile{
+                display: flex;
+            }
+            #desktop{
+                display: none;
+            }
+        }
+        span{
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+                display: flex;
+        }
+        ul{
+            flex-direction: column;
+            font-size: 15px; 
+            top:${sizeNavMobile}px; 
+            left: 0;    
+        
+        }
+    }
       ul{
          
         width: 100%;
@@ -66,6 +103,7 @@ export const Apresetation = styled.div`
 
     @media(max-width: 600px){
         font-size: 15px;
+        padding: 10px;
     }
     
 `
@@ -94,12 +132,19 @@ export const DivButtons = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-  
+   
 `
 export const Main = styled.div`
     display: flex;
     align-items: stretch;
     height: calc(100% -  ${sizeNav}px);
+    @media(max-width: 600px){
+        height: calc(100%);
+        padding: 10px;
+        flex-direction: column;
+        height: auto;
+    }
+    
 `
 export const Filtro = styled.div`
     background-color: #dddddd;
@@ -118,27 +163,31 @@ h4{
     width: 100%;
     overflow-y: auto;
     /* background-color: red; */
+    @media(max-width: 600px){
+        margin-top: ${sizeNavMobile}px;
+    }
 `
 export const Trip = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
- 
     ul{
         min-width: 100%;
-        max-width: 475px;
-    background-color: #${colorPrimary}20;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    height: 100%;
-      /* font-family: 'Fauna One', serif; */
-      font-size: 17px;
-      font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
+        max-width: 400px;
+        background-color: #${colorPrimary}20;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 10px;
+        height: 100%;
+        /* font-family: 'Fauna One', serif; */
+        font-size: 17px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        @media(max-width: 600px){
+            margin: 10px 0;
+        }
     li:first-of-type{
         color: #${colorPrimary};;
         text-align: center;
@@ -173,6 +222,7 @@ export const Trip = styled.div`
     li:last-of-type{
         align-self: center;
         display: flex;
+        flex-wrap: wrap;
     }
     }
     
@@ -186,6 +236,11 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
+    @media(max-width: 600px){
+        width: 100%;
+        padding: 10px;
+    }
+    
 `
 export const FormControlLogin = styled(FormControl)`
 margin: 10px !important;
@@ -223,6 +278,11 @@ export const FormCreate = styled(Form)`
 export const FormFiltro = styled.div`
 width: 100%;
 padding-right: 20px;
+
+@media(max-width: 600px){
+        margin-top: ${sizeNavMobile}px;
+        display: none;
+    }
 ` 
 export const DivFormDois = styled.div`
 display: flex;
@@ -249,12 +309,21 @@ export const Centalizar = styled.div`
 export const MainLeft = styled.div`
     width: 50%;
     background-color: #${colorPrimary}20;
+    @media(max-width: 600px){
+        width: 100%;
+        height: auto;
+        }
 `
 export const MainRight = styled.div`
    width: 50%;
    overflow-y: auto;
     height: 100%;
     padding-top: 50px;
+    @media(max-width: 600px){
+        width: 100%;
+        margin-top: ${sizeNavMobile}px;
+        height: auto;
+    }
 
 `
 export const TripInform = styled.div`
@@ -340,6 +409,10 @@ h3{
 }
 #current{
     color: #${colorPrimary};
+}
+
+@media(max-width: 600px){
+    position: relative;
 }
 `
 export const CardCandidates = styled(Trip)`

@@ -1,11 +1,12 @@
-import React from "react";
-import {Nav} from '../config/styles'
+import React, {useState} from "react";
+import {Centalizar, Nav} from '../config/styles'
 import { useHistory } from "react-router-dom";
 import { goToHome, goToListTrip, goToApplicationForm} from "../constants/routs";
 
 const NavUsuario = (props) => {
   const history = useHistory();
     
+  const [mostraMenu, setMostraMenu] = useState(false);
   const menu =
     [ 
         {
@@ -26,7 +27,21 @@ const NavUsuario = (props) => {
     ]
   return(
     <Nav>
-      <ul>
+     <span class="material-icons" onClick={() => setMostraMenu(!mostraMenu)}>
+      view_headline
+      </span>
+      { mostraMenu && <>
+      <ul id="mobile">
+        {menu.map((item) => {
+            if(item.page === props.currentPage)
+                return <li id="currentPage" onClick={() => item.function(history)}>{item.text}</li>
+            else
+            return <li onClick={() => item.function(history)}>{item.text}</li>
+        })}
+      </ul>
+      </>
+      }
+       <ul id="desktop">
         {menu.map((item) => {
             if(item.page === props.currentPage)
                 return <li id="currentPage" onClick={() => item.function(history)}>{item.text}</li>

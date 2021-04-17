@@ -113,7 +113,6 @@ const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias,
           }
         </TextFieldLogin>
            </FormControlLogin >
-         
       </FormFiltro>
     )
 };

@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { goToListTrip} from "../constants/routs";
-import {FormControlLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
+import {FormControlLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
 import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
 import {paises} from '../constants/const'
 
@@ -123,22 +123,22 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
     </div>
 
           <DivButtons>
-            <ButtonLogin 
+            <ButtonForm 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
           type="submit"
           >Nova Viagem
-          </ButtonLogin>
-          <ButtonLogin 
+          </ButtonForm>
+          <ButtonForm 
           variant="outlined"
           color="primary"
           onClick={() => goToListTrip(history)}
           startIcon={<span class="material-icons">
           </span>}
           >Cancelar
-          </ButtonLogin>
+          </ButtonForm>
           </DivButtons>
       </FormCreate>
     )

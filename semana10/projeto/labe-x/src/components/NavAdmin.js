@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {NavA} from '../config/styles'
 import { useHistory } from "react-router-dom";
-import { goToAdminHome, goToTripDetails, goToCreateTrip, goToHome} from "../constants/routs";
+import { goToAdminHome, goToCreateTrip, goToHome} from "../constants/routs";
 const NavAdm = (props) => {
   const history = useHistory();
   const logOut = () =>{

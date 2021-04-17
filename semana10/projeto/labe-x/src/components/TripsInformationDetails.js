@@ -1,7 +1,6 @@
-import React,{useState} from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { goToAdminHome} from "../constants/routs";
-import {TripInform, Centalizar} from '../config/styles'
+import {TripInform} from '../config/styles'
 import {imgPlanets, planetList} from '../constants/const'
 
 const CreateTrip = ({id, trip}) => {
@@ -10,7 +9,7 @@ const CreateTrip = ({id, trip}) => {
 
   const indexOf = planetList.indexOf(trip.planet)
   // alert(indexOf, trip.planet)
-  // console.log("asd", trip)
+  // // console.log("asd", trip)
   return(
     <TripInform>
       

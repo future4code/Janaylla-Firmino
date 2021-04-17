@@ -1,14 +1,9 @@
-import React,{useState} from "react";
-import { useHistory } from "react-router-dom";
-import { goToAdminHome} from "../constants/routs";
-import {TripInform, Centalizar} from '../config/styles'
-import {TextField, MenuItem} from '@material-ui/core'
+import React from "react";
+import {TripInform} from '../config/styles'
 import {imgPlanets, planetList} from '../constants/const'
 
 const CreateTrip = ({id, trips}) => {
 
-  const history = useHistory();
- 
   let trip = {};
 
   trips.forEach(item => {
@@ -17,7 +12,7 @@ const CreateTrip = ({id, trips}) => {
   });
   const indexOf = planetList.indexOf(trip.planet)
   // alert(indexOf, trip.planet)
-  //  console.log("asd", trip)
+  //  // console.log("asd", trip)
   return(
     <TripInform>
          <div>

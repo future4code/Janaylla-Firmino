@@ -26,12 +26,12 @@ const TripDetailsPage = () => {
       }
     )
     .then((res) => {
-      console.log(res.data.trip);
+      // console.log(res.data.trip);
       setTrip(res.data.trip)
       setLoading(false)
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       alert("Algo deu errado :(, recarregue a página e tente novamente")
     });
   }
@@ -44,13 +44,13 @@ const TripDetailsPage = () => {
   }
 
   const onClickAprovar = (idCandidate, approve) => {
-    console.log(idCandidate)
-    const bory = {
+    // console.log(idCandidate)
+    const body = {
       approve: approve
     } 
     axios
     .put(
-      `${baseUrl}/trips/${id}/candidates/${idCandidate}/decide`, bory, {
+      `${baseUrl}/trips/${id}/candidates/${idCandidate}/decide`, body, {
         headers: {
           auth: window.localStorage.getItem('token')
         }
@@ -58,12 +58,12 @@ const TripDetailsPage = () => {
     )
     .then((res) => {
       getTrip();
-      // console.log(res.data);
-      console.log("Deu certo")
+      // // console.log(res.data);
+      // console.log("Deu certo")
       // history.push('/admin/trips/list')
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
   if(logado()){

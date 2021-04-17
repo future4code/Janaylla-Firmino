@@ -1,8 +1,7 @@
-import React,{useState} from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { goToAdminHome} from "../constants/routs";
-import {planetList, planetListChaves} from '../constants/const'
-import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, FormFiltro, MaxMin} from '../config/styles'
+import {planetList} from '../constants/const'
+import {FormControlLogin, InputLabelLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, FormFiltro, MaxMin} from '../config/styles'
 import {TextField, MenuItem, Typography, Slider, FormGroup, FormControlLabel, Checkbox} from '@material-ui/core'
 // import {planetList} from '../constants/const'
 

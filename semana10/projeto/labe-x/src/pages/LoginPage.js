@@ -14,7 +14,7 @@ const LoginPage = () => {
 
   const onClickLogin = (e) =>{
     e.preventDefault();
-    console.log("Ema", email, "S", password);
+    // console.log("Ema", email, "S", password);
     const body = {
       email: email,
       password: password
@@ -26,12 +26,12 @@ const LoginPage = () => {
         body
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         window.localStorage.setItem('token', res.data.token)
         history.push('/admin/trips/list')
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
  if(!logado()){

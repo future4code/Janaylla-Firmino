@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import {ButtonLogin} from '../config/styles'
+import {ButtonForm} from '../config/styles'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -28,12 +28,12 @@ export default function AlertDialogSlide({onClick}) {
 
   return (
     <div>
-      <ButtonLogin variant="outlined" color="primary" onClick={handleClickOpen}
+      <ButtonForm variant="outlined" color="primary" onClick={handleClickOpen}
        variant="outlined"
        color="secondary"
       >
        Excluir
-      </ButtonLogin>
+      </ButtonForm>
       <Dialog
         open={open}
         TransitionComponent={Transition}

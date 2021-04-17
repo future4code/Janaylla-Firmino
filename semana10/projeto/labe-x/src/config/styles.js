@@ -252,7 +252,7 @@ export const FormHelperTextLogin = styled(FormHelperText)`
 `
 export const FilledInputLogin = styled(FilledInput)`
 `
-export const ButtonLogin = styled(Button)`
+export const ButtonForm = styled(Button)`
 margin: 10px !important;
 
 border-radius: 200px !important;
@@ -277,7 +277,10 @@ export const FormCreate = styled(Form)`
 `
 export const FormFiltro = styled.div`
 width: 100%;
-padding-right: 20px;
+padding-right: 25px;
+*{
+font-size: 18px !important;
+}
 
 @media(max-width: 600px){
         margin-top: ${sizeNavMobile}px;

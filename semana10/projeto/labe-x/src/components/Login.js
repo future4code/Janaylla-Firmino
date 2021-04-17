@@ -1,11 +1,11 @@
 import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
-import { goToHome, goToListTrip, goToApplicationForm} from "../constants/routs";
+import { goToHome} from "../constants/routs";
 
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 
-import {FormControlLogin, InputLabelLogin, FilledInputLogin, Form, ButtonLogin, InputAdornmentLogin, DivButtons} from '../config/styles'
+import {FormControlLogin, InputLabelLogin, FilledInputLogin, Form, ButtonForm, InputAdornmentLogin, DivButtons} from '../config/styles'
 
 const Login = (props) => {
     
@@ -43,22 +43,22 @@ const Login = (props) => {
           />
           </FormControlLogin> 
           <DivButtons>
-            <ButtonLogin 
+            <ButtonForm 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
           </span>}
           type="submit"
           >Logar
-          </ButtonLogin>
-          <ButtonLogin 
+          </ButtonForm>
+          <ButtonForm 
           variant="outlined"
           color="primary"
           onClick={() => goToHome(history)}
           startIcon={<span class="material-icons">
           </span>}
           >Cancelar
-          </ButtonLogin>
+          </ButtonForm>
           </DivButtons>
       </Form>
     )

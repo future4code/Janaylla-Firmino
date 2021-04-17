@@ -42,14 +42,14 @@ const CreateTripPage = () => {
       }
     )
     .then((res) => {
-      // console.log(res.data);
-      // console.log("Deu certo")
+      // // console.log(res.data);
+      // // console.log("Deu certo")
       setOpenSucesso(true)
       setLoading(false)
       resetForm(formInicial)
     })
     .catch((err) => {
-      // console.log(err);
+      // // console.log(err);
       setOpenError(true)
       setLoading(false)
     });

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
 import {planetList} from '../constants/const'
-import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
+import {FormControlLogin, InputLabelLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
 import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 
@@ -124,7 +124,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
 
       </FormControlLogin >
           <DivButtons>
-            <ButtonLogin 
+            <ButtonForm 
           variant="contained"
           color="primary"
           startIcon={<span class="material-icons">
@@ -132,15 +132,15 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
         
           type="submit"
           >Nova Viagem
-          </ButtonLogin>
-          <ButtonLogin 
+          </ButtonForm>
+          <ButtonForm 
           variant="outlined"
           color="primary"
           onClick={() => goToAdminHome(history)}
           startIcon={<span class="material-icons">
           </span>}
           >Cancelar
-          </ButtonLogin>
+          </ButtonForm>
           </DivButtons>
           
       </FormCreate>

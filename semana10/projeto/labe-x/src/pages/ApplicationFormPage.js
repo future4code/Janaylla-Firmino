@@ -30,7 +30,7 @@ const ApplicationFormPage = () => {
     setLoading(true)
       axios.get(`${baseUrl}/trips`)
       .then((res) => {
-      console.log(res.data.trips);
+      // console.log(res.data.trips);
       setTrips(res.data.trips);
       setLoading(false)
   })
@@ -58,16 +58,16 @@ const AppyTrips = (e) => {
     profession: form.profession,
     country: form.country
   }
-  // console.log(body, form.id)
+  // // console.log(body, form.id)
   axios.post(`${baseUrl}/trips/${form.id}/apply`, body)
   .then((res) => {
-    // console.log("Deu Certo")
+    // // console.log("Deu Certo")
     setOpenSucesso(true)
     setLoadingForm(false)
     resetForm(formInicial)
   })
   .catch((err) =>{
-    // console.log(err)
+    // // console.log(err)
     setOpenError(true)
     setLoadingForm(false)
   })

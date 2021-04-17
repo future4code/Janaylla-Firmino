@@ -1,4 +1,4 @@
-import { Bory, Main, MainLeft, MainRight, MenuDetails, CardCandidates, CardsCandidates, Trip, ButtonLogin, Centalizar } from '../config/styles'
+import { Bory, Main, MainLeft, MainRight, MenuDetails, CardCandidates, CardsCandidates, Trip, ButtonForm, Centalizar } from '../config/styles'
 const cardCandidates = ({ candidates, onClickAprovar }) => {
   return (
     <CardsCandidates>
@@ -11,15 +11,15 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
             <li><span>Profissão: </span>{item.profession}</li>
             <li><span>Idade: </span>{item.age}</li>
             {onClickAprovar && <>
-              <ButtonLogin
+              <ButtonForm
                 variant="contained"
                 color="primary"
                 startIcon={<span class="material-icons"></span>}
                 onClick={() => onClickAprovar(item.id, true)}
               >
                 Aprovar               
-    </ButtonLogin>
-              <ButtonLogin
+    </ButtonForm>
+              <ButtonForm
                 variant="outlined"
                 color="primary"
                 startIcon={<span class="material-icons"></span>}
@@ -27,7 +27,7 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
                 onClick={() => onClickAprovar(item.id, false)}
               >
                 Desaprovar
-    </ButtonLogin>
+    </ButtonForm>
             </>}
           </ul>
 

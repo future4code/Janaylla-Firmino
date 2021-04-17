@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Bory, Main, Filtro, ListTrips, CentalizarProgess} from '../config/styles'
-import Nav from "../components/Nav";
+import {Main, Filtro, ListTrips, CentalizarProgess} from '../config/styles'
 import axios from 'axios';
 import CardTrip from "../components/CardTrip";
 import {baseUrl} from '../constants/axios'
@@ -31,7 +30,7 @@ const [loading, setLoading] = useState(true)
     setLoading(true)
     axios.get(`${baseUrl}/trips`)
     .then((res) => {
-        console.log(res.data.trips);
+        // console.log(res.data.trips);
         setTrips(res.data.trips);
         const lista = res.data.trips.sort((a, b) => {
           return a.durationInDays - b.durationInDays
@@ -88,7 +87,7 @@ const [loading, setLoading] = useState(true)
         let arrayWithOrderNumber = intermediateArray.map((trip) => {
           let array = trip.date.split('-')
           let dayNumber = Number(array[2]) + 30 * Number(array[1]) + 365 * Number(array[0]) 
-          // console.log("Numero", array[0])
+          // // console.log("Numero", array[0])
           let jobWithOrderNumber = { ...trip, orderNumber: dayNumber }
          
           return jobWithOrderNumber  
@@ -142,11 +141,11 @@ const onClickExcluir = (id) =>{
       }
     )
     .then((res) => {
-      console.log("Deu certo");
+      // console.log("Deu certo");
       getTrips()
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 
 }
@@ -189,7 +188,7 @@ const onClickVerDetalhes = (id) =>{
             return (
               <CardTrip
               trip={trip}
-              textButon="Inscrever-se"
+              textButon="Candidate-se"
               onClick={onClickButton}
               />
             )

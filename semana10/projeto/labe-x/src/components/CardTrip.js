@@ -1,4 +1,4 @@
-import {ButtonLogin} from '../config/styles'
+import {ButtonForm} from '../config/styles'
 import {Trip} from '../config/styles'
 import Excluir from '../components/Comfim'
 const CardTrip = ({trip, textButon, onClick, onClickExcluir}) => {
@@ -23,13 +23,13 @@ return (<Trip>
           {trip.date}
       </li>
       <li>
-      <ButtonLogin
+      <ButtonForm
         variant="contained"
         color="primary"
         startIcon={<span class="material-icons"></span>}
         onClick={() => onClick(trip.id)}
         >
-          {textButon}</ButtonLogin>
+          {textButon}</ButtonForm>
           {onClickExcluir &&
             <Excluir
              onClick={() => onClickExcluir(trip.id)}

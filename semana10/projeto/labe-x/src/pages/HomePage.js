@@ -12,7 +12,7 @@ const HomePage = () => {
       
       <TextApresentation>
       <h2>
-      Já pensou em viajar para outro planeta (ou para a lua)? Agora você pode a Labe-x leva você, veja as nossas opções de vigem e e se inscre-va em quantas desejar.
+      Já pensou em viajar para outro planeta (ou para a lua)? Agora você pode a Labe-x leva você, veja as nossas opções de vigem e e se candidate-se em quantas desejar.
       </h2>
       </TextApresentation>
       <DivButtons>

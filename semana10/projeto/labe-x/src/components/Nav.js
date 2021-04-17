@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Centalizar, Nav} from '../config/styles'
+import {Nav} from '../config/styles'
 import { useHistory } from "react-router-dom";
 import { goToHome, goToListTrip, goToApplicationForm} from "../constants/routs";
 

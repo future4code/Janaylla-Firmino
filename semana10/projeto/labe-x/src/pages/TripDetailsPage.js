@@ -6,13 +6,14 @@ import { useHistory, useParams } from "react-router-dom";
 import axios from 'axios'
 import {baseUrl} from '../constants/axios'
 import CardCandidates from '../components/CardCandidates'
+import TripsInformationDetails from '../components/TripsInformationDetails'
 
 const TripDetailsPage = () => {
   const history = useHistory();
   const { id } = useParams();
   const [aprovados, setAprovados] = useState(false);
 
-  const [trip, setTrip] = useState({});
+  const [trip, setTrip] = useState();
   const getTrip = () => {
     axios
     .get(
@@ -63,11 +64,16 @@ const TripDetailsPage = () => {
   }
   if(logado()){
   return <Bory>
-    <Nav currentPage="AdminHome"/>
+    <Nav />
+    {trip &&
    <Main>
-     <MainLeft
-     
-     ></MainLeft>
+    
+     <MainLeft>
+     <TripsInformationDetails
+     id={id} 
+     trip={trip}
+     />
+     </MainLeft>
      <MainRight>
    
        <MenuDetails>
@@ -87,8 +93,10 @@ const TripDetailsPage = () => {
         />}
         </Centalizar>
      </MainRight>
-   </Main>
-    </Bory>;
+    
+   </Main> }
+    </Bory>
+    
        }
        else{
          history.push('/login');

@@ -1,11 +1,11 @@
-import Jupiter from '../assets/jupiter_96159.ico'
-import Marte from '../assets/mars_96191.ico'
-import Mercurio from '../assets/mercury_9123.ico'
-import Lua from '../assets/moonfullmoon_96213.ico'
-import Neturno from '../assets/neptune_96229.ico'
-import Saturno from '../assets/saturn_96158.ico'
-import Venus from '../assets/venus_96156.ico'
-import Urano from '../assets/uranus_96171.ico'
+import Jupiter from '../assets/jupiter.png'
+import Marte from '../assets/mars.png'
+import Mercurio from '../assets/mercury.png'
+import Lua from '../assets/moon.png'
+import Neturno from '../assets/neptune.png'
+import Saturno from '../assets/saturnus.png'
+import Venus from '../assets/venus.png'
+import Urano from '../assets/uranus.png'
 
 export const paises = ["","Afeganistão", 
  "África do Sul", 

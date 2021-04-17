@@ -1,7 +1,7 @@
 import {ButtonLogin} from '../config/styles'
 import {Trip} from '../config/styles'
 
-const CardTrip = ({trip, textButon, onClick}) => {
+const CardTrip = ({trip, textButon, onClick, onClickExcluir}) => {
 return (<Trip>
     <ul>
       <li>
@@ -22,6 +22,7 @@ return (<Trip>
         <span>Data: </span>
           {trip.date}
       </li>
+      <li>
       <ButtonLogin
         variant="contained"
         color="primary"
@@ -29,6 +30,16 @@ return (<Trip>
         onClick={() => onClick(trip.id)}
         >
           {textButon}</ButtonLogin>
+          {onClickExcluir &&
+          <ButtonLogin
+        variant="outlined"
+        color="secondary"
+        startIcon={<span class="material-icons"></span>}
+         onClick={() => onClickExcluir(trip.id)}
+        >
+          Excluir</ButtonLogin>
+          }
+          </li>
     </ul>
 
   </Trip>)

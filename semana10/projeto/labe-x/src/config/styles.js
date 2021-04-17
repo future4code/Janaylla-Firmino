@@ -26,21 +26,31 @@ export const Nav = styled.nav`
       align-items: center;
       display: flex;
       ul{
+         
+        width: 100%;
       display: flex;
       align-items: center;
       padding: 10px;
-      font-family: 'Fauna One', serif;
+      /* font-family: 'Fauna One', serif; */
       li{
           margin: 0 10px;
           cursor: pointer;
           :hover{
-              color: ${colorPrimary};
+              color: #884fbd;
           }
       }
       #currentPage{
-        font-weight: 700;
+        color: #bf8df2;
       }
       }
+`
+export const NavA = styled(Nav)`
+li:last-of-type{
+    position: absolute;
+  text-align: end;
+  right: 0;
+  padding: 10px;
+}
 `
 export const Apresetation = styled.div`
     width: 100%;
@@ -51,7 +61,7 @@ export const Apresetation = styled.div`
     flex-direction: column;
     background-image: url(${Background});
     background-size: 100% 100%;
-    font-family: 'Fauna One', serif;
+    /* font-family: 'Fauna One', serif; */
     
 `
 export const ButtonApresetation = styled(Button)`
@@ -88,9 +98,13 @@ export const Filtro = styled.div`
     height: 100%;
 `
 export const ListTrips = styled.section`
+h4{
+    width: 100%;
+    padding: 10px;
+}
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;   
     width: 100%;
     overflow-y: auto;
@@ -102,16 +116,20 @@ export const Trip = styled.div`
     justify-content: space-between;
  
     ul{
-        width: 350px;
+        min-width: 100%;
+        max-width: 475px;
     background-color: #${colorPrimary}20;
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
     height: 100%;
-      font-family: 'Fauna One', serif;
+      /* font-family: 'Fauna One', serif; */
       font-size: 17px;
       font-weight: 600;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
     li:first-of-type{
         color: #${colorPrimary};;
         text-align: center;
@@ -122,10 +140,28 @@ export const Trip = styled.div`
     li:nth-of-type(2){
         text-align: justify;
         margin: 2px 0;
-        height: 40px;
+        height: 150px;
+        overflow-y: auto;
+        padding: 10px 5px;
+        ::-webkit-scrollbar-track {
+         background-color: #${colorPrimary}30;
+         border-radius: 50%;
+}
+::-webkit-scrollbar {
+    border-radius: 50%;
+    width: 5px;
+    background: #${colorPrimary}30;
+}
+::-webkit-scrollbar-thumb {
+    background: #${colorPrimary}ff;
+    border-radius: 50%;
+}
     }
     li > span{
-        color: #${colorPrimary}bb;
+        color: #${colorPrimary};
+    }
+    li:last-of-type{
+        align-self: center;
     }
     }
     
@@ -201,7 +237,7 @@ export const Centalizar = styled.div`
 
 export const MainLeft = styled.div`
     width: 50%;
-    background-color: #${colorPrimary}50;
+    background-color: #${colorPrimary}20;
 `
 export const MainRight = styled.div`
    width: 50%;
@@ -216,8 +252,33 @@ min-height: 100%;
 display: flex;
 justify-content: center;
 align-items: center; 
+
+position: relative;  
+> div{
+  width: 100%;
+  height: 100%;
+  position: absolute;  
+  /* background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  img{
+      max-width: 100%;
+      max-height: 100%;
+  }
+}
 ul:first-child{
+    z-index: 1;
+  position: absolute;  
+  /* background-color: black; */
+  top: 0;
+  left: 0;
     align-self: center;
+    position: absolute;
+      
 }
     ul{
 display: flex;
@@ -225,12 +286,30 @@ justify-content: center;
 align-items: flex-start; 
 flex-direction: column;
 font-size: 20px;
-width: 300px;
-img{
-    width: 150px;
-}
+font-weight: 700;
+max-width:400px;
 
+        li:nth-of-type(2){
+            padding: 10px 0px;
+            display: flex;
+            height: 200px;
+            overflow-y: auto;
+            ::-webkit-scrollbar-track {
+                    background-color: #${colorPrimary}30;
+                    border-radius: 50%;
+            }
+            ::-webkit-scrollbar {
+                border-radius: 50%;
+                width: 5px;
+                background: #${colorPrimary}30;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #${colorPrimary}ff;
+                border-radius: 50%;
+            }
+        }
         li{
+            padding: 2px 0px;
             span{
                 color: #${colorPrimary};
             }
@@ -257,4 +336,14 @@ export const CardCandidates = styled.div`
 `
 export const CardsCandidates = styled.div`
 
+`
+export const MaxMin = styled.div`
+width: 100%;
+display: flex;
+font-size: 15px;
+font-weight: 700;
+justify-content: space-between;
+span{
+    color: #${colorPrimary};
+}
 `

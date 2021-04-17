@@ -4,7 +4,6 @@ import { goToAdminHome} from "../constants/routs";
 import {TripInform, Centalizar} from '../config/styles'
 import {TextField, MenuItem} from '@material-ui/core'
 import {imgPlanets, planetList} from '../constants/const'
-import Urano from '../assets/uranus_96171.ico'
 
 const CreateTrip = ({id, trips}) => {
 
@@ -18,16 +17,17 @@ const CreateTrip = ({id, trips}) => {
   });
   const indexOf = planetList.indexOf(trip.planet)
   // alert(indexOf, trip.planet)
-//   console.log("asd", trip)
+  //  console.log("asd", trip)
   return(
     <TripInform>
-       
+         <div>
+            <img src={imgPlanets[indexOf]} />
+          </div>
         <ul>
-          <li>
-          <img src={imgPlanets[indexOf]} />
-          </li>
         <li>
+          <span>
           {trip.name}
+          </span>
       </li>
       <li>
           {trip.description}
@@ -43,6 +43,9 @@ const CreateTrip = ({id, trips}) => {
       <li>
         <span>Data: </span>
           {trip.date}
+      </li>
+      <li>
+        
       </li>
       </ul>
     </TripInform>

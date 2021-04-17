@@ -2,31 +2,24 @@ import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
 import {TripInform, Centalizar} from '../config/styles'
-import {TextField, MenuItem} from '@material-ui/core'
 import {imgPlanets, planetList} from '../constants/const'
 
-const CreateTrip = ({id, trips}) => {
+const CreateTrip = ({id, trip}) => {
 
   const history = useHistory();
- 
-  let trip = {};
 
-  trips.forEach(item => {
-      if(item.id === id)
-        trip = item;
-  });
   const indexOf = planetList.indexOf(trip.planet)
   // alert(indexOf, trip.planet)
-//   console.log("asd", trip)
+  // console.log("asd", trip)
   return(
     <TripInform>
-       
+      
+        <div>
+            <img src={imgPlanets[indexOf]} />
+          </div>
         <ul>
-          <li>
-          <img src={imgPlanets[indexOf]} />
-          </li>
         <li>
-          {trip.name}
+        <span>{trip.name}</span>
       </li>
       <li>
           {trip.description}
@@ -42,6 +35,14 @@ const CreateTrip = ({id, trips}) => {
       <li>
         <span>Data: </span>
           {trip.date}
+      </li>
+      <li>
+        <span>Canditatos Pandentes: </span>
+          {trip.candidates.length} 
+      </li>
+      <li>
+        <span>Canditatos Aprovados:: </span>
+          {trip.approved.length} 
       </li>
       </ul>
     </TripInform>

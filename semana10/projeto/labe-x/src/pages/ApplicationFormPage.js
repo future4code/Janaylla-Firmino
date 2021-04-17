@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Bory, Main, MainLeft, MainRight} from '../config/styles'
+import {Bory, Centalizar, Main, MainLeft, MainRight} from '../config/styles'
 import Nav from "../components/Nav";
 import ApplyTrip from '../components/ApplyTripForm';
 import axios from 'axios';
@@ -69,6 +69,7 @@ const onClickEnviar = () => {
        
       </MainLeft>
       <MainRight>
+        <Centalizar>
         <ApplyTrip
         id={form.id}
         name={form.name}
@@ -80,6 +81,7 @@ const onClickEnviar = () => {
         onClickEnviar={onClickEnviar}
         trips={trips}
         />
+        </Centalizar>
       </MainRight>
     </Main>
     </Bory>;

@@ -2,11 +2,11 @@ import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
 import {planetList, planetListChaves} from '../constants/const'
-import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, FormFiltro} from '../config/styles'
+import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, FormFiltro, MaxMin} from '../config/styles'
 import {TextField, MenuItem, Typography, Slider, FormGroup, FormControlLabel, Checkbox} from '@material-ui/core'
 // import {planetList} from '../constants/const'
 
-const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias}) => {
+const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias, max}) => {
   const history = useHistory();
   
   
@@ -23,10 +23,13 @@ const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias}
     dataString += (data.getDate()+ 1);
   // alert(dataString)
   const ordenacao = [
-    "",
-    "Nome",
-    "Data",
-    "Dias"
+    "Relevantes",
+    "Nome (A-z)",
+    "Nome (Z-a)",
+    "Data (Crescente)",
+    "Data (Decrescente)",
+    "Dias (Crescente)",
+    "Dias (Decrescente)"
   ]
   return(
     <FormFiltro >
@@ -46,20 +49,32 @@ const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias}
 
         />
          <Typography  gutterBottom>
-        Remuneração
+        Duração
       </Typography>
       <Slider
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
         // getAriaValueText={"100"}
         defaultValue={dias}
-        min={0}
-        max={filtro.max}
+        min={50}
+        max={max}
          value={dias}
         onChange={onChangeDias}
         fullWidth
       />
         <FormGroup row>
+          {dias[0] !== 50 || dias[1] !== 50 ?
+          
+          <MaxMin>
+            <p><span>Min: </span>{dias[0]}</p>
+            <p><span>Max: </span>{dias[1]}</p>
+          </MaxMin>
+      :
+      <MaxMin>
+      <p><span>Min: </span></p>
+      <p><span>Max: </span></p>
+    </MaxMin>
+        }
      { 
      planetList.map((planet, index) => {
           return ( <FormControlLabel
@@ -78,12 +93,12 @@ const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias}
       }     
       </FormGroup>
       <Typography  gutterBottom>
-        Ordenação
+        Ordenar
       </Typography>
       <TextFieldLogin
           id="filled-select-currency"
           select
-          label="País de origem"
+          label="por"
           value={filtro.ordenacao}
           variant="filled"
           fullWidth

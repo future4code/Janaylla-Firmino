@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdornment, TextField } from '@material-ui/core'
+import {Button, FormControl, InputLabel, FormHelperText, FilledInput, InputAdornment, TextField, Snackbar } from '@material-ui/core'
 import Background from '../assets/background.png'
 const colorPrimary = "663399";
 const sizeNav = "80";
+
 export const Bory = styled.div`
     width: 100vw;
     height: 100vh;
@@ -62,6 +63,10 @@ export const Apresetation = styled.div`
     background-image: url(${Background});
     background-size: 100% 100%;
     /* font-family: 'Fauna One', serif; */
+
+    @media(max-width: 600px){
+        font-size: 15px;
+    }
     
 `
 export const ButtonApresetation = styled(Button)`
@@ -71,6 +76,10 @@ export const ButtonApresetation = styled(Button)`
     border-radius: 200px !important;
     :hover{
         transform: scale(1.05) !important;
+    }
+    @media(max-width: 600px){
+    
+            font-size: 18px !important;
     }
 `
 export const TextApresentation = styled.div`
@@ -142,6 +151,7 @@ export const Trip = styled.div`
         margin: 2px 0;
         height: 150px;
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 10px 5px;
         ::-webkit-scrollbar-track {
          background-color: #${colorPrimary}30;
@@ -162,6 +172,7 @@ export const Trip = styled.div`
     }
     li:last-of-type{
         align-self: center;
+        display: flex;
     }
     }
     
@@ -331,8 +342,10 @@ h3{
     color: #${colorPrimary};
 }
 `
-export const CardCandidates = styled.div`
-
+export const CardCandidates = styled(Trip)`
+    ul li:last-child{
+        align-self: flex-start
+    }
 `
 export const CardsCandidates = styled.div`
 
@@ -346,4 +359,23 @@ justify-content: space-between;
 span{
     color: #${colorPrimary};
 }
+`
+
+export const CentalizarProgess = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+export const SnackbarGreen = styled(Snackbar)`
+    background-color: green !important;
+    *{
+        background-color: green !important;
+    }
+`
+export const SnackbarRed = styled(Snackbar)`
+    background-color: red !important;
+    *{
+        background-color: red !important;
+    }
 `

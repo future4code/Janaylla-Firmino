@@ -1,6 +1,6 @@
 import {ButtonLogin} from '../config/styles'
 import {Trip} from '../config/styles'
-
+import Excluir from '../components/Comfim'
 const CardTrip = ({trip, textButon, onClick, onClickExcluir}) => {
 return (<Trip>
     <ul>
@@ -31,13 +31,10 @@ return (<Trip>
         >
           {textButon}</ButtonLogin>
           {onClickExcluir &&
-          <ButtonLogin
-        variant="outlined"
-        color="secondary"
-        startIcon={<span class="material-icons"></span>}
-         onClick={() => onClickExcluir(trip.id)}
-        >
-          Excluir</ButtonLogin>
+            <Excluir
+             onClick={() => onClickExcluir(trip.id)}
+            />
+        
           }
           </li>
     </ul>

@@ -3,7 +3,7 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
   return (
     <CardsCandidates>
       {candidates && candidates.map(item => {
-        return (<Trip>
+        return (<CardCandidates>
           <ul>
             <li>{item.name}</li>
             <li><span>Por quê contratar: </span>{item.applicationText}</li>
@@ -31,7 +31,7 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
             </>}
           </ul>
 
-        </Trip>)
+        </CardCandidates>)
       })}
     </CardsCandidates>)
 }

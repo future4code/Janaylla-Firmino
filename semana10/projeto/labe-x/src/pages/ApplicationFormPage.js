@@ -5,6 +5,7 @@ import ApplyTrip from '../components/ApplyTripForm';
 import axios from 'axios';
 import {baseUrl} from '../constants/axios';
 import {useForm} from '../hooks/useForm';
+import { CircularProgress } from "@material-ui/core";
 
 import { goToListTrip} from "../constants/routs";
 import TripsInformation from '../components/TripsInformation';
@@ -24,17 +25,32 @@ const ApplicationFormPage = () => {
   }
   
   const [form, setForm, resetForm] = useForm(formInicial)
-
+  const [loading, setLoading] = useState(true);
   const getTrips = () => {
-  axios.get(`${baseUrl}/trips`)
-  .then((res) => {
+    setLoading(true)
+      axios.get(`${baseUrl}/trips`)
+      .then((res) => {
       console.log(res.data.trips);
       setTrips(res.data.trips);
+      setLoading(false)
   })
   .catch(() =>{
+    alert("Algo deu errado :(, recarregue a página e tente novamente")
   })
 }
-const AppyTrips = () => {
+  
+const [openSucesso, setOpenSucesso] = useState();
+const [openError, setOpenError] = useState();
+const [loadingForm, setLoadingForm] = useState(false);
+
+ 
+const handleClose = () => {
+  setOpenSucesso(false);
+  setOpenError(false)
+};
+const AppyTrips = (e) => {
+    e.preventDefault();
+    setLoadingForm(true)
   const body = {
     name: form.name,
     age: form.age,
@@ -42,30 +58,36 @@ const AppyTrips = () => {
     profession: form.profession,
     country: form.country
   }
-  console.log(body, form.id)
+  // console.log(body, form.id)
   axios.post(`${baseUrl}/trips/${form.id}/apply`, body)
   .then((res) => {
-    console.log("Deu Certo")
-    goToListTrip(history);
+    // console.log("Deu Certo")
+    setOpenSucesso(true)
+    setLoadingForm(false)
+    resetForm(formInicial)
   })
   .catch((err) =>{
-    console.log(err)
+    // console.log(err)
+    setOpenError(true)
+    setLoadingForm(false)
   })
 }
 useEffect(()=>{
   getTrips();
 }, [])
-const onClickEnviar = () => {
-  
-  AppyTrips()
-}
+
   return <Bory>
     <Nav currentPage="ApplicationForm" />
     <Main>
       <MainLeft>
-        <TripsInformation
+      {loading ? <Centalizar>
+       <CircularProgress/>
+     </Centalizar>:
+     <TripsInformation
        id={form.id}
        trips={trips}/>
+       
+     }
        
       </MainLeft>
       <MainRight>
@@ -78,8 +100,13 @@ const onClickEnviar = () => {
         profession={form.profession}
         country={form.country}
         onChange={setForm}
-        onClickEnviar={onClickEnviar}
+        onClickEnviar={AppyTrips}
         trips={trips}
+        handleClose={handleClose}
+        openSucesso={openSucesso}
+        openError={openError}
+        loadingForm={loadingForm}
+        loading={loading}
         />
         </Centalizar>
       </MainRight>

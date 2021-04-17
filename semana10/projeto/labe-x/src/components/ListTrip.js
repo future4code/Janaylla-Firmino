@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Bory, Main, Filtro, ListTrips} from '../config/styles'
+import {Bory, Main, Filtro, ListTrips, CentalizarProgess} from '../config/styles'
 import Nav from "../components/Nav";
 import axios from 'axios';
 import CardTrip from "../components/CardTrip";
@@ -9,11 +9,13 @@ import {useHistory} from 'react-router-dom'
 import Filter from '../components/Filter'
 import {useForm} from '../hooks/useForm'
 import {planetList} from '../constants/const'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ListTripsP = ({page}) => {
 const history = useHistory();
 const [trips, setTrips] = useState([]);
 const [tripsOrdenado, setTripsOrdenado] = useState([])
+const [loading, setLoading] = useState(true)
 
   const filtroInicial = {
     name: "",
@@ -26,6 +28,7 @@ const [tripsOrdenado, setTripsOrdenado] = useState([])
   const [max, setMax] = useState(50)
 
   const getTrips = () => {
+    setLoading(true)
     axios.get(`${baseUrl}/trips`)
     .then((res) => {
         console.log(res.data.trips);
@@ -33,10 +36,12 @@ const [tripsOrdenado, setTripsOrdenado] = useState([])
         const lista = res.data.trips.sort((a, b) => {
           return a.durationInDays - b.durationInDays
         })
+        setLoading(false)
         setMax(lista[lista.length - 1].durationInDays)
        
     })
     .catch(() =>{
+      alert("Algo deu errado :(, recarregue a página e tente novamente")
     })
   }
   
@@ -127,7 +132,7 @@ const [tripsOrdenado, setTripsOrdenado] = useState([])
   }
 //   alert((page === "Admin"));
 const onClickExcluir = (id) =>{
-    if(window.confirm("Você realmente deseja excluir?")){
+   
     axios
     .delete(
       `${baseUrl}/trips/${id}`, {
@@ -143,7 +148,7 @@ const onClickExcluir = (id) =>{
     .catch((err) => {
       console.log(err);
     });
-  }
+
 }
 const onClickVerDetalhes = (id) =>{
     goToTripDetails(history, id)
@@ -163,7 +168,10 @@ const onClickVerDetalhes = (id) =>{
     </Filtro>
     <ListTrips>
       <h4>Quantidade de viagens encontradas: {tripsOrdenado.length}</h4>
-    {
+      
+      {loading ? 
+      <CentalizarProgess> <CircularProgress/> </CentalizarProgess>
+        :
         (page === "Admin" && window.localStorage.getItem('token'))
         ?
         tripsOrdenado.map((trip) => {

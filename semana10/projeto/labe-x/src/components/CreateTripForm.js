@@ -1,11 +1,13 @@
-import React,{useState} from "react";
+import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
 import {planetList} from '../constants/const'
-import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois} from '../config/styles'
-import {TextField, MenuItem} from '@material-ui/core'
+import {FormControlLogin, InputLabelLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
+import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
+import Button from '@material-ui/core/Button';
 
-const CreateTrip = ({name, planet, date, description, durationInDays, onChange, onClickEnviar}) => {
+
+const CreateTrip = ({name, planet, date, description, durationInDays, onChange, onClickEnviar, handleClose, openError, openSucesso, loading}) => {
   const history = useHistory();
 
   const data = new Date();
@@ -19,7 +21,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
     dataString += "0"+ (data.getDate()+ 1);
   else
     dataString += (data.getDate()+ 1);
-  
+    
   // alert(dataString)
   return(
     <FormCreate onSubmit={onClickEnviar}>
@@ -99,8 +101,27 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
   onChange={onChange}
   required 
 />
+
 </div>
   </DivFormDois>
+{loading && <LinearProgress />}
+<div>
+      <SnackbarGreen
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={openSucesso}
+        onClose={handleClose}
+        message="Viagem criada com sucesso!!!"
+        key={"bottom" + "center"}
+      />
+      <SnackbarRed
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={openError}
+        onClose={handleClose}
+        message="Algo deu errado :(. Tente novamente"
+        key={"bottom" + "center"}
+      />
+    </div>
+
       </FormControlLogin >
           <DivButtons>
             <ButtonLogin 
@@ -121,6 +142,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
           >Cancelar
           </ButtonLogin>
           </DivButtons>
+          
       </FormCreate>
     )
 };

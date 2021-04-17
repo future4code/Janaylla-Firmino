@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
-import { goToAdminHome} from "../constants/routs";
-import {FormControlLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois} from '../config/styles'
-import {TextField, MenuItem} from '@material-ui/core'
+import { goToListTrip} from "../constants/routs";
+import {FormControlLogin, FormCreate, ButtonLogin, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
+import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
 import {paises} from '../constants/const'
 
-const ApplyTrip = ({id, name, age, applicationText, profession, country, onChange, trips, onClickEnviar}) => {
+const ApplyTrip = ({id, name, age, applicationText, profession, country, onChange, trips, onClickEnviar, handleClose, openError, openSucesso, loading, loadingForm}) => {
    
   const history = useHistory();
  
@@ -100,7 +100,28 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           required
           inputProps={{ minlength: 30}}
         />
+        
+ {loadingForm && <LinearProgress />}
         </FormControlLogin >
+        
+
+<div>
+      <SnackbarGreen
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={openSucesso}
+        onClose={handleClose}
+        message="Viagem criada com sucesso!!!"
+        key={"bottom" + "center"}
+      />
+      <SnackbarRed
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={openError}
+        onClose={handleClose}
+        message="Algo deu errado :(. Tente novamente"
+        key={"bottom" + "center"}
+      />
+    </div>
+
           <DivButtons>
             <ButtonLogin 
           variant="contained"
@@ -113,7 +134,7 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
           <ButtonLogin 
           variant="outlined"
           color="primary"
-          onClick={() => goToAdminHome(history)}
+          onClick={() => goToListTrip(history)}
           startIcon={<span class="material-icons">
           </span>}
           >Cancelar

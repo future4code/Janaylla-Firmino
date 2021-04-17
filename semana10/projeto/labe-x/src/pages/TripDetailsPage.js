@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import {Bory, Main, MainLeft, MainRight, MenuDetails, Centalizar} from '../config/styles'
+import {Bory, Main, MainLeft, MainRight, MenuDetails, Centalizar, CentalizarProgess} from '../config/styles'
 import Nav from "../components/NavAdmin";
 import {logado} from '../constants/logado'
 import { useHistory, useParams } from "react-router-dom";
@@ -7,14 +7,16 @@ import axios from 'axios'
 import {baseUrl} from '../constants/axios'
 import CardCandidates from '../components/CardCandidates'
 import TripsInformationDetails from '../components/TripsInformationDetails'
+import { CircularProgress } from "@material-ui/core";
 
 const TripDetailsPage = () => {
   const history = useHistory();
   const { id } = useParams();
   const [aprovados, setAprovados] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const [trip, setTrip] = useState();
   const getTrip = () => {
+    setLoading(true)
     axios
     .get(
       `${baseUrl}/trip/${id}`, {
@@ -26,9 +28,11 @@ const TripDetailsPage = () => {
     .then((res) => {
       console.log(res.data.trip);
       setTrip(res.data.trip)
+      setLoading(false)
     })
     .catch((err) => {
       console.log(err);
+      alert("Algo deu errado :(, recarregue a página e tente novamente")
     });
   }
   useEffect(()=>{
@@ -67,15 +71,18 @@ const TripDetailsPage = () => {
     <Nav />
     {trip &&
    <Main>
-    
      <MainLeft>
+     {loading ? <Centalizar>
+       <CircularProgress/>
+     </Centalizar>:
      <TripsInformationDetails
      id={id} 
      trip={trip}
      />
+     }
      </MainLeft>
+     
      <MainRight>
-   
        <MenuDetails>
        {!aprovados ? <h3 id="current" onClick={changeBox}>Pendentes</h3>:
        <h3 onClick={changeBox}>Pendentes</h3> }

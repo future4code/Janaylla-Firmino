@@ -37,7 +37,7 @@ const CreateTrip = ({id, trips}) => {
       </li>
       <li>
         <span>Data: </span>
-          {trip.date}
+          {dateString}
       </li>
       <li>
         

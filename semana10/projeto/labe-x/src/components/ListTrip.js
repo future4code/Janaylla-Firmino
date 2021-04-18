@@ -177,7 +177,6 @@ const onClickVerDetalhes = (id) =>{
             return (
               <CardTrip
               trip={trip}
-              textButon="Ver detalhes"
               onClick={() => onClickVerDetalhes(trip.id)}
               onClickExcluir={onClickExcluir}
               />
@@ -188,7 +187,6 @@ const onClickVerDetalhes = (id) =>{
             return (
               <CardTrip
               trip={trip}
-              textButon="Candidate-se"
               onClick={onClickButton}
               />
             )

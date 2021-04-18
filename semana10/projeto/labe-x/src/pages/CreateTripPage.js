@@ -1,17 +1,23 @@
-import React,{useState} from "react";
-import {Apresetation, Bory, Main, Centalizar} from '../config/styles'
+import React,{useState, useLayoutEffect} from "react";
+import {Bory, Main, Centalizar} from '../config/styles'
 import Nav  from "../components/NavAdmin";
-import {logado} from '../constants/logado'
 import { useHistory } from "react-router-dom";
 import CreateTripForm from '../components/CreateTripForm'
-import {useInputControl} from '../hooks/useInputControl'
 import axios from 'axios'
 import {useForm} from '../hooks/useForm'
 import {baseUrl} from '../constants/axios'
+import {goToLogin} from '../constants/routs'
+
 const CreateTripPage = () => {
 
   const history = useHistory();
   
+  useLayoutEffect(() => {
+    if(!window.localStorage.getItem('token'))
+        goToLogin(history)
+  })
+ 
+
   const formInicial = {
     name: "",
     planet: "",
@@ -55,8 +61,6 @@ const CreateTripPage = () => {
     });
   }
 
-  if(logado()){
-
   return <Bory> 
     <Nav currentPage="CreateTrip"/>
   
@@ -78,11 +82,6 @@ const CreateTripPage = () => {
    </Centalizar>
    </Main>
       </Bory>;
-         }
-         else{
-           history.push('/login');
-           return <></>;
-         }
 };
 
 export default CreateTripPage;

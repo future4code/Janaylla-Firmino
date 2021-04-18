@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useLayoutEffect} from "react"
 import {Bory, Main, MainLeft, MainRight, MenuDetails, Centalizar, CentalizarProgess} from '../config/styles'
 import Nav from "../components/NavAdmin";
 import {logado} from '../constants/logado'
@@ -8,13 +8,24 @@ import {baseUrl} from '../constants/axios'
 import CardCandidates from '../components/CardCandidates'
 import TripsInformationDetails from '../components/TripsInformationDetails'
 import { CircularProgress } from "@material-ui/core";
+import {goToLogin} from '../constants/routs'
 
 const TripDetailsPage = () => {
   const history = useHistory();
+
+  useLayoutEffect(() => {
+    if(!window.localStorage.getItem('token'))
+        goToLogin(history)
+  })
+ 
+
   const { id } = useParams();
   const [aprovados, setAprovados] = useState(false);
   const [loading, setLoading] = useState(true);
   const [trip, setTrip] = useState();
+  const [passed, setPassed] = useState(false)
+  const currentDate = new Date();
+
   const getTrip = () => {
     setLoading(true)
     axios
@@ -28,6 +39,9 @@ const TripDetailsPage = () => {
     .then((res) => {
       // console.log(res.data.trip);
       setTrip(res.data.trip)
+      const date = new Date(res.data.trip.date)
+      // console.log(currentDate.getTime() - date.getTime())
+      setPassed((currentDate.getTime() - date.getTime()) > 0)
       setLoading(false)
     })
     .catch((err) => {
@@ -66,7 +80,6 @@ const TripDetailsPage = () => {
       // console.log(err);
     });
   }
-  if(logado()){
   return <Bory>
     <Nav />
     {trip &&
@@ -78,6 +91,7 @@ const TripDetailsPage = () => {
      <TripsInformationDetails
      id={id} 
      trip={trip}
+     passed={passed}
      />
      }
      </MainLeft>
@@ -95,8 +109,9 @@ const TripDetailsPage = () => {
              candidates={trip.approved}
            />:
         <CardCandidates
-        onClickAprovar={onClickAprovar}
-          candidates={trip.candidates}
+          onClickAprovar={onClickAprovar}
+          candidates={trip.candidates}   
+          passed={passed}
         />}
         </Centalizar>
      </MainRight>
@@ -104,11 +119,6 @@ const TripDetailsPage = () => {
    </Main> }
     </Bory>
     
-       }
-       else{
-         history.push('/login');
-         return <></>;
-       }
 };
 
 export default TripDetailsPage;

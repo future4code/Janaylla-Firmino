@@ -48,7 +48,7 @@ const Filter = ({filtro, onChange, planets, onChangePlanets, dias, onChangeDias,
 
         />
          <Typography  gutterBottom>
-        Duração
+        Duração (dias)
       </Typography>
       <Slider
         valueLabelDisplay="auto"

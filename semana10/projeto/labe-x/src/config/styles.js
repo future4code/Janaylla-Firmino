@@ -198,7 +198,7 @@ export const Trip = styled.div`
     li:nth-of-type(2){
         text-align: justify;
         margin: 2px 0;
-        height: 150px;
+        height: 100px;
         overflow-y: auto;
         overflow-x: hidden;
         padding: 10px 5px;
@@ -259,6 +259,10 @@ border-radius: 200px !important;
 :hover{
         transform: scale(1.05) !important;
     }
+`
+export const ButtonFormEncerrado = styled(ButtonForm)`
+    background-color: #404040 !important;
+    
 `
 export const InputAdornmentLogin = styled(InputAdornment)`
 span{
@@ -419,8 +423,12 @@ h3{
 }
 `
 export const CardCandidates = styled(Trip)`
-    ul li:last-child{
-        align-self: flex-start
+     ul li:last-of-type span{
+        margin-right: 3px;
+    }
+    ul li:last-of-type{
+        align-self: flex-start;
+      margin-right: 3px;
     }
 `
 export const CardsCandidates = styled.div`

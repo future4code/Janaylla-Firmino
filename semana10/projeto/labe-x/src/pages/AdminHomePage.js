@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react'
+import React, {useLayoutEffect} from 'react'
 import ListTrips from '../components/ListTrip'
 import Nav from '../components/NavAdmin'
 import {Bory} from '../config/styles'

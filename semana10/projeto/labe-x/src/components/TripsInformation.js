@@ -13,6 +13,8 @@ const CreateTrip = ({id, trips}) => {
   const indexOf = planetList.indexOf(trip.planet)
   // alert(indexOf, trip.planet)
   //  // console.log("asd", trip)
+  let dateString = trip.date.split("-")
+  dateString = `${dateString[2]}/${dateString[1]}/${dateString[0]}`
   return(
     <TripInform>
          <div>
@@ -37,7 +39,7 @@ const CreateTrip = ({id, trips}) => {
       </li>
       <li>
         <span>Data: </span>
-          {trip.date}
+          {dateString}
       </li>
       <li>
         

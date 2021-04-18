@@ -12,15 +12,11 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
 
   const data = new Date();
   let dataString = data.getFullYear() + "-";
-  if(data.getMonth() < 9)
-    dataString += "0"+ (data.getMonth()+ 1)+"-";
-  else
-     dataString += (data.getMonth()+ 1) + "-";
 
-  if(data.getDate() < 9)
-    dataString += "0"+ (data.getDate()+ 1);
-  else
-    dataString += (data.getDate()+ 1);
+  dataString += data.getMonth() < 9 ? "0"+ (data.getMonth()+ 1)+"-" :
+  (data.getMonth()+ 1) + "-";
+  
+  dataString += data.getDate() < 9 ? "0" + (data.getDate()+ 1) : data.getDate() + 1
     
   // alert(dataString)
   return(
@@ -117,7 +113,7 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={openError}
         onClose={handleClose}
-        message="Algo deu errado :(. Tente novamente"
+        message="Algo deu errado :(. Recarregue e tente novamente"
         key={"bottom" + "center"}
       />
     </div>

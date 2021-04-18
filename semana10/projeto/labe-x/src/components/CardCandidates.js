@@ -1,5 +1,5 @@
-import { Bory, Main, MainLeft, MainRight, MenuDetails, CardCandidates, CardsCandidates, Trip, ButtonForm, Centalizar } from '../config/styles'
-const cardCandidates = ({ candidates, onClickAprovar }) => {
+import { CardCandidates, CardsCandidates, ButtonForm, DivButtons } from '../config/styles'
+const cardCandidates = ({ candidates, onClickAprovar, passed }) => {
   return (
     <CardsCandidates>
       {candidates && candidates.map(item => {
@@ -9,8 +9,9 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
             <li><span>Por quê contratar: </span>{item.applicationText}</li>
             <li><span>País: </span>{item.country}</li>
             <li><span>Profissão: </span>{item.profession}</li>
-            <li><span>Idade: </span>{item.age}</li>
-            {onClickAprovar && <>
+          <li><span>Idade:</span>{String(item.age)} anos</li>
+            {(onClickAprovar && !passed) && <DivButtons>
+            
               <ButtonForm
                 variant="contained"
                 color="primary"
@@ -18,7 +19,7 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
                 onClick={() => onClickAprovar(item.id, true)}
               >
                 Aprovar               
-    </ButtonForm>
+            </ButtonForm>
               <ButtonForm
                 variant="outlined"
                 color="primary"
@@ -27,8 +28,9 @@ const cardCandidates = ({ candidates, onClickAprovar }) => {
                 onClick={() => onClickAprovar(item.id, false)}
               >
                 Desaprovar
-    </ButtonForm>
-            </>}
+             </ButtonForm>
+             </DivButtons>
+            }
           </ul>
 
         </CardCandidates>)

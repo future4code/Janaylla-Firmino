@@ -1,14 +1,26 @@
 import React,{useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { goToListTrip} from "../constants/routs";
-import {FormControlLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
-import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
+import {FormControlLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed, ButtonFormEncerrado} from '../config/styles'
+import {MenuItem, LinearProgress} from '@material-ui/core'
 import {paises} from '../constants/const'
 
 const ApplyTrip = ({id, name, age, applicationText, profession, country, onChange, trips, onClickEnviar, handleClose, openError, openSucesso, loading, loadingForm}) => {
    
   const history = useHistory();
  
+  const currentDate = new Date();
+  
+  let date = new Date();
+
+  console.log(trips)
+
+  if(trips){
+  trips.forEach((option) => {
+    if(option.id === id)
+      date = new Date(option.date);
+  })
+}
   return(
     <FormCreate onSubmit={onClickEnviar}>
       <FormControlLogin variant="filled" fullWidth>
@@ -110,27 +122,38 @@ const ApplyTrip = ({id, name, age, applicationText, profession, country, onChang
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={openSucesso}
         onClose={handleClose}
-        message="Viagem criada com sucesso!!!"
+        message="Candidatura realizada sucesso!!!"
         key={"bottom" + "center"}
       />
       <SnackbarRed
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={openError}
         onClose={handleClose}
-        message="Algo deu errado :(. Tente novamente"
+        message="Algo deu errado :(. Recarregue e tente novamente"
         key={"bottom" + "center"}
       />
     </div>
 
           <DivButtons>
-            <ButtonForm 
-          variant="contained"
-          color="primary"
-          startIcon={<span class="material-icons">
-          </span>}
-          type="submit"
-          >Nova Viagem
-          </ButtonForm>
+          {
+              currentDate.getTime() - date.getTime() > 0 ?
+              <ButtonFormEncerrado
+              variant="contained"
+              color="primary"
+              startIcon={<span class="material-icons"></span>}
+              >
+                Encerrado</ButtonFormEncerrado>
+              :
+              <ButtonForm 
+              variant="contained"
+              color="primary"
+              startIcon={<span class="material-icons">
+              </span>}
+              type="submit"
+              >Candidatar-se
+              </ButtonForm>
+            }
+
           <ButtonForm 
           variant="outlined"
           color="primary"

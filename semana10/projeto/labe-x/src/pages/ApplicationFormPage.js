@@ -23,6 +23,7 @@ const ApplicationFormPage = () => {
     profession: "",
     country: ""
   }
+  const currentDate = new Date("2024-01-01");
   
   const [form, setForm, resetForm] = useForm(formInicial)
   const [loading, setLoading] = useState(true);

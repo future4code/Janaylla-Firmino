@@ -7,7 +7,7 @@ const ListTripsPage = () => {
     return ( <Bory>
     <Nav currentPage="ListTrips"/>
       <ListTrips
-    page="Login"
+      page="Login"
     />
     </Bory>)
   };

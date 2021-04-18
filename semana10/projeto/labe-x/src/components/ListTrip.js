@@ -104,8 +104,8 @@ const [loading, setLoading] = useState(true)
         case "Data (Decrescente)":
           return (orderBy(allTrips ,"Data (Crescente)").reverse())
 
-          case "Relevantes":
-            return allTrips;
+          default:
+            return trips;
     }
   }
 

@@ -3,9 +3,7 @@ import {TripInform} from '../config/styles'
 import {imgPlanets, planetList} from '../constants/const'
 
 const CreateTrip = ({id, trips}) => {
-
   let trip = {};
-
   trips.forEach(item => {
       if(item.id === id)
         trip = item;
@@ -39,7 +37,7 @@ const CreateTrip = ({id, trips}) => {
       </li>
       <li>
         <span>Data: </span>
-          {dateString}
+          {trip.date}
       </li>
       <li>
         

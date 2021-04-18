@@ -47,6 +47,7 @@ const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
           getTrips();
+          window.localStorage.removeItem('idSelect');
   }, [])
 
  

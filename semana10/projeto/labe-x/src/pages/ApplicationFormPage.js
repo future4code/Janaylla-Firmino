@@ -7,13 +7,10 @@ import {baseUrl} from '../constants/axios';
 import {useForm} from '../hooks/useForm';
 import { CircularProgress } from "@material-ui/core";
 
-import { goToListTrip} from "../constants/routs";
 import TripsInformation from '../components/TripsInformation';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ApplicationFormPage = () => {
   const [trips, setTrips] = useState([]);
-  const history = useHistory();
   const id = window.localStorage.getItem('idSelect') ? window.localStorage.getItem('idSelect') : "";
   const formInicial = {
     id: id,
@@ -23,7 +20,6 @@ const ApplicationFormPage = () => {
     profession: "",
     country: ""
   }
-  const currentDate = new Date("2024-01-01");
   
   const [form, setForm, resetForm] = useForm(formInicial)
   const [loading, setLoading] = useState(true);
@@ -70,11 +66,12 @@ const AppyTrips = (e) => {
   .catch((err) =>{
     // // console.log(err)
     setOpenError(true)
-    setLoadingForm(false)
   })
 }
 useEffect(()=>{
   getTrips();
+  
+  window.localStorage.removeItem('idSelect');
 }, [])
 
   return <Bory>
@@ -84,10 +81,9 @@ useEffect(()=>{
       {loading ? <Centalizar>
        <CircularProgress/>
      </Centalizar>:
-     <TripsInformation
+     form.id && <TripsInformation
        id={form.id}
        trips={trips}/>
-       
      }
        
       </MainLeft>

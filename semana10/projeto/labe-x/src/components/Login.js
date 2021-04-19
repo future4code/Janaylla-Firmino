@@ -2,10 +2,9 @@ import React,{useState} from "react";
 import { useHistory } from "react-router-dom";
 import { goToHome} from "../constants/routs";
 
-import FilledInput from '@material-ui/core/FilledInput';
-import InputLabel from '@material-ui/core/InputLabel';
+import {FilledInput, InputLabel, LinearProgress} from '@material-ui/core';
 
-import {FormControlLogin, InputLabelLogin, FilledInputLogin, Form, ButtonForm, InputAdornmentLogin, DivButtons} from '../config/styles'
+import {FormControlLogin, InputLabelLogin, FilledInputLogin, Form, ButtonForm, InputAdornmentLogin, DivButtons, SnackbarGreen, SnackbarRed} from '../config/styles'
 
 const Login = (props) => {
     
@@ -41,8 +40,19 @@ const Login = (props) => {
             onChange={props.inputSetPassaword}
             required
           />
+           {props.loadingForm && <LinearProgress />}
           </FormControlLogin> 
           <DivButtons>
+          <div>
+     
+      <SnackbarRed
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={props.openError}
+        onClose={props.handleClose}
+        message="Login e/ou senha incorretos"
+        key={"bottom" + "center"}
+      />
+    </div>
             <ButtonForm 
           variant="contained"
           color="primary"

@@ -70,7 +70,6 @@ const AppyTrips = (e) => {
 }
 useEffect(()=>{
   getTrips();
-  
   window.localStorage.removeItem('idSelect');
 }, [])
 

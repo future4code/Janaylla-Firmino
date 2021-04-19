@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { goToAdminHome} from "../constants/routs";
 import {planetList} from '../constants/const'
-import {FormControlLogin, InputLabelLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
-import {TextField, MenuItem, LinearProgress} from '@material-ui/core'
-import Button from '@material-ui/core/Button';
-
+import {FormControlLogin, FormCreate, ButtonForm, DivButtons, TextFieldLogin, DivFormDois, SnackbarGreen, SnackbarRed} from '../config/styles'
+import { MenuItem, LinearProgress} from '@material-ui/core'
 
 const CreateTrip = ({name, planet, date, description, durationInDays, onChange, onClickEnviar, handleClose, openError, openSucesso, loading}) => {
   const history = useHistory();
@@ -80,23 +78,23 @@ const CreateTrip = ({name, planet, date, description, durationInDays, onChange, 
     fullWidth
     required
     inputProps={{ min: dataString }}
-  /></div>
-  <div>
-  <TextFieldLogin
-  fullWidth
-  id="date"
-  label="Quandade de dias:"
-  type="number"  
-  variant="filled"
-  InputLabelProps={{
-  shrink: true,
-  }}
-  inputProps={{ min: 50}}
-  name={"durationInDays"}
-  value={durationInDays}
-  onChange={onChange}
-  required 
-/>
+    /></div>
+    <div>
+    <TextFieldLogin
+    fullWidth
+    id="date"
+    label="Quandade de dias:"
+    type="number"  
+    variant="filled"
+    InputLabelProps={{
+    shrink: true,
+    }}
+    inputProps={{ min: 50}}
+    name={"durationInDays"}
+    value={durationInDays}
+    onChange={onChange}
+    required 
+  />
 
 </div>
   </DivFormDois>

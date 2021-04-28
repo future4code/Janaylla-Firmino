@@ -5,39 +5,32 @@ import {AccountCircle, Lock, Email, Visibility, VisibilityOff} from '@material-u
 import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
-
+import {goToFeed} from '../../router/coordinator'
+import {useHistory} from 'react-router-dom'
 export default function Register(){
   const [showPassword, setShowPassword] = useState(false)
   const formInicial = { 
-    username: "",
     email: "",
     password: ""
   }
   const [form, setForm, resetForm] = useForm(formInicial)
-  const [user, postUser, loading] = usePost("/signup")
+  const [user, postUser, loading] = usePost("/login")
+  const history = useHistory();
   const onSubmit = (e) => {
+      
+    console.log("as")
     e.preventDefault();
     postUser(form)
   }
   useEffect(()=> {
     if(user){
-      localStorage.setItem('user',  JSON.stringify(user))   
+      localStorage.setItem('user',  JSON.stringify(user)) 
+      goToFeed(history);  
   }
   }, [user])
 
     return <DivConteiner>
         <Form onSubmit={onSubmit}>
-         <Grid container alignItems="flex-end">
-          <Grid item>
-            <AccountCircle />
-          </Grid>
-          <Grid item>
-            <TextFieldGlobal label="Nome de usuário" required onChange={setForm}
-            name="username" value={form.username}
-            />
-          </Grid>
-        </Grid>
-
         <Grid container  alignItems="flex-end">
           <Grid item>
             <Email />

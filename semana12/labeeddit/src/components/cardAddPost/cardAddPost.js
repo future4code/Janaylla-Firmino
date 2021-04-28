@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
-import {Button, TextField, Grid, InputAdornment, IconButton, FormControl,InputLabel, Input} from '@material-ui/core'
-import {AccountCircle, Lock, Email, Visibility, VisibilityOff} from '@material-ui/icons'
 import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 
-export default function CardAddPost(){
-  const [showPassword, setShowPassword] = useState(false)
-  const [user, postUser, loading] = usePost("/posts")
+export default function CardAddPost({postFake, update}){
+  const [user, postUser, loading, sucess] = usePost("/posts")
   const token = JSON.parse(window.localStorage.getItem('user'))
   const formInicial = { 
     title: "",
@@ -20,7 +17,15 @@ export default function CardAddPost(){
     console.log(token.token)
     e.preventDefault();
      postUser(form, {Authorization: token.token})
+     postFake(form)
+     resetForm(formInicial)
   }
+  useEffect(() => {
+    if(sucess){
+      update()
+    }
+  }, [sucess])
+
 
     return <DivConteiner>
         <Form onSubmit={onSubmmit}>

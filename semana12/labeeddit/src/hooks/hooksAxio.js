@@ -1,27 +1,32 @@
 import React, { useState } from "react";
 import {baseUrl} from '../constants/urls'
 import axios from 'axios'
+
 export const usePost = (endUrl) => {
  
 const [data, setData] = useState();
 const [sucess, setSucess] = useState(false);
 const [loading, setLoading] = useState(false)
+
 const postData = (bory, headers) => {
     setLoading(true)
+    setSucess(false)
      axios.post(`${baseUrl}${endUrl}`, bory, {
           headers: headers
      })
       .then((res) => {
-           setData(res.data)
-           setLoading(false)
-        console.log("Resp", res)
+          setData(res.data)
+          setLoading(false)
+          console.log("Resp", res)
+          setSucess(true)
       }).catch((err) => {
         console.log("Erro", err)
        setLoading(false)
+       setSucess(false)
      })
     
 }
-return [data, postData, loading];
+return [data, postData, loading, sucess];
 }
 
 export const useGet = (valueInitial) => {
@@ -44,7 +49,7 @@ export const useGet = (valueInitial) => {
            })
          
      }
-     return [data, getData, loading];
+     return [data, getData, loading, setData];
      }
      
  export const usePut = () => {

@@ -1,54 +1,55 @@
-import React,{useEffect, useState} from 'react'
-import {DivConteiner, Like, DisLike, DivLike, Comments, DivComments, DivInteractions} from './styled'
+import React,{useEffect, useState, useContext} from 'react'
+import {DivConteiner, Comments, DivComments, DivInteractions} from './styled'
 import {usePut, useGet } from '../../hooks/hooksAxio'
-import CardComments from '../cardComment/cardComment'
 import CardLike from '../cardLike/cardLike'
-import CardAddComment from '../cardAddComment/cardAddComment'
+import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { useHistory} from 'react-router-dom'
+import {goToPost} from '../../router/coordinator'
 
 export default function Post({post, index, token}){
     const [putVote, loadingVote, sucess] = usePut()
-    const [postCurrent, getPost, loadinPost] = useGet(post)
-    const [showComments, setShowComments] = useState(false)
+    const { postsGlobal } = useContext(GlobalStateContext);
+    const [userVoteDirection, setUserVoteDirection] = useState(post.userVoteDirection)
+    const [votesCount, setVoteCount] = useState(post.votesCount)
+    const history = useHistory();
+    
     const onClickVote = (voto) => {
-      putVote({Authorization: token.token}, {direction: voto}, `/posts/${postCurrent.id}/vote`)
+      setVoteCount(post.votesCount + voto - post.userVoteDirection)
+      setUserVoteDirection(voto)
+      putVote({Authorization: token.token}, {direction: voto}, `/posts/${post.id}/vote`)
     }
     useEffect(()=>{
       if(sucess){
-        getPost(token.token, "post", `/posts/${post.id}`)
+        postsGlobal.getPost(post.id)
       }
     }, [sucess])
     const onClickComment = () => {
-      setShowComments(!showComments)
-      getPost(token.token, "post", `/posts/${post.id}`)
+      goToPost(history, post.id)
     }
+    useEffect(()=>{
+      if(postsGlobal && loadingVote && sucess){
+        setVoteCount(post.votesCount)
+        setUserVoteDirection(post.userVoteDirection)
+      }
+    }, [loadingVote])
     return <DivConteiner>
-          <h4>{index}. {postCurrent.title}</h4>
-          <h6>{postCurrent.username}</h6>
-          <p>{postCurrent.text}</p>
+          <h4>{index}. {post.title}</h4>
+          <h6>{post.username}</h6>
+          <p>{post.text}</p>
           <DivInteractions>
           <CardLike
           onClickVote={onClickVote} 
-          userVoteDirection={postCurrent.userVoteDirection}
-          votesCount={postCurrent.votesCount}
+          userVoteDirection={userVoteDirection}
+          votesCount={votesCount}
           />
             <DivComments>
-            <h4>{postCurrent.commentsCount}</h4>
+            <h4>{post.commentsCount}</h4>
             
             <Comments onClick={() => onClickComment()}/>
          
             </DivComments>
             
             </DivInteractions>
-         
-            {(showComments && postCurrent.hasOwnProperty("comments")) && 
-            <>
-             <CardAddComment postId={postCurrent.id}/>
-             {postCurrent.comments.map((comment) => {
-               return(<CardComments comment={comment} token={token} idPost={postCurrent.id}/>)
-             })}
-             
-             </>
-    
-            }
+           
     </DivConteiner>
 }

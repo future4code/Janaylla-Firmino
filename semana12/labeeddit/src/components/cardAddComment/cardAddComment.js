@@ -4,8 +4,8 @@ import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 
-export default function CardAddComment({postId}){
-   const [comment, postComment, loading] = usePost(`/posts/${postId}/comment`)
+export default function CardAddComment({postId, commentFake, update}){
+   const [comment, postComment, loading, sucess] = usePost(`/posts/${postId}/comment`)
    const token = JSON.parse(window.localStorage.getItem('user'))
    const formInicial = {
      text: ""
@@ -16,7 +16,14 @@ export default function CardAddComment({postId}){
       console.log(token.token)
       e.preventDefault();
       postComment(form, {Authorization: token.token})
+      commentFake(form)
+      resetForm(formInicial)
+  }
+  useEffect(() => {
+    if(sucess){
+      update()
     }
+  }, [sucess])
 
     return <DivConteiner>
        <Form onSubmit={onSubmmit}>
@@ -35,6 +42,5 @@ export default function CardAddComment({postId}){
           Novo Post
         </ButtonGlobal>
         </Form> 
-        oii
     </DivConteiner>
 }

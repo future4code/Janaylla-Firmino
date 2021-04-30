@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
 import {Button, TextField, Grid, InputAdornment, IconButton, FormControl,InputLabel, Input} from '@material-ui/core'
-import {AccountCircle, Lock, Email, Visibility, VisibilityOff} from '@material-ui/icons'
-import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
+import { Visibility, VisibilityOff} from '@material-ui/icons'
+import {TextFieldGlobal, ButtonGlobal, FormControlGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 
@@ -27,37 +27,32 @@ export default function Register(){
 
     return <DivConteiner>
         <Form onSubmit={onSubmit}>
-         <Grid container alignItems="flex-end">
-          <Grid item>
-            <AccountCircle />
-          </Grid>
-          <Grid item>
-            <TextFieldGlobal label="Nome de usuário" required onChange={setForm}
-            name="username" value={form.username}
-            />
-          </Grid>
-        </Grid>
+        <TextFieldGlobal
+        label="User Name" 
+        onChange={setForm}
+         name="username"  
+         value={form.username}
+         required
+         fullWidth
+      />
 
-        <Grid container  alignItems="flex-end">
-          <Grid item>
-            <Email />
-          </Grid>
-          <Grid item>
-            <TextFieldGlobal id="input-with-icon-grid" label="E-mail" required type="email" fullWidth  onChange={setForm} name="email"  value={form.email}/>
-          </Grid>
-        </Grid>
+        <TextFieldGlobal
+        id="input-with-icon-textfield"
+        label="E-mail" 
+        onChange={setForm}
+         name="email"  
+         value={form.email}
+         required
+         type="email" 
+         fullWidth
+      />
 
-        <Grid container  alignItems="flex-end">
-          <Grid item>
-            <Lock />
-          </Grid>
-          <Grid item>
-          <FormControl>
+
+          <FormControlGlobal>
           <InputLabel>Password</InputLabel>
           <Input
              type={showPassword ? 'text' : 'password'}
             fullWidth
-            required
             name="password"
             value={form.password}
             endAdornment={
@@ -70,12 +65,10 @@ export default function Register(){
                 </IconButton>
               </InputAdornment>
             }
+            required
             onChange={setForm}
           />
-        </FormControl>
-          </Grid>
-        </Grid>
-
+        </FormControlGlobal>
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Cadastrar
         </ButtonGlobal>

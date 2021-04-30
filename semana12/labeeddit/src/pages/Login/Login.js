@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
-import {Grid, InputAdornment, IconButton, FormControl,InputLabel, Input} from '@material-ui/core'
-import {Lock, Email, Visibility, VisibilityOff} from '@material-ui/icons'
-import {TextFieldGlobal, ButtonGlobal, FormControlGlobal} from '../../globalStyled'
+import { InputAdornment, IconButton, InputLabel, Input} from '@material-ui/core'
+import { Visibility, VisibilityOff} from '@material-ui/icons'
+import {TextFieldGlobal, ButtonGlobal, FormControlGlobal, DivButtons, LinkGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
-import {goToHome} from '../../router/coordinator'
+import {goToHome, goToRegister} from '../../router/coordinator'
 import {useHistory} from 'react-router-dom'
 
 export default function Register(){
@@ -38,6 +38,7 @@ export default function Register(){
         onChange={setForm}
          name="email"  
          value={form.email}
+         required
          type="email" 
          fullWidth
       />
@@ -48,7 +49,6 @@ export default function Register(){
           <Input
              type={showPassword ? 'text' : 'password'}
             fullWidth
-            required
             name="password"
             value={form.password}
             endAdornment={
@@ -61,15 +61,18 @@ export default function Register(){
                 </IconButton>
               </InputAdornment>
             }
+            required
             onChange={setForm}
           />
         </FormControlGlobal>
-
-        
-
+        <DivButtons>
         <ButtonGlobal variant="contained" color="primary" type="submit">
-          Cadastrar
+          Entrar
         </ButtonGlobal>
+        </DivButtons>
+        <LinkGlobal onClick={() => goToRegister(history)}>
+          Ainda não sou cadastrado
+        </LinkGlobal>
         </Form>
     </DivConteiner>
 }

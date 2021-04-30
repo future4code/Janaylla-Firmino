@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {ThumbDownAltOutlined, ThumbUpAltOutlined, ChatBubbleOutlineOutlined} from '@material-ui/icons'
+import {Card} from '@material-ui/core'
 
-export const DivConteiner = styled.div`
-    border: solid black 2px;
+export const DivConteiner = styled(Card)`
     margin: 5px;
 `
 export const DisLike = styled(ThumbDownAltOutlined)`

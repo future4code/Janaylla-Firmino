@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {DivConteiner, Form} from './styled'
+import {DivConteiner, Form, SpaceBeetween} from './styled'
 import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
+import { Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
+import {IconButton} from '@material-ui/core'
+import {Close} from '@material-ui/icons'
 
-export default function CardAddPost({postFake, update}){
+export default function CardAddPost({postFake, update, open, setOpen}){
   const [user, postUser, loading, sucess] = usePost("/posts")
   const token = JSON.parse(window.localStorage.getItem('user'))
   const formInicial = { 
@@ -28,7 +31,24 @@ export default function CardAddPost({postFake, update}){
 
 
     return <DivConteiner>
-        <Form onSubmit={onSubmmit}>
+              <Dialog
+        open={open}
+         onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <SpaceBeetween>
+          Adicione um novo post
+        <IconButton onClick={() => setOpen(false)}>
+          <Close/>
+        </IconButton>
+        </SpaceBeetween>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+        
+          <Form onSubmit={onSubmmit}>
         
         <TextFieldGlobal
         fullWidth
@@ -56,5 +76,14 @@ export default function CardAddPost({postFake, update}){
           Novo Post
         </ButtonGlobal>
         </Form>
+
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+
+
+
+
+
     </DivConteiner>
 }

@@ -6,7 +6,7 @@ import CardLike from '../../components/cardLike/cardLike'
 import CardAddComment from '../../components/cardAddComment/cardAddComment'
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory, useParams } from "react-router-dom";
-
+import CardPost from '../../components/cardPost/cardPost'
 export default function Post(){
     const [putVote, loadingVote, sucess] = usePut()
     const [post, requirePost, loadinPost, setPost] = useGet();
@@ -63,31 +63,19 @@ export default function Post(){
     }
     return <DivConteiner>
           {post &&
-              <><h4>{post.title}</h4>
-          <h6>{post.username}</h6>
-          <p>{post.text}</p>
-          <DivInteractions>
-          <CardLike
-          onClickVote={onClickVote} 
-          userVoteDirection={userVoteDirection}
-          votesCount={votesCount}
-          />
-            <DivComments>
-            <h4>{post.commentsCount}</h4>
-            
-            <Comments onClick={() => onClickComment()}/>
+              <>
          
-            </DivComments>
-            
-            </DivInteractions>
-         
+            <CardPost
+            post={post} token={token.token} color={"red"}
+            />
+
             <CardAddComment postId={post.id}
             
           commentFake={commentFake}
           update={getPost} 
             />
-
-             {post.comments.map((comment) => {
+        
+         {post.comments.map((comment) => {
                return(<CardComments
                  comment={comment} token={token} idPost={post.id}
                
@@ -95,6 +83,7 @@ export default function Post(){
                />)
              })}
              
-             </>}
+             </>
+             }
     </DivConteiner>
 }

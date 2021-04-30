@@ -2,8 +2,11 @@ import styled from 'styled-components'
 import {ThumbDownAltOutlined, ThumbUpAltOutlined, ChatBubbleOutlineOutlined} from '@material-ui/icons'
 
 export const DivConteiner = styled.div`
-    border: solid black 2px;
-    margin: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: #dddddd;
 `
 export const DisLike = styled(ThumbDownAltOutlined)`
 cursor:pointer;

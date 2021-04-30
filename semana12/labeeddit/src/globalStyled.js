@@ -1,4 +1,5 @@
-import {Button, TextField, FormControl} from '@material-ui/core'
+import {Button, TextField, FormControl, Link, IconButton} from '@material-ui/core'
+import { SportsHockeyTwoTone } from '@material-ui/icons'
 import styled from 'styled-components'
 
 export const DivApp = styled.div`
@@ -16,5 +17,20 @@ margin: 5px 0px !important;
 `
 export const ButtonGlobal = styled(Button)`
 margin: 5px 0px !important; 
+width: 100%;
+`
+export const DivButtons = styled.div`
+  align-self: stretch;
+  display: flex;
+`
 
+export const LinkGlobal = styled(Link)`
+cursor: pointer;
+`
+export const IconButtonNotPointer = styled(IconButton)`
+pointer-events:none;
+*{
+  color: #606060;
+  font-size: 28px;
+  }
 `

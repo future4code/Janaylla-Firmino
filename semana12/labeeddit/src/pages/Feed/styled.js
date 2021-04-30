@@ -11,7 +11,7 @@ background-color: #dddddd;
 export const Form = styled.form`
 `
 export const Posts = styled.section`
-width: 700px;
+width: 800px;
 display: flex;
 
 flex-direction: column;

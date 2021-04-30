@@ -3,7 +3,7 @@ import {DivConteiner, Form} from './styled'
 import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
-
+import {CardContent} from '@material-ui/core'
 export default function CardAddComment({postId, commentFake, update}){
    const [comment, postComment, loading, sucess] = usePost(`/posts/${postId}/comment`)
    const token = JSON.parse(window.localStorage.getItem('user'))
@@ -31,7 +31,7 @@ export default function CardAddComment({postId, commentFake, update}){
         <TextFieldGlobal
         fullWidth
           id="standard-textarea"
-          label="Texto do post"
+          label="Texto do comentário"
           placeholder="Placeholder"
           multiline
           onChange={setForm}
@@ -39,7 +39,7 @@ export default function CardAddComment({postId, commentFake, update}){
           name="text" 
         />
         <ButtonGlobal variant="contained" color="primary" type="submit">
-          Novo Post
+          Comentar
         </ButtonGlobal>
         </Form> 
     </DivConteiner>

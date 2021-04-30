@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {DivConteiner, Card} from './styled'
+import {DivConteiner} from './styled'
 import {Comments, DivComments, DivInteractions, CardContentComment} from './styled'
 import CardLike from '../cardLike/cardLike'
 import {usePut, useGet } from '../../hooks/hooksAxio'
@@ -13,7 +13,6 @@ import MaskDate from '../../constants/maskDate'
 
 import styled from 'styled-components'
 
-import {IconButtonNotPointer} from '../../globalStyled'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -28,12 +27,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function CardCommennts({token, comment, idPost, update}){
+export default function CardCommennts({token, comment, idPost, update, color}){
   const [putVote, loadingVote, sucess] = usePut()
   const [userVoteDirection, setUserVoteDirection] = useState(comment.userVoteDirectio)
 
   const AvatarBgColor = styled(Avatar)`
-  background-color: ${"red"} !important;
+  background-color: ${color} !important;
   `
   const classes = useStyles();
   const [votesCount, setVoteCount] = useState(comment.votesCount)
@@ -72,12 +71,10 @@ export default function CardCommennts({token, comment, idPost, update}){
       />
       <CardContentComment>
         <Typography variant="body2" color="textSecondary" component="p">
-        {(typeof(comment.username) === "string")?comment.text : "Não é possivel exibir este comentário"}
+        {(typeof(comment.text) === "string")?comment.text : "Não é possivel exibir este comentário"}
         </Typography>
       </CardContentComment>
-      <CardActions disableSpacing>
-     
-     
+      <CardActions disableSpacing>     
       <DivInteractions>
         
           <CardLike

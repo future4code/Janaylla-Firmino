@@ -4,6 +4,8 @@ import {Card} from '@material-ui/core'
 
 export const DivConteiner = styled(Card)`
     margin: 5px;
+    width: 800px;
+    max-width: 100%;
 `
 export const DisLike = styled(ThumbDownAltOutlined)`
 cursor:pointer;
@@ -19,6 +21,7 @@ display: flex;
 `
 export const DivComments = styled.div`
 display: flex;
+
 `
 export const DivInteractions =  styled.div`
 display:flex;

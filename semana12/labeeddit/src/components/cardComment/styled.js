@@ -1,16 +1,13 @@
 import styled from 'styled-components'
 import {ChatBubbleOutlineOutlined} from '@material-ui/icons'
-import {CardContent} from '@material-ui/core'
-export const DivConteiner = styled.div`
+import {Card, CardContent} from '@material-ui/core'
+export const DivConteiner = styled(Card)`
     margin: 5px;
+    background-color: white;
     >div{
       padding-top: 5px !important;
       padding-bottom: 5px !important;
     }
-`
-export const Card = styled.div`
-  border: solid black 2px;
-  
 `
 
 export const Comments = styled(ChatBubbleOutlineOutlined)`

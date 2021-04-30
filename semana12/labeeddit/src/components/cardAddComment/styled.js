@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 import {ThumbDownAltOutlined, ThumbUpAltOutlined, ChatBubbleOutlineOutlined} from '@material-ui/icons'
 
-export const DivConteiner = styled.div`
-    border: solid black 2px;
+import {CardContent} from '@material-ui/core'
+export const DivConteiner = styled(CardContent)`
+
+max-width: 700px;
+width: 100%;
     margin: 5px;
 `
 export const Form = styled.form`

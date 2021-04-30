@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {DivConteiner, Form, SpaceBeetween} from './styled'
+import {DivConteiner, Form, SpaceBeetween, DivIconsEmoji, IconEmoji} from './styled'
 import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
@@ -10,11 +10,13 @@ import {Close} from '@material-ui/icons'
 export default function CardAddPost({postFake, update, open, setOpen}){
   const [user, postUser, loading, sucess] = usePost("/posts")
   const token = JSON.parse(window.localStorage.getItem('user'))
+  const [keyEmoji, setKeyEmoji] = useState("title")
   const formInicial = { 
     title: "",
     text: ""
   }
-  const [form, setForm, resetForm] = useForm(formInicial)
+  const [form, setForm, resetForm, AddEmoji] = useForm(formInicial)
+  const emojis = ["😊","😝","😀","😮","❤","😐","😩","😷","😍"]
 
   const onSubmmit = (e) => {
     console.log(token.token)
@@ -32,7 +34,7 @@ export default function CardAddPost({postFake, update, open, setOpen}){
 
     return <DivConteiner>
               <Dialog
-        open={open}
+        open={true}
          onClose={() => setOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -61,6 +63,7 @@ export default function CardAddPost({postFake, update, open, setOpen}){
           required 
           onChange={setForm}
           value={form.title}
+          onClick={() => setKeyEmoji("title")}
         />
         <TextFieldGlobal
         fullWidth
@@ -71,7 +74,22 @@ export default function CardAddPost({postFake, update, open, setOpen}){
           onChange={setForm}
           value={form.text}
           name="text" 
+          onClick={() => setKeyEmoji("text")}
         />
+        <DivIconsEmoji>
+        
+      
+       {
+         emojis.map((emoji) => {
+            return(
+              <IconEmoji onClick={() => AddEmoji(keyEmoji, emoji)}>
+              {emoji}
+          </IconEmoji>
+            )
+         })
+       }
+       
+        </DivIconsEmoji>
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Novo Post
         </ButtonGlobal>

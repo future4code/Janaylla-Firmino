@@ -1,32 +1,32 @@
 import React,{useEffect, useState, useContext} from 'react'
-import {DivConteiner, Comments, DivComments, DivInteractions} from './styled'
+import {DivConteiner, Comments, DivComments, DivPost} from './styled'
 import {usePut, useGet } from '../../hooks/hooksAxio'
 import CardComments from '../../components/cardComment/cardComment'
-import CardLike from '../../components/cardLike/cardLike'
 import CardAddComment from '../../components/cardAddComment/cardAddComment'
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory, useParams } from "react-router-dom";
 import CardPost from '../../components/cardPost/cardPost'
+import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
+
+let listColor = []
 export default function Post(){
     const [putVote, loadingVote, sucess] = usePut()
     const [post, requirePost, loadinPost, setPost] = useGet();
     const { postsGlobal } = useContext(GlobalStateContext);
-
+    const color = [red, orange, lime, lightGreen, green, cyan, indigo, pink, purple]
+ 
     const [userVoteDirection, setUserVoteDirection] = useState()
     const [votesCount, setVoteCount] = useState()
 
     const token = JSON.parse(window.localStorage.getItem('user'))
     const { id } = useParams();
-
-    const onClickVote = (voto) => {
-      setVoteCount(post.votesCount+voto-post.userVoteDirection)
-      setUserVoteDirection(voto)
-      putVote({Authorization: token.token}, {direction: voto}, `/posts/${post.id}/vote`)
-    }
     
-    const onClickComment = () => {
-      postsGlobal.getPost(post.id)
-    }
+    const nRandon = (max, min) => {
+        return Math.floor(Math.random() * (max - min  + 1)) + min;
+      }
+      const randonColor = () => {
+        return color[nRandon(0, 8)][nRandon(3, 9) * 100];
+      }
     
     useEffect(()=>{
         token.token && getPost()
@@ -64,26 +64,40 @@ export default function Post(){
     return <DivConteiner>
           {post &&
               <>
-         
+         <DivPost>
             <CardPost
             post={post} token={token.token} color={"red"}
             />
-
+       </DivPost>
+       <DivComments>
             <CardAddComment postId={post.id}
             
           commentFake={commentFake}
           update={getPost} 
             />
-        
+          
+        <Comments>
          {post.comments.map((comment) => {
+
+let colorU = randonColor();
+        const index = listColor.findIndex((i) => {return i[0] === comment.username});
+        if(index === -1){
+          listColor.push([comment.username, colorU])
+       }
+       else{
+         colorU = listColor[index][1]
+       }
+
                return(<CardComments
                  comment={comment} token={token} idPost={post.id}
-               
+                color={colorU}
                update={getPost} 
                />)
              })}
-             
+             </Comments>
+             </DivComments>
              </>
              }
+             
     </DivConteiner>
 }

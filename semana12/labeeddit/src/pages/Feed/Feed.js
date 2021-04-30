@@ -1,5 +1,5 @@
-import React, {useEffect, useLayoutEffect, useState, useContext} from 'react'
-import {goToHome} from '../../router/coordinator'
+import React, {useLayoutEffect, useState, useContext} from 'react'
+import {goToLogin} from '../../router/coordinator'
 import {DivConteiner, Posts, PostAddIcon} from './styled'
 import {useHistory} from 'react-router-dom'
 import Post from '../../components/cardPost/cardPost'
@@ -10,7 +10,7 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
 import {Add} from '@material-ui/icons'
 
-let colorTestes = []
+let listColor = []
 export default function Feed(){
   const history = useHistory();
   const { postsGlobal, token } = useContext(GlobalStateContext);
@@ -25,7 +25,7 @@ export default function Feed(){
 
   useLayoutEffect(() => {
      if(!window.localStorage.getItem('user')){
-        goToHome(history);
+       goToLogin(history);
      } 
   })
   const postFake = (post) => {
@@ -43,9 +43,13 @@ export default function Feed(){
     postsGlobal.setCurrentPosts([...postUpdate])
 
   }
+  const logOut = () => {
+    window.localStorage.removeItem('user');
+    goToLogin(history)
+  }
     return <DivConteiner>  
       
-     <Header/>
+     <Header onClickButton={() => logOut()} textButton={"logout"}/>
       {<CardAddPost
       postFake={postFake}
       update={postsGlobal.getPosts}
@@ -59,12 +63,12 @@ export default function Feed(){
  
       {postsGlobal.currentPosts.map((item) => {
         let colorU = randonColor();
-        const index = colorTestes.findIndex((i) => {return i[0] === item.username});
+        const index = listColor.findIndex((i) => {return i[0] === item.username});
         if(index === -1){
-        colorTestes.push([item.username, colorU])
+          listColor.push([item.username, colorU])
        }
        else{
-         colorU = colorTestes[index][1]
+         colorU = listColor[index][1]
        }
         return (<>
         <Post post={item} token={token} color={colorU} />

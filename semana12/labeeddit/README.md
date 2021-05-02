@@ -1,3 +1,39 @@
+### LabEddit
+
+### O que funciona
+Login
+Cadastro
+Ver Post
+Curtir posts e comentarios
+Descurtir posts e comentarios
+Pesquisar
+LogOut
+Adicionar Post
+Adicionar comentarios
+Compartilhar Mensagen
+
+### O que não funciona
+A pesquisa demota e o site em geral é MUITOO lento
+Não garanto o compartilhamento em todas as redes(não tive tempo de testar)
+ 
+### Link Surge 
+labedditjana.surge.sh
+
+### Imagens
+![image](https://user-images.githubusercontent.com/77745607/116824957-30933d80-ab63-11eb-8682-7ac12eed0d0f.png)
+![image](https://user-images.githubusercontent.com/77745607/116825010-836cf500-ab63-11eb-88c2-38d6909e214f.png)
+![image](https://user-images.githubusercontent.com/77745607/116825021-92ec3e00-ab63-11eb-9f8c-baf2e0951564.png)
+![image](https://user-images.githubusercontent.com/77745607/116825028-9a134c00-ab63-11eb-971a-bd2082b013e6.png)
+![image](https://user-images.githubusercontent.com/77745607/116825031-9f709680-ab63-11eb-9d2d-30d54d56d364.png)
+![image](https://user-images.githubusercontent.com/77745607/116825058-d9419d00-ab63-11eb-8434-4ffc52fbc798.png)
+
+![image](https://user-images.githubusercontent.com/77745607/116825092-0d1cc280-ab64-11eb-87af-83cb0341fb38.png)
+![image](https://user-images.githubusercontent.com/77745607/116825095-13ab3a00-ab64-11eb-827a-6fabac26fd52.png)
+![image](https://user-images.githubusercontent.com/77745607/116825099-173ec100-ab64-11eb-9f59-3eedb8a1154d.png)
+![image](https://user-images.githubusercontent.com/77745607/116825104-1efe6580-ab64-11eb-9e02-239d8ccd21ea.png)
+![image](https://user-images.githubusercontent.com/77745607/116825119-30e00880-ab64-11eb-955d-a74abf06a693.png)
+![image](https://user-images.githubusercontent.com/77745607/116825122-34738f80-ab64-11eb-8b75-852da92b0a9d.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -39,7 +39,7 @@ export default function Post({post, token, color}) {
         setUserVoteDirection(post.userVoteDirection)
     }, [post.votesCount])
     
-    const link = `labeddit-janaylla.surge.sh/post/${post.id}`
+    const link = `labeddit-jana.surge.sh/post/${post.id}`
     const text = `${post.title}: ${post.text}. Link: ${link}`
 
 const ShareButtons = () => {
@@ -62,7 +62,7 @@ const ShareButtons = () => {
     <img src={Email}/></a>
     </MenuItem>
     <MenuItem>
-    <a href={`https://www.facebook.com/sharer.php?u=${"Texto"}`}target="_blank" title={post.title}>
+    <a href={`https://www.facebook.com/sharer.php?u=${link}`}target="_blank" title={post.title}>
     <img src={Face}/></a>
     </MenuItem>
     <MenuItem><img/></MenuItem>

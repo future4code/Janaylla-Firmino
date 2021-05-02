@@ -5,7 +5,7 @@ export const DivConteiner = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: flex-start;
+justify-content: center;
 background-color: #dddddd;
 min-height: 100vh;
 
@@ -20,7 +20,8 @@ export const Comments = styled.div`
 width: 700px;
 display: flex;
 flex-direction: column;
-
+justify-content: center;
+align-items: center;
 width: calc(100% - 10px);
 
 `

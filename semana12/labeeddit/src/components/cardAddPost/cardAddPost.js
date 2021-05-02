@@ -26,7 +26,7 @@ export default function CardAddPost({postFake, update, open, setOpen}){
      resetForm(formInicial)
   }
   useEffect(() => {
-    if(sucess){
+    if((sucess  === 1 || sucess === -1) && !loading){
       update()
     }
   }, [sucess])

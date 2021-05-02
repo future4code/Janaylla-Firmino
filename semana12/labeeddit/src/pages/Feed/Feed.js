@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useContext } from 'react'
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { goToLogin } from '../../router/coordinator'
 import { DivConteiner, Posts, PostAddIcon, OrdenaFeed, OrdenaLink } from './styled'
 import { useHistory } from 'react-router-dom'
@@ -6,14 +6,16 @@ import Post from '../../components/cardPost/cardPost'
 
 import CardAddPost from '../../components/cardAddPost/cardAddPost'
 import Header from '../../components/header/header'
-import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
 import { Add } from '@material-ui/icons'
+import { useGet } from '../../hooks/hooksAxio'
 
 let listColor = []
 export default function Feed() {
+  
+  const token = JSON.parse(window.localStorage.getItem('user'))
   const history = useHistory();
-  const { postsGlobal, token } = useContext(GlobalStateContext);
+  const [postsT, requirePosts, loadingPosts, setPosts] = useGet([]);
   const color = [red, orange, lime, lightGreen, green, cyan, indigo, pink, purple]
   const [open, setOpen] = useState(false)
   const [sort, setSort] = useState("feed")
@@ -24,6 +26,12 @@ export default function Feed() {
   const randonColor = () => {
     return color[nRandon(0, 8)][nRandon(3, 9) * 100];
   }
+  const getPosts = () => {
+    token && token.token && requirePosts(token.token, "posts", "/posts");
+  };
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   useLayoutEffect(() => {
     if (!window.localStorage.getItem('user')) {
@@ -41,23 +49,38 @@ export default function Feed() {
       username: token.user.username,
       votesCount: 0,
     }
-    let postUpdate = [...postsGlobal.currentPosts]
+    let postUpdate = [...postsT]
     postUpdate.unshift(postFake)
-    postsGlobal.setCurrentPosts([...postUpdate])
+    postsT.setPosts([...postUpdate])
+    token && token.token && requirePosts(token.token, "posts", "/posts");
     setOpen(false)
   }
   const logOut = () => {
     window.localStorage.removeItem('user');
     goToLogin(history)
   }
-  const FilterSearch = (posts) => {
-    return  posts.filter((a) =>  !search || a.username === search);
+  const notSpecial = (str) => {
+    str = str.toUpperCase()
+    str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
+    str = str.replace(/[àáâãäå]/,"a");
+    str = str.replace(/[ÈÉÊË]/,"E");
+    str = str.replace(/[Ç]/,"C");
+    str = str.replace(/[ç]/,"c");
+
+    return str.replace(/[^a-z0-9]/gi,''); 
+  }
+  const FilterSearch = (pos) => {
+    return pos.filter((a) =>  !search || 
+    notSpecial(a.username).includes(notSpecial(search)) ||
+    notSpecial(a.title).includes(notSpecial(search)) || 
+    notSpecial(a.text).includes(notSpecial(search))
+    )
+    
   }
   const FilterSort = (posts) => {
-    // posts = FilterSearch(posts)
     switch (sort) {
       case "feed":
-        return posts;
+        return FilterSearch(postsT);
       case "maisCurtidos":
         return posts.sort((a, b) => b.votesCount -  a.votesCount)
       case "curti":
@@ -71,7 +94,7 @@ export default function Feed() {
     e && setSearch(e.target.value)
   }
 
-  const postFilterSort = postsGlobal.currentPosts? FilterSort(postsGlobal.currentPosts): []
+  const postFilterSort = postsT? FilterSort(postsT): []
   return <DivConteiner>
 
     <Header onClickButton={() => logOut()} textButton={"logout"} search={search} 
@@ -79,7 +102,7 @@ export default function Feed() {
     />
     {<CardAddPost
       postFake={postFake}
-      update={postsGlobal.getPosts}
+      update={postsT}
       open={open}
       setOpen={setOpen}
     />}

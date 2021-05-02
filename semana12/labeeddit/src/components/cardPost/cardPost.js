@@ -2,19 +2,17 @@ import React,{useEffect, useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {CardHeader, CardContent, CardActions, IconButton, Typography, Avatar} from '@material-ui/core';
 
-import {Share} from '@material-ui/icons';
+
 import MaskDate from '../../constants/maskDate'
 
-import styled from 'styled-components'
 import {DivConteiner, Comments, DivComments, DivInteractions, MenuShare, MenuDiv, MenuItem} from './styled'
 import {usePut } from '../../hooks/hooksAxio'
 import CardLike from '../cardLike/cardLike'
-import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory} from 'react-router-dom'
 import {goToPost} from '../../router/coordinator'
 
 import {IconButtonNotPointer} from '../../globalStyled'
-import {Menu, ListItemIcon, ListItemText, Button} from '@material-ui/core'
+import {CircularProgress} from '@material-ui/core'
 
 import Whats from '../../assets/whats_icon.png'
 import Face from '../../assets/facebook_icon.png'
@@ -37,7 +35,6 @@ export default function Post({post, token, color}) {
   const classes = useStyles();
  
   const [putVote, loadingVote, sucess] = usePut()
-    const { postsGlobal } = useContext(GlobalStateContext);
     const [userVoteDirection, setUserVoteDirection] = useState(post.userVoteDirection)
     const [votesCount, setVoteCount] = useState(post.votesCount)
     const history = useHistory();
@@ -49,7 +46,7 @@ export default function Post({post, token, color}) {
     }
     useEffect(()=>{
       if(sucess){
-        postsGlobal.getPost(post.id)
+        
       }
     }, [sucess])
   
@@ -121,6 +118,7 @@ return (
            userVoteDirection={userVoteDirection}
            votesCount={votesCount}
           />
+        
             <DivComments>
             <IconButton aria-label="share">
             <Comments onClick={() => goToPost(history, post.id)}/>
@@ -128,13 +126,15 @@ return (
               <IconButtonNotPointer>
             <h4>{post.commentsCount}</h4>
             </IconButtonNotPointer>
-            
             </DivComments>
-            
-            </DivInteractions>:
+            </DivInteractions>
+            :
             <LinearProgressGlobal/>
             }
              </CardActions>
+             
+             {loadingVote &&  <LinearProgressGlobal/>}
+             {/* {loadingVote && } */}
         </DivConteiner>
   );
 }

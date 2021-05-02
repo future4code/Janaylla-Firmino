@@ -16,8 +16,9 @@ align-items: center;
 justify-content:center;
 display: flex;
 flex-direction: column;
-p{
 width: 700px;
+max-width: 95%;
+p{
 text-align: center;
 margin: 3px;
 font-size: 20px;

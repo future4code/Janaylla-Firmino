@@ -45,7 +45,7 @@ export const useGet = (valueInitial) => {
                setLoading(false)
             }).catch((err) => {
               console.log("Erro", err)
-           setLoading(false)
+               setLoading(false)
            })
          
      }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Fab} from '@material-ui/core'
+import { Fab, Link, Breadcrumbs} from '@material-ui/core'
 export const DivConteiner = styled.div`
 display: flex;
 flex-direction: column;
@@ -19,4 +19,11 @@ flex-direction: column;
 export const PostAddIcon = styled(Fab)`
 position: fixed !important;
 bottom: 10px;
+`
+export const OrdenaLink = styled(Link)`
+cursor: pointer;
+`
+
+export const OrdenaFeed = styled(Breadcrumbs)`
+cursor: pointer;
 `

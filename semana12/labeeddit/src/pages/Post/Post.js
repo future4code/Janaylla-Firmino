@@ -20,7 +20,6 @@ export default function Post(){
   const history = useHistory();
     const [putVote, loadingVote, sucess] = usePut()
     const [post, requirePost, loadinPost, setPost] = useGet();
-    const { postsGlobal } = useContext(GlobalStateContext);
     const color = [red, orange, lime, lightGreen, green, cyan, indigo, pink, purple]
  
     const [userVoteDirection, setUserVoteDirection] = useState()

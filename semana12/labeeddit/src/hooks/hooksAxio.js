@@ -5,24 +5,24 @@ import axios from 'axios'
 export const usePost = (endUrl) => {
  
 const [data, setData] = useState();
-const [sucess, setSucess] = useState(false);
+const [sucess, setSucess] = useState(0);
 const [loading, setLoading] = useState(false)
 
 const postData = (bory, headers) => {
     setLoading(true)
-    setSucess(false)
+    setSucess(0)
      axios.post(`${baseUrl}${endUrl}`, bory, {
           headers: headers
      })
       .then((res) => {
           setData(res.data)
-          setLoading(false)
           console.log("Resp", res)
-          setSucess(true)
+          setSucess(1)
+          setLoading(false)
       }).catch((err) => {
         console.log("Erro", err)
-       setLoading(false)
-       setSucess(false)
+          setSucess(-1)  
+           setLoading(false)
      })
     
 }

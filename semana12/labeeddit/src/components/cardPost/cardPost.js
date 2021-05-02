@@ -22,6 +22,7 @@ import Linke from '../../assets/linkedin_icon.png'
 import Twitter from '../../assets/twitter_icon.png'
 import Email from '../../assets/email_icon.png'
 
+import {LinearProgressGlobal} from '../../globalStyled'
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 800,
@@ -30,17 +31,11 @@ const useStyles = makeStyles(() => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  avatar: {
-    
-  },
 }));
 
 export default function Post({post, token, color}) {
   const classes = useStyles();
-
-  const AvatarBgColor = styled(Avatar)`
-  background-color: ${color} !important;
-  `
+ 
   const [putVote, loadingVote, sucess] = usePut()
     const { postsGlobal } = useContext(GlobalStateContext);
     const [userVoteDirection, setUserVoteDirection] = useState(post.userVoteDirection)
@@ -59,11 +54,9 @@ export default function Post({post, token, color}) {
     }, [sucess])
   
     useEffect(()=>{
-      if(postsGlobal && loadingVote && sucess){
         setVoteCount(post.votesCount)
         setUserVoteDirection(post.userVoteDirection)
-      }
-    }, [loadingVote])
+    }, [post.votesCount])
     
     const link = "www.google.com"
     const text = "Texto"
@@ -78,9 +71,7 @@ const ShareButtons = () => {
     <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${link}`} target="_blank" title={post.title}>
     <img src={Linke}/></a>
     </MenuItem>
-   
-
-    <MenuItem>
+       <MenuItem>
     <a href={`https://twitter.com/intent/tweet?url=${link}&text=${text}`} target="_blank" title={post.title}>
     <img src={Twitter}/></a>
     </MenuItem>
@@ -103,9 +94,9 @@ return (
             
       <CardHeader
         avatar={
-          <AvatarBgColor aria-label="recipe" className={classes.avatar}>
+          <Avatar aria-label="recipe" style={{backgroundColor: color}}>
                {post.username.substring(0, 1)}
-          </AvatarBgColor>
+          </Avatar>
         }
         action={
           <>
@@ -124,10 +115,7 @@ return (
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-     
-     
-      <DivInteractions>
-        
+     {post.id !== "request"? <DivInteractions>
           <CardLike
            onClickVote={onClickVote} 
            userVoteDirection={userVoteDirection}
@@ -143,7 +131,9 @@ return (
             
             </DivComments>
             
-            </DivInteractions>
+            </DivInteractions>:
+            <LinearProgressGlobal/>
+            }
              </CardActions>
         </DivConteiner>
   );

@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
 import { InputAdornment, IconButton, InputLabel, Input} from '@material-ui/core'
 import { Visibility, VisibilityOff} from '@material-ui/icons'
-import {TextFieldGlobal, ButtonGlobal, FormControlGlobal, DivButtons, LinkGlobal} from '../../globalStyled'
+import {TextFieldGlobal, ButtonGlobal, FormControlGlobal, DivButtons, LinkGlobal, LinearProgressGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 import {goToHome, goToRegister} from '../../router/coordinator'
 import {useHistory} from 'react-router-dom'
 import Header from '../../components/header/header'
+import Error from '../../components/error/error'
+
 export default function Register(){
   const [showPassword, setShowPassword] = useState(false)
   const formInicial = { 
@@ -15,8 +17,9 @@ export default function Register(){
     password: ""
   }
   const [form, setForm, resetForm] = useForm(formInicial)
-  const [user, postUser, loading] = usePost("/login")
+  const [user, postUser, loading, sucess] = usePost("/login")
   const history = useHistory();
+
   const onSubmit = (e) => {
     console.log("as")
     e.preventDefault();
@@ -28,7 +31,7 @@ export default function Register(){
       goToHome(history);  
   }
   }, [user])
-
+ 
     return <DivConteiner>
        
      <Header onClickButton={() => goToRegister(history)} textButton={"Cadastrar-se"}/>
@@ -70,10 +73,14 @@ export default function Register(){
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Entrar
         </ButtonGlobal>
+        {loading && <LinearProgressGlobal/> }
+        {sucess === -1 && <Error text="E-mail ou senha incorretos"/>}        
+        {sucess === 1 && <Error text="Login feito com sucesso" sucess={true}/>}
         </DivButtons>
         <LinkGlobal onClick={() => goToRegister(history)}>
           Ainda não sou cadastrado
         </LinkGlobal>
         </Form>
+    
     </DivConteiner>
 }

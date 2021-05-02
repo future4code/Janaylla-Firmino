@@ -29,11 +29,11 @@ export const GlobalState = (props) => {
   }, [loadinPost])
 
   const getPosts = () => {
-    token.token && requirePosts(token.token, "posts", "/posts");
+    token && token.token && requirePosts(token.token, "posts", "/posts");
   };
 
   const getPost = (idPost) => {
-    token.token && requirePost(token.token, "post", `/posts/${idPost}`)
+    token && token.token && requirePost(token.token, "post", `/posts/${idPost}`)
   };
 
   const postsGlobal = {posts, getPosts, post, getPost, currentPosts, setCurrentPosts};

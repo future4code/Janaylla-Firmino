@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {DivConteiner, Form} from './styled'
+import {DivConteiner, Form, DivComment} from './styled'
 import {TextFieldGlobal, ButtonGlobal, IconEmoji} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
-import {CardContent} from '@material-ui/core'
+import {IconButton, Fab} from '@material-ui/core'
+import {Send} from '@material-ui/icons'
+
 export default function CardAddComment({postId, commentFake, update}){
    const [comment, postComment, loading, sucess] = usePost(`/posts/${postId}/comment`)
    const token = JSON.parse(window.localStorage.getItem('user'))
@@ -28,8 +30,8 @@ export default function CardAddComment({postId, commentFake, update}){
 
     return <DivConteiner>
        <Form onSubmit={onSubmmit}>
-       
-        <TextFieldGlobal
+       <DivComment>       
+          <TextFieldGlobal
         fullWidth
           id="standard-textarea"
           label="Texto do comentário"
@@ -37,8 +39,14 @@ export default function CardAddComment({postId, commentFake, update}){
           multiline
           onChange={setForm}
           value={form.text}
-          name="text" 
+          name="text"
+          required 
         />
+         <Fab color="primary"  type="submit" size="small">
+          <Send/>
+        </Fab>
+  </DivComment>
+
         {
          emojis.map((emoji) => {
             return(
@@ -48,9 +56,7 @@ export default function CardAddComment({postId, commentFake, update}){
             )
          })
        }
-        <ButtonGlobal variant="contained" color="primary" type="submit">
-          Comentar
-        </ButtonGlobal>
+
         </Form> 
     </DivConteiner>
 }

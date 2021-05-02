@@ -1,4 +1,4 @@
-import {Button, TextField, FormControl, Link, IconButton} from '@material-ui/core'
+import {Button, TextField, FormControl, Link, IconButton, LinearProgress} from '@material-ui/core'
 import { SportsHockeyTwoTone } from '@material-ui/icons'
 import styled from 'styled-components'
 
@@ -22,6 +22,7 @@ width: 100%;
 export const DivButtons = styled.div`
   align-self: stretch;
   display: flex;
+  flex-direction: column;
 `
 
 export const LinkGlobal = styled(Link)`
@@ -39,4 +40,7 @@ opacity: 1;
 color: red !important;
 width: 50px;
 height: 50px;
+`
+export const LinearProgressGlobal = styled(LinearProgress)`
+width: 100%;
 `

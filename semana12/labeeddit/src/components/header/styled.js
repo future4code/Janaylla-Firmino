@@ -29,3 +29,7 @@ export const DivIcon = styled.div`
 export const ImgIcon = styled.img`
     width: 55px;
 `
+export const DivStart = styled.div`
+ display: flex;
+    align-items: center;
+`

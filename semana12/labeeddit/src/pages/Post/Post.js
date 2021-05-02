@@ -63,7 +63,6 @@ export default function Post(){
             text: comment.text,
             votesCount: 0
         }
-        console.log(comment)
         const postHaveCommentFake = {...post}
         postHaveCommentFake.comments.unshift(commentFake) 
         setPost(postHaveCommentFake)

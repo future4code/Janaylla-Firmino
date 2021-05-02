@@ -16,11 +16,9 @@ const postData = (bory, headers) => {
      })
       .then((res) => {
           setData(res.data)
-          console.log("Resp", res)
           setSucess(1)
           setLoading(false)
       }).catch((err) => {
-        console.log("Erro", err)
           setSucess(-1)  
            setLoading(false)
      })
@@ -44,7 +42,6 @@ export const useGet = (valueInitial) => {
                  setData(res.data[keyObj])
                setLoading(false)
             }).catch((err) => {
-              console.log("Erro", err)
                setLoading(false)
            })
          
@@ -56,8 +53,7 @@ export const useGet = (valueInitial) => {
           const [loading, setLoading] = useState(false)
           const [sucess, setSucess] = useState(0)
           const putData = (headers, bory, endUrl) => {
-               
-    console.log(bory, baseUrl+endUrl);
+         
                setLoading(true)
                setSucess(0)
                 axios.put(`${baseUrl}${endUrl}`, bory, {
@@ -66,9 +62,7 @@ export const useGet = (valueInitial) => {
                  .then((res) => {
                     setLoading(false)
                     setSucess(1)
-                    console.log(res)
                  }).catch((err) => {
-                   console.log("Erro", err)
                    setLoading(false)
                    setSucess(-1)
                 })

@@ -20,7 +20,6 @@ export default function CardAddPost({postFake, open, setOpen}){
   const emojis = ["😊","😝","😀","😮","❤","😐","😩","😷","😍"]
   
   const onSubmmit = (e) => {
-    console.log(token.token)
      e.preventDefault();
      postUser(form, {Authorization: token.token})
      postFake(form)

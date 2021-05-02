@@ -5,7 +5,6 @@ import CardLike from '../cardLike/cardLike'
 import {usePut, useGet } from '../../hooks/hooksAxio'
 
 
-import { makeStyles } from '@material-ui/core/styles';
 import {CardHeader, CardContent, CardActions, IconButton, Typography, Avatar} from '@material-ui/core';
 
 import {LinearProgressGlobal} from '../../globalStyled'

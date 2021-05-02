@@ -90,7 +90,6 @@ export default function Feed() {
         return posts.sort((a, b) => b.createdAt - a.createdAt);
     }
   }
- console.log("search", search)
   const onChangeSearch = (e) => {
     e && setSearch(e.target.value)
   }

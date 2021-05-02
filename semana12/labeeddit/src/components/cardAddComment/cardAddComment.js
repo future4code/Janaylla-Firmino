@@ -16,7 +16,6 @@ export default function CardAddComment({postId, commentFake, update}){
 
    const emojis = ["😊","😝","😀","😮","❤","😐","😩","😷","😍"]
    const onSubmmit = (e) => {
-      console.log(token.token)
       e.preventDefault();
       postComment(form, {Authorization: token.token})
       commentFake(form)

@@ -74,7 +74,7 @@ export default function Post(){
     }
     return <DivConteiner>
        <Header onClickButton={() => logOut()} textButton={"logout"}/>
-       {loadinPost ? 
+       {(loadinPost && !post) ? 
     <Loading/>:
     <>
           {post &&

@@ -34,3 +34,9 @@ pointer-events:none;
   font-size: 28px;
   }
 `
+export const IconEmoji = styled(IconButton)`
+opacity: 1;
+color: red !important;
+width: 50px;
+height: 50px;
+`

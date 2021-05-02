@@ -2,11 +2,15 @@ import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
 import {Button, TextField, Grid, InputAdornment, IconButton, FormControl,InputLabel, Input} from '@material-ui/core'
 import { Visibility, VisibilityOff} from '@material-ui/icons'
-import {TextFieldGlobal, ButtonGlobal, FormControlGlobal} from '../../globalStyled'
+import {TextFieldGlobal, ButtonGlobal, FormControlGlobal, LinkGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
-
+import Header from '../../components/header/header'
+import {goToLogin} from '../../router/coordinator'
+import {useHistory} from 'react-router-dom'
 export default function Register(){
+  
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState(false)
   const formInicial = { 
     username: "",
@@ -26,6 +30,7 @@ export default function Register(){
   }, [user])
 
     return <DivConteiner>
+        <Header onClickButton={() => goToLogin(history)} textButton={"Login"}/>
         <Form onSubmit={onSubmit}>
         <TextFieldGlobal
         label="User Name" 
@@ -72,6 +77,9 @@ export default function Register(){
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Cadastrar
         </ButtonGlobal>
+        <LinkGlobal onClick={() => goToLogin(history)}>
+          Já sou cadastrado
+        </LinkGlobal>
         </Form>
     </DivConteiner>
 }

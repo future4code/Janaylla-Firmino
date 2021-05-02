@@ -7,9 +7,25 @@ export const DivConteiner = styled.div`
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0 10px;
 `
 export const ButtonHeader = styled(Button)`
 background-color: white !important;
+`
+export const DivIcon = styled.div`
+    cursor: pointer;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    color:white; 
+    :hover{
+        opacity: 1;
+    }
+    h3{
+        margin: 5px;
+    }
+`
+export const ImgIcon = styled.img`
+    width: 55px;
 `

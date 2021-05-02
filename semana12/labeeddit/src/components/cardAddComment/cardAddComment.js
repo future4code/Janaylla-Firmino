@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form} from './styled'
-import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
+import {TextFieldGlobal, ButtonGlobal, IconEmoji} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 import {CardContent} from '@material-ui/core'
@@ -10,8 +10,9 @@ export default function CardAddComment({postId, commentFake, update}){
    const formInicial = {
      text: ""
    }
-   const [form, setForm, resetForm] = useForm(formInicial)
+   const [form, setForm, resetForm, AddEmoji] = useForm(formInicial)
 
+   const emojis = ["😊","😝","😀","😮","❤","😐","😩","😷","😍"]
    const onSubmmit = (e) => {
       console.log(token.token)
       e.preventDefault();
@@ -27,7 +28,7 @@ export default function CardAddComment({postId, commentFake, update}){
 
     return <DivConteiner>
        <Form onSubmit={onSubmmit}>
-        
+       
         <TextFieldGlobal
         fullWidth
           id="standard-textarea"
@@ -38,6 +39,15 @@ export default function CardAddComment({postId, commentFake, update}){
           value={form.text}
           name="text" 
         />
+        {
+         emojis.map((emoji) => {
+            return(
+              <IconEmoji onClick={() => AddEmoji("text", emoji)}>
+              {emoji}
+          </IconEmoji>
+            )
+         })
+       }
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Comentar
         </ButtonGlobal>

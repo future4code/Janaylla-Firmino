@@ -7,7 +7,7 @@ import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 import {goToHome, goToRegister} from '../../router/coordinator'
 import {useHistory} from 'react-router-dom'
-
+import Header from '../../components/header/header'
 export default function Register(){
   const [showPassword, setShowPassword] = useState(false)
   const formInicial = { 
@@ -30,8 +30,9 @@ export default function Register(){
   }, [user])
 
     return <DivConteiner>
+       
+     <Header onClickButton={() => goToRegister(history)} textButton={"Cadastrar-se"}/>
         <Form onSubmit={onSubmit}>
-
         <TextFieldGlobal
         id="input-with-icon-textfield"
         label="E-mail" 

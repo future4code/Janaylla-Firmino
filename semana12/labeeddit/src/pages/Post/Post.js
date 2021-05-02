@@ -1,4 +1,4 @@
-import React,{useEffect, useState, useContext} from 'react'
+import React,{useEffect, useState, useContext, useLayoutEffect} from 'react'
 import {DivConteiner, Comments, DivComments, DivPost} from './styled'
 import {usePut, useGet } from '../../hooks/hooksAxio'
 import CardComments from '../../components/cardComment/cardComment'
@@ -8,8 +8,16 @@ import { useHistory, useParams } from "react-router-dom";
 import CardPost from '../../components/cardPost/cardPost'
 import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
 
+import {goToLogin} from '../../router/coordinator'
+import Header from '../../components/header/header'
 let listColor = []
 export default function Post(){
+  useLayoutEffect(() => {
+    if(!window.localStorage.getItem('user')){
+      goToLogin(history);
+    } 
+ })
+  const history = useHistory();
     const [putVote, loadingVote, sucess] = usePut()
     const [post, requirePost, loadinPost, setPost] = useGet();
     const { postsGlobal } = useContext(GlobalStateContext);
@@ -61,7 +69,12 @@ export default function Post(){
         postHaveCommentFake.comments.unshift(commentFake) 
         setPost(postHaveCommentFake)
     }
+    const logOut = () => {
+      window.localStorage.removeItem('user');
+      goToLogin(history)
+    }
     return <DivConteiner>
+       <Header onClickButton={() => logOut()} textButton={"logout"}/>
           {post &&
               <>
          <DivPost>

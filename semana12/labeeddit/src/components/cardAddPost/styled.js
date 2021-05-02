@@ -11,9 +11,3 @@ export const SpaceBeetween = styled.div`
 export const DivIconsEmoji = styled.div`
 
 `
-export const IconEmoji = styled(IconButton)`
-opacity: 1;
-color: red !important;
-width: 50px;
-height: 50px;
-`

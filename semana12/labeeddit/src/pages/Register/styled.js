@@ -6,10 +6,12 @@ min-height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: column;
 `
 export const Form = styled.form`
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
 `

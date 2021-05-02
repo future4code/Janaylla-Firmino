@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {DivConteiner, Form, SpaceBeetween, DivIconsEmoji, IconEmoji} from './styled'
-import {TextFieldGlobal, ButtonGlobal} from '../../globalStyled'
+import {DivConteiner, Form, SpaceBeetween, DivIconsEmoji} from './styled'
+import {TextFieldGlobal, ButtonGlobal, IconEmoji} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 import { Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
@@ -34,7 +34,7 @@ export default function CardAddPost({postFake, update, open, setOpen}){
 
     return <DivConteiner>
               <Dialog
-        open={true}
+        open={open}
          onClose={() => setOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

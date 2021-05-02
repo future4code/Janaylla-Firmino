@@ -1,11 +1,11 @@
 import React,{useEffect, useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {CardHeader, CardContent, CardActions, IconButton, Typography, Avatar} from '@material-ui/core';
+import {CardContent, CardActions, IconButton, Typography, Avatar} from '@material-ui/core';
 
 
 import MaskDate from '../../constants/maskDate'
 
-import {DivConteiner, Comments, DivComments, DivInteractions, MenuShare, MenuDiv, MenuItem} from './styled'
+import {DivConteiner, Comments, DivComments, DivInteractions, MenuShare, CardHeaderPost, MenuItem} from './styled'
 import {usePut } from '../../hooks/hooksAxio'
 import CardLike from '../cardLike/cardLike'
 import { useHistory} from 'react-router-dom'
@@ -21,19 +21,9 @@ import Twitter from '../../assets/twitter_icon.png'
 import Email from '../../assets/email_icon.png'
 
 import {LinearProgressGlobal} from '../../globalStyled'
-const useStyles = makeStyles(() => ({
-  root: {
-    maxWidth: 800,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-}));
+
 
 export default function Post({post, token, color}) {
-  const classes = useStyles();
- 
   const [putVote, loadingVote, sucess] = usePut()
     const [userVoteDirection, setUserVoteDirection] = useState(post.userVoteDirection)
     const [votesCount, setVoteCount] = useState(post.votesCount)
@@ -45,36 +35,30 @@ export default function Post({post, token, color}) {
       putVote({Authorization: token.token}, {direction: voto}, `/posts/${post.id}/vote`)
     }
     useEffect(()=>{
-      if(sucess){
-        
-      }
-    }, [sucess])
-  
-    useEffect(()=>{
         setVoteCount(post.votesCount)
         setUserVoteDirection(post.userVoteDirection)
     }, [post.votesCount])
     
-    const link = "www.google.com"
-    const text = "Texto"
+    const link = `labeddit-janaylla.surge.sh/post/${post.id}`
+    const text = `${post.title}: ${post.text}. Link: ${link}`
 
 const ShareButtons = () => {
   return (  <MenuShare>
     <MenuItem >
-    <a target="_blank" href={`https://api.whatsapp.com/send?text=${text}`}><img src={Whats} title={post.title}/></a>
+    <a target="_blank" href={`https://api.whatsapp.com/send?text=${text}`}><img src={Whats} title={"Compartilhe: " + post.title}/></a>
     </MenuItem>
 
     <MenuItem>
-    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${link}`} target="_blank" title={post.title}>
+    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${link}`} target="_blank" title={"Compartilhe: " +post.title}>
     <img src={Linke}/></a>
     </MenuItem>
        <MenuItem>
-    <a href={`https://twitter.com/intent/tweet?url=${link}&text=${text}`} target="_blank" title={post.title}>
+    <a href={`https://twitter.com/intent/tweet?url=${link}&text=${text}`} target="_blank" title={"Compartilhe: " +post.title}>
     <img src={Twitter}/></a>
     </MenuItem>
     
     <MenuItem>
-    <a href={`mailto:info@example.com?&subject=&cc=&bcc=&body=${link}%0A${text}`} target="_blank" title={post.title}>
+    <a href={`mailto:info@example.com?&subject=&cc=&bcc=&body=${link}%0A${text}`} target="_blank" title={"Compartilhe: " +post.title}>
     <img src={Email}/></a>
     </MenuItem>
     <MenuItem>
@@ -87,9 +71,9 @@ const ShareButtons = () => {
 
 
 return (
-    <DivConteiner className={classes.root}>
+    <DivConteiner >
             
-      <CardHeader
+      <CardHeaderPost
         avatar={
           <Avatar aria-label="recipe" style={{backgroundColor: color}}>
                {post.username.substring(0, 1)}

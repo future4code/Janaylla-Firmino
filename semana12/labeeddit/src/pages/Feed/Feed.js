@@ -16,7 +16,7 @@ export default function Feed() {
   
   const token = JSON.parse(window.localStorage.getItem('user'))
   const history = useHistory();
-  const [postsT, requirePosts, loadingPosts, setPosts] = useGet([]);
+  const [posts, requirePosts, loadingPosts, setPosts] = useGet([]);
   const color = [red, orange, lime, lightGreen, green, cyan, indigo, pink, purple]
   const [open, setOpen] = useState(false)
   const [sort, setSort] = useState("feed")
@@ -50,7 +50,7 @@ export default function Feed() {
       username: token.user.username,
       votesCount: 0,
     }
-    let postUpdate = [...postsT]
+    let postUpdate = [...posts]
     postUpdate.unshift(postFake)
     setPosts([...postUpdate])
     token && token.token && requirePosts(token.token, "posts", "/posts");
@@ -81,7 +81,7 @@ export default function Feed() {
   const FilterSort = (posts) => {
     switch (sort) {
       case "feed":
-        return FilterSearch(postsT);
+        return FilterSearch(posts);
       case "maisCurtidos":
         return posts.sort((a, b) => b.votesCount -  a.votesCount)
       case "curti":
@@ -95,7 +95,7 @@ export default function Feed() {
     e && setSearch(e.target.value)
   }
 
-  const postFilterSort = postsT? FilterSort(postsT): []
+  const postFilterSort = posts? FilterSort(posts): []
   return <DivConteiner>
 
     <Header onClickButton={() => logOut()} textButton={"logout"} search={search} 
@@ -137,7 +137,7 @@ export default function Feed() {
     <PostAddIcon color="primary" aria-label="scroll back to top" onClick={() => setOpen(true)}>
       <Add />
     </PostAddIcon>
-    {loadingPosts ? 
+    {(loadingPosts && posts) ? 
     <Loading/>:
     <>
     <Posts>

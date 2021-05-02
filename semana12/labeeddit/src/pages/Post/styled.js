@@ -8,6 +8,7 @@ align-items: center;
 justify-content: flex-start;
 background-color: #dddddd;
 min-height: 100vh;
+
 `
 export const DisLike = styled(ThumbDownAltOutlined)`
 cursor:pointer;
@@ -20,6 +21,8 @@ width: 700px;
 display: flex;
 flex-direction: column;
 
+width: calc(100% - 10px);
+
 `
 export const DivLike = styled.div`
 display: flex;
@@ -27,7 +30,7 @@ display: flex;
 export const DivComments = styled.div`
 display: flex;
 max-width: 800px;
-width:100%;
+width: calc(100% - 10px);
 flex-direction: column;
 align-items: center;
 justify-content: center;

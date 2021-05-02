@@ -25,6 +25,11 @@ export const DivIcon = styled.div`
     h3{
         margin: 5px;
     }
+    @media(max-width: 600px){
+        h3{
+            display: none;         
+        }
+    }
 `
 export const ImgIcon = styled.img`
     width: 55px;

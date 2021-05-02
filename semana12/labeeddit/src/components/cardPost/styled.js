@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 import {ThumbDownAltOutlined, ThumbUpAltOutlined, ChatBubbleOutlineOutlined} from '@material-ui/icons'
-import {Card} from '@material-ui/core'
+import {Card, CardHeader} from '@material-ui/core'
 
-import {Menu, ListItemIcon, ListItemText} from '@material-ui/core'
 export const DivConteiner = styled(Card)`
     margin: 5px;
     width: 800px;
-    max-width: 100%;
+    max-width: calc(100% - 10px);
 `
 export const DisLike = styled(ThumbDownAltOutlined)`
 cursor:pointer;
@@ -31,8 +30,6 @@ align-items: center;
 justify-content: space-between;
 `
 export const MenuShare = styled.ul`
-    /* background-color: red; */
-      /* position: absolute; */
       display: flex;
       z-index: 1;
       justify-content: center;
@@ -55,3 +52,7 @@ img{
   opacity: 1;
 }
 `
+export const CardHeaderPost = styled(CardHeader)`
+display: flex;
+flex-wrap: wrap;
+` 

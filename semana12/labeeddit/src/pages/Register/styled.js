@@ -14,4 +14,5 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+padding: 10px;
 `

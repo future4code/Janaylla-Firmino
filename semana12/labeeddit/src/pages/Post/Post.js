@@ -23,7 +23,6 @@ export default function Post(){
     const color = [red, orange, lime, lightGreen, green, cyan, indigo, pink, purple]
  
     const [userVoteDirection, setUserVoteDirection] = useState()
-    const [votesCount, setVoteCount] = useState()
 
     const token = JSON.parse(window.localStorage.getItem('user'))
     const { id } = useParams();
@@ -43,7 +42,6 @@ export default function Post(){
         if(post && ((!loadingVote && sucess) || !userVoteDirection))
         {
             setUserVoteDirection(post.userVoteDirection)
-            setVoteCount(post.votesCount)
         }
     }, [loadingVote, post])
 
@@ -74,7 +72,7 @@ export default function Post(){
     }
     return <DivConteiner>
        <Header onClickButton={() => logOut()} textButton={"logout"}/>
-       {loadinPost ? 
+       {(loadinPost && !post) ? 
     <Loading/>:
     <>
           {post &&

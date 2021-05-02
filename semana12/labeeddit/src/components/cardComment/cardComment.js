@@ -10,24 +10,9 @@ import {CardHeader, CardContent, CardActions, IconButton, Typography, Avatar} fr
 
 import {LinearProgressGlobal} from '../../globalStyled'
 import Error from '../../components/error/error'
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MaskDate from '../../constants/maskDate'
 
 import styled from 'styled-components'
-
-
-const useStyles = makeStyles(() => ({
-  root: {
-    maxWidth: 800,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  avatar: {
-    
-  },
-}));
 
 export default function CardCommennts({token, comment, idPost, update, color}){
   const [putVote, loadingVote, sucess] = usePut()
@@ -36,12 +21,10 @@ export default function CardCommennts({token, comment, idPost, update, color}){
   const AvatarBgColor = styled(Avatar)`
   background-color: ${color} !important;
   `
-  const classes = useStyles();
   const [votesCount, setVoteCount] = useState(comment.votesCount)
   const onClickVote = (voto) => {
     setVoteCount(comment.votesCount+voto-comment.userVoteDirection)
     setUserVoteDirection(voto)
-
     putVote({Authorization: token.token}, {direction: voto}, `/posts/${idPost}/comment/${comment.id}/vote`)
   }
    useEffect(()=>{
@@ -59,14 +42,9 @@ export default function CardCommennts({token, comment, idPost, update, color}){
     return <DivConteiner>
       <CardHeader
         avatar={
-          <AvatarBgColor aria-label="recipe" className={classes.avatar}>
+          <AvatarBgColor aria-label="recipe" >
                {(typeof(comment.username) === "string")? comment.username.substring(0, 1) : ""}
           </AvatarBgColor>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
         }
         subheader={MaskDate(comment.createdAt)}
         title= {comment.username}

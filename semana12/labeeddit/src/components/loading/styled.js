@@ -8,9 +8,10 @@ align-items: center;
 color: #1976d2;
 flex-direction: column;
 width: 600px;
-max-width: 100%;
+max-width: calc(100% - 10px);
+margin:5px;
 p{
-    font-size: 60px;
+    font-size: 2rem;
     margin: 10px;
     font-weight: 500;
 }

@@ -21,7 +21,6 @@ export default function Register(){
   const history = useHistory();
 
   const onSubmit = (e) => {
-    console.log("as")
     e.preventDefault();
     postUser(form)
   }

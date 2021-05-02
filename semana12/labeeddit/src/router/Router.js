@@ -4,6 +4,7 @@ import Register from '../pages/Register/Register'
 import Feed from '../pages/Feed/Feed'
 import Post from '../pages/Post/Post'
 import Login from '../pages/Login/Login'
+import Error from '../pages/Error/Error'
 const Router = () => {
     return (
       <BrowserRouter>
@@ -12,9 +13,7 @@ const Router = () => {
         <Route exact path="/login" component={Login}/>
         <Route exact path="/post/:id" component={Post}/>
         <Route exact path="/register" component={Register}/>
-          <Route>
-            <div>Erro 404 - Página não encontrada</div>
-          </Route>
+        <Route component={Error}/>
         </Switch>
       </BrowserRouter>
     );

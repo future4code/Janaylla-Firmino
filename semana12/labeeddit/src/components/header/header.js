@@ -76,8 +76,8 @@ export default function Header({textButton, onClickButton, search, onChangeSearc
             />
           </div>}
 </DivStart>
-         <ButtonHeader variant="outlined" color="primary" onClick={onClickButton} >
+        {onClickButton && <ButtonHeader variant="outlined" color="primary" onClick={onClickButton} >
         {textButton}
-      </ButtonHeader>
+      </ButtonHeader>  }
     </DivConteiner>)
 }

@@ -9,6 +9,7 @@ import Header from '../../components/header/header'
 import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
 import { Add } from '@material-ui/icons'
 import { useGet } from '../../hooks/hooksAxio'
+import Loading from '../../components/loading/loading'
 
 let listColor = []
 export default function Feed() {
@@ -51,7 +52,7 @@ export default function Feed() {
     }
     let postUpdate = [...postsT]
     postUpdate.unshift(postFake)
-    postsT.setPosts([...postUpdate])
+    setPosts([...postUpdate])
     token && token.token && requirePosts(token.token, "posts", "/posts");
     setOpen(false)
   }
@@ -102,7 +103,7 @@ export default function Feed() {
     />
     {<CardAddPost
       postFake={postFake}
-      update={postsT}
+      update={getPosts}
       open={open}
       setOpen={setOpen}
     />}
@@ -136,8 +137,10 @@ export default function Feed() {
     <PostAddIcon color="primary" aria-label="scroll back to top" onClick={() => setOpen(true)}>
       <Add />
     </PostAddIcon>
+    {loadingPosts ? 
+    <Loading/>:
+    <>
     <Posts>
-
       {postFilterSort.map((item) => {
         let colorU = randonColor();
         const index = listColor.findIndex((i) => { return i[0] === item.username });
@@ -154,6 +157,7 @@ export default function Feed() {
       })
       }
     </Posts>
-
+</>
+    }
   </DivConteiner>
 }

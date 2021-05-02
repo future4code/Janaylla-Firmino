@@ -54,23 +54,23 @@ export const useGet = (valueInitial) => {
      
  export const usePut = () => {
           const [loading, setLoading] = useState(false)
-          const [sucess, setSucess] = useState(false)
+          const [sucess, setSucess] = useState(0)
           const putData = (headers, bory, endUrl) => {
                
     console.log(bory, baseUrl+endUrl);
                setLoading(true)
-               setSucess(false)
+               setSucess(0)
                 axios.put(`${baseUrl}${endUrl}`, bory, {
                     headers: headers
                     })
                  .then((res) => {
                     setLoading(false)
-                    setSucess(true)
+                    setSucess(1)
                     console.log(res)
                  }).catch((err) => {
                    console.log("Erro", err)
                    setLoading(false)
-                   setSucess(false)
+                   setSucess(-1)
                 })
               
           }

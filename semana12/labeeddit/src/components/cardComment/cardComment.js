@@ -8,6 +8,8 @@ import {usePut, useGet } from '../../hooks/hooksAxio'
 import { makeStyles } from '@material-ui/core/styles';
 import {CardHeader, CardContent, CardActions, IconButton, Typography, Avatar} from '@material-ui/core';
 
+import {LinearProgressGlobal} from '../../globalStyled'
+import Error from '../../components/error/error'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MaskDate from '../../constants/maskDate'
 
@@ -75,7 +77,7 @@ export default function CardCommennts({token, comment, idPost, update, color}){
         </Typography>
       </CardContentComment>
       <CardActions disableSpacing>     
-      <DivInteractions>
+      {comment.id !== "request"? <DivInteractions>
         
           <CardLike
            onClickVote={onClickVote} 
@@ -83,7 +85,10 @@ export default function CardCommennts({token, comment, idPost, update, color}){
            votesCount={votesCount}
           />
             </DivInteractions>
+            :<LinearProgressGlobal/>
+      }
              </CardActions>
-
+             {loadingVote &&  <LinearProgressGlobal/>}
+             {sucess === -1 && <Error text="Parece que seu voto não foi registrado. Tente novamente"/>}
     </DivConteiner>
 }

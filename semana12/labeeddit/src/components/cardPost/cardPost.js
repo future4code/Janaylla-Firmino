@@ -12,7 +12,7 @@ import { useHistory} from 'react-router-dom'
 import {goToPost} from '../../router/coordinator'
 
 import {IconButtonNotPointer} from '../../globalStyled'
-import {CircularProgress} from '@material-ui/core'
+import Error from '../../components/error/error'
 
 import Whats from '../../assets/whats_icon.png'
 import Face from '../../assets/facebook_icon.png'
@@ -134,7 +134,7 @@ return (
              </CardActions>
              
              {loadingVote &&  <LinearProgressGlobal/>}
-             {/* {loadingVote && } */}
+             {sucess === -1 && <Error text="Parece que seu voto não foi registrado. Tente novamente"/>}
         </DivConteiner>
   );
 }

@@ -7,12 +7,15 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 background-color: #dddddd;
+min-height: 100vh;
 `
 export const Form = styled.form`
 `
 export const Posts = styled.section`
 width: 800px;
+max-width: 100%;
 display: flex;
+flex-grow: 1;
 
 flex-direction: column;
 `

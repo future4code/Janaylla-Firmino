@@ -7,7 +7,9 @@ export const DivConteiner = styled(Card)`
     >div{
       padding-top: 5px !important;
       padding-bottom: 5px !important;
-    }
+    } 
+    width: 700px;
+    max-width: 100%;
 `
 
 export const Comments = styled(ChatBubbleOutlineOutlined)`

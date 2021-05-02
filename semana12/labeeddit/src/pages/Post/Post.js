@@ -3,11 +3,11 @@ import {DivConteiner, Comments, DivComments, DivPost} from './styled'
 import {usePut, useGet } from '../../hooks/hooksAxio'
 import CardComments from '../../components/cardComment/cardComment'
 import CardAddComment from '../../components/cardAddComment/cardAddComment'
-import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory, useParams } from "react-router-dom";
 import CardPost from '../../components/cardPost/cardPost'
 import { red, orange, lime, lightGreen, green, cyan, indigo, pink, purple } from '@material-ui/core/colors';
 
+import Loading from '../../components/loading/loading'
 import {goToLogin} from '../../router/coordinator'
 import Header from '../../components/header/header'
 let listColor = []
@@ -74,11 +74,14 @@ export default function Post(){
     }
     return <DivConteiner>
        <Header onClickButton={() => logOut()} textButton={"logout"}/>
+       {loadinPost ? 
+    <Loading/>:
+    <>
           {post &&
               <>
          <DivPost>
             <CardPost
-            post={post} token={token.token} color={"red"}
+            post={post} token={token} color={"red"}
             />
        </DivPost>
        <DivComments>
@@ -110,6 +113,6 @@ let colorU = randonColor();
              </DivComments>
              </>
              }
-             
+             </>}
     </DivConteiner>
 }

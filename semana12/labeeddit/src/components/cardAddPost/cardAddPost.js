@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {DivConteiner, Form, SpaceBeetween, DivIconsEmoji} from './styled'
-import {TextFieldGlobal, ButtonGlobal, IconEmoji} from '../../globalStyled'
+import {TextFieldGlobal, ButtonGlobal, IconEmoji, LinearProgressGlobal} from '../../globalStyled'
 import {useForm} from '../../hooks/useForm'
 import { usePost } from '../../hooks/hooksAxio'
 import { Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
 import {IconButton} from '@material-ui/core'
 import {Close} from '@material-ui/icons'
+import Error from '../../components/error/error'
 
-export default function CardAddPost({postFake, update, open, setOpen}){
+export default function CardAddPost({postFake, open, setOpen}){
   const [user, postUser, loading, sucess] = usePost("/posts")
   const token = JSON.parse(window.localStorage.getItem('user'))
   const [keyEmoji, setKeyEmoji] = useState("title")
@@ -17,20 +18,14 @@ export default function CardAddPost({postFake, update, open, setOpen}){
   }
   const [form, setForm, resetForm, AddEmoji] = useForm(formInicial)
   const emojis = ["😊","😝","😀","😮","❤","😐","😩","😷","😍"]
-
+  
   const onSubmmit = (e) => {
     console.log(token.token)
-    e.preventDefault();
+     e.preventDefault();
      postUser(form, {Authorization: token.token})
      postFake(form)
      resetForm(formInicial)
   }
-  useEffect(() => {
-    if((sucess  === 1 || sucess === -1) && !loading){
-      update()
-    }
-  }, [sucess])
-
 
     return <DivConteiner>
               <Dialog
@@ -88,11 +83,13 @@ export default function CardAddPost({postFake, update, open, setOpen}){
             )
          })
        }
-       
+         {sucess === -1 && <Error text="O post não foi adicionado, tente novamente"/>}        
+    
         </DivIconsEmoji>
         <ButtonGlobal variant="contained" color="primary" type="submit">
           Novo Post
         </ButtonGlobal>
+        {loading && <LinearProgressGlobal/>}
         </Form>
 
           </DialogContentText>

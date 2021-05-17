@@ -1,0 +1,13 @@
+{
+  "name": "aula-node",
+  "version": "1.0.0",
+  "description": "exercicios da aula 41",
+  "main": "index.js",
+  "scripts": {
+    "start1": "node ./exercicio1.js",
+    "start2": "node ./exercicio2.js",
+    "start3": "node ./exercicio3.js"
+  },
+  "author": "Janaylla Firmino",
+  "license": "ISC"
+}

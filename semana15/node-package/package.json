@@ -1,0 +1,21 @@
+{
+  "name": "node-package",
+  "version": "1.0.0",
+  "description": "aprendendo a usar o node",
+  "main": "index.js",
+  "scripts": {
+    "searchCountryByName": "clear && node index.js"
+  },
+  "keywords": [
+    "node",
+    "package"
+  ],
+  "author": "labenu",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.26.0"
+  },
+  "dependencies": {
+    "knex": "^0.95.5"
+  }
+}

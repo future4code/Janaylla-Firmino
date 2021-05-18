@@ -12,3 +12,27 @@
 
 // d) Compare esse arquivo com o que criamos durante a aula (ele está disponível na área de configuração do projeto ali em cima). Leia as descrições sobre cada uma das propriedades. Alguma configuração que chamou sua atenção? O que mudou em comparação com o arquivo criado pelos slides?
 // O target que era es5 e passa a ser es6. E as propriedades que foram decomentadas.
+type pokemon = {
+	name: string,
+    types: string,
+	healthPoints: number
+}
+
+const pokemon1: pokemon = {
+  name: "Charmander",
+  types: "Fire",
+  healthPoints: 28
+}
+
+const pokemon2: pokemon = {
+  name: "Bulbasaur",
+  types: "Grass/Poison",
+  healthPoints: 31
+}
+
+const pokemon3: pokemon = {
+  name: "Squirtle",
+  types: "Water",
+  healthPoints: 35
+}
+console.table([pokemon1, pokemon2, pokemon3]);

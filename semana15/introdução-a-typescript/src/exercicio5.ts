@@ -1,6 +1,8 @@
-// a) Crie uma variável minhaString do tipo string e atribua um valor a ela. Tente atribuir um número a esta variável. O que acontece?
-// O proprio vcCode aponta que existe um erro, e se tentarmos rodar assim o console mostra o erro: Type 'number' is not assignable to type 'string'.
+function operations(num1: number, num2: number): void {
+	console.log("soma:", num1 + num2);
+    console.log("subtração:", num1 - num2);
+    console.log("multiplicação :", num1 * num2);
+    console.log("maior:", num1 >= num2? num1 : num2);
+}
 
-// b) Crie uma variável meuNumero do tipo number e atribua um valor numérico. Como podemos fazer para que essa variável também aceite strings
-// Na hora da declaração especificamos que a variavel pode receber 2 tipos de variveis:
-// Ex: let meuNumero:string|number = "strung qualquer";
+operations(4,3);

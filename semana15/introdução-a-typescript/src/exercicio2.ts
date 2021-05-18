@@ -6,7 +6,7 @@ type estatistica = {
     menor: number,
     media: number
 }
-function obterEstatisticas(numeros:number[]) {
+function obterEstatisticas(numeros:number[]):estatistica {
 
     const numerosOrdenados = numeros.sort(
         (a, b) => a - b

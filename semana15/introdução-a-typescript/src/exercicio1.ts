@@ -16,6 +16,7 @@ enum CORES_ARCO_IRIS{
     INDIGO = "Indigo",
     VIOLETA = "Violeta"
 }
+
 type pessoa = {
     nome: string,
     idade: number,

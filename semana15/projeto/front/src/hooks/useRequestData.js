@@ -20,11 +20,13 @@ export const useRequestData = (path, keyObject, initialState) => {
           setMessage("")
           setLoading(false)
           setError(false)
+          console.log(response)
         })
         .catch((err) =>{
           setMessage(err.message)
           setLoading(true)
           setError(true)
+          console.log(err)
         });
   };
 

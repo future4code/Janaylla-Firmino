@@ -137,7 +137,8 @@ app.put("/balance/update", (req: Request, res: Response) => {
 app.put("/payment", (req: Request, res: Response) => {
     try {
         const { name, cpf } = req.query;
-        const { value, descriprion, date } = req.body;
+        const { value, description, date } = req.body;
+      
         if (name && cpf) {
             const userIndex = users.findIndex(user => {
                 return user.cpf === cpf && user.name.toLowerCase() === name.toString().toLowerCase()
@@ -148,14 +149,15 @@ app.put("/payment", (req: Request, res: Response) => {
             if (isNaN(value) || Number(value) < 0) {
                 throw new Error("Value sheet not informed");
             }
-            if (!descriprion || typeof (descriprion) != "string") {
+            if (!description || typeof (description) != "string") {
                 throw new Error("Descriprion sheet not informed");
             }
             const dateNow = date ? new Date(date) : new Date();
-            if (dateNow) {
+            if (!dateNow) {
                 throw new Error("Invalid date");
             }
-            newTransaction(userIndex, Number(value) * -1, dateNow, descriprion)
+            
+            newTransaction(userIndex, Number(value) * -1, dateNow, description)
             res.status(200).send({ message: "Updated balance, payment done" });
 
         }
@@ -171,7 +173,7 @@ app.put("/payment", (req: Request, res: Response) => {
 app.post("/transfer", (req: Request, res: Response) => {
     try {
         const { name, cpf } = req.query;
-        const { value, descriprion, cpfRecipient, nameRecipient } = req.body;
+        const { value, description, cpfRecipient, nameRecipient } = req.body;
         if (!name || !cpf || !cpfRecipient || !nameRecipient) {
             throw new Error("Incorrect type");
         }
@@ -191,7 +193,7 @@ app.post("/transfer", (req: Request, res: Response) => {
         if (isNaN(value) || Number(value) < 0) {
             throw new Error("Value sheet not informed");
         }
-        if (!descriprion || typeof (descriprion) != "string") {
+        if (!description || typeof (description) != "string") {
             throw new Error("Descriprion sheet not informed");
         }
         if (Number(value) > users[userIndex].balance) {
@@ -199,8 +201,8 @@ app.post("/transfer", (req: Request, res: Response) => {
         }
 
         const dateNow = new Date();
-        newTransaction(userIndex, Number(value) * -1, dateNow, descriprion)
-        newTransaction(recipientIndex, Number(value), dateNow, descriprion)
+        newTransaction(userIndex, Number(value) * -1, dateNow, "Tranferido: "+description)
+        newTransaction(recipientIndex, Number(value), dateNow, "Recebido: "+description)
         res.status(200).send({ message: "Amount sent" });
 
 
@@ -209,6 +211,25 @@ app.post("/transfer", (req: Request, res: Response) => {
         res.status(400).send({ message: error.message });
     }
 })
+
+
+app.get("/search/:name", (req: Request, res: Response) => {
+    try {
+        const name = req.params.name
+        if(!name){
+            throw new Error("Incorrect type");
+        }
+        const usersFilter = users.filter(user => {
+            return user.name.toUpperCase().includes(name.toUpperCase())
+        })
+        res.status(200).send({ users: usersFilter });
+    }
+    catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+})
+
+
 app.get("/user/:cpf", (req: Request, res: Response) => {
 
     try {

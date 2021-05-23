@@ -57,11 +57,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullScreenDialog({users}) {
+export default function FullScreenDialog({users, search, setSearch}) {
   const classes = useStyles();
   const history = useHistory();
 const onClickUser = (cpf) => {
   goToUser(history, cpf)
+}
+const onChangeSearch = (e) =>{
+  setSearch(e.target.value)
 }
   return (
     <DivContainer>
@@ -84,6 +87,8 @@ const onClickUser = (cpf) => {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              value={search}
+              onChange={onChangeSearch}
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>

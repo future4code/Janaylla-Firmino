@@ -1,11 +1,11 @@
 import React from 'react';
 import {TextField, Button, Typography} from '@material-ui/core';
 import { DivContainer } from './styled';
-
-export default function BasicTextFields() {
+import maskCpf from '../../constants/maskCpf'
+export default function Form({onSubmit, form, onChange}) {
 
     return (
-        <DivContainer>
+        <DivContainer onSubmit={onSubmit}>
             <Typography variant="h6" noWrap>
           Novo cliente
          </Typography>
@@ -14,6 +14,9 @@ export default function BasicTextFields() {
                     label="Nome"
                     variant="outlined"
                     margin="normal"
+                    value={form.name}
+                    name="name"
+                    onChange={onChange}
                     fullWidth />
                 <TextField
                     id="outlined-basic"
@@ -21,6 +24,9 @@ export default function BasicTextFields() {
                     variant="outlined"
                     fullWidth
                     margin="normal"
+                    value={form.cpf}
+                    name="cpf"
+                    onChange={(e) =>onChange(e, maskCpf)}
                 />
                 <TextField
                     id="outlined-full-width"
@@ -32,8 +38,11 @@ export default function BasicTextFields() {
                     }}
                     variant="outlined"
                     type="date"
+                    value={form.birthDate}
+                    name="birthDate"
+                    onChange={onChange}
                 />
-                <Button  variant="contained" color="primary">
+                <Button  variant="contained" color="primary" type="submit">
                     Cadastrar
                 </Button>
         </DivContainer>

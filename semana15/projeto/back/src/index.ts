@@ -209,6 +209,26 @@ app.post("/transfer", (req: Request, res: Response) => {
         res.status(400).send({ message: error.message });
     }
 })
+app.get("/user/:cpf", (req: Request, res: Response) => {
+
+    try {
+        const cpf = req.params.cpf
+        if(!cpf){
+            throw new Error("Incorrect type");
+        }
+        const userIndex = users.find(user => {
+            return user.cpf === cpf
+        })
+
+        if (!userIndex) {
+            throw new Error("User not found");
+        }
+        res.status(200).send({ user: userIndex });
+    }
+    catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+})
 
 app.post("/user", (req: Request, res: Response) => {
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Snackbar from "@material-ui/core/Snackbar";
 
-export const DivConteiner = styled.div``;
+export const DivContainer = styled.div``;
 export const SnackbarMessage = styled(Snackbar)`
   background-color: ${(props) => props.error ? "#e02020":"green"} !important;
   * {

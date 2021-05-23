@@ -4,18 +4,18 @@ import CardUser from '../../components/cardUser/cardUser'
 import Snackbar from '../../components/snackbar/snackbar'
 import Form from '../../components/formAddUser/formAddUser'
 import {useRequestData} from '../../hooks/useRequestData'
-import {DivConteiner, DivMain} from './styled'
+import {DivContainer, DivMain} from './styled'
 function Index() {    
 const [users, getUsers, message, error] = useRequestData('users', 'users', []);
   return (
-    <DivConteiner >
+    <DivContainer >
     <Header title="Sistema bancário"/>
     <DivMain>
       <CardUser users={users}/>
-      {message && <Snackbar text={message} error={error}/>}
       <Form/>
     </DivMain>
-    </DivConteiner>
+    {message && <Snackbar text={message} error={error}/>}
+    </DivContainer>
   );
 }
 

@@ -3,7 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-
+import {useHistory} from 'react-router-dom'
+import {goToHome} from '../../router/coordinators'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import {Img} from './styled'
 import Logo from '../../img/logo.svg'
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar({title}) {
   const classes = useStyles();
-
+const history = useHistory()
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -36,6 +37,7 @@ export default function SearchAppBar({title}) {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={() => goToHome(history)}
           >
               <Img src={Logo}/>
           </IconButton>

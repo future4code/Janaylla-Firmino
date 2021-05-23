@@ -2,7 +2,7 @@ import React from 'react';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import {DivConteiner} from './styled'
+import {DivContainer} from './styled'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -64,7 +64,7 @@ const onClickUser = (cpf) => {
   goToUser(history, cpf)
 }
   return (
-    <DivConteiner>
+    <DivContainer>
   <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -98,6 +98,6 @@ const onClickUser = (cpf) => {
             </ListItem>
           })}
         </List>
-    </DivConteiner>
+    </DivContainer>
   );
 }

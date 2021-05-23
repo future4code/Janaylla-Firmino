@@ -1,11 +1,11 @@
 import React from 'react';
 import {TextField, Button, Typography} from '@material-ui/core';
-import { DivConteiner } from './styled';
+import { DivContainer } from './styled';
 
 export default function BasicTextFields() {
 
     return (
-        <DivConteiner>
+        <DivContainer>
             <Typography variant="h6" noWrap>
           Novo cliente
          </Typography>
@@ -36,6 +36,6 @@ export default function BasicTextFields() {
                 <Button  variant="contained" color="primary">
                     Cadastrar
                 </Button>
-        </DivConteiner>
+        </DivContainer>
     );
 }

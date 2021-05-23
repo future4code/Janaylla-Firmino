@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DivConteiner = styled.div`
+export const DivContainer = styled.div`
     width: 500px;
     height: calc(100vh - 85px);
     margin: 10px;

@@ -100,3 +100,92 @@ Código de erro: 1054. Coluna desconhecida 'nome' na 'lista de campos'
 Não foi encontrada a tabela com a coluna 'nome', é só trocar 'nome' para 'name' que é uma coluna que existe:
 
 SELECT id, nome from Actor WHERE id = "002"
+
+
+### Exercicio 4
+SELECT * FROM Actor
+WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000
+*a. Explique com as suas palavras a query acima*
+Selecione todos as colunas da tabela de atores que possuem o nome começando com a letra 'A' ou que começando com 'J', que granham mais que R$ 300.000
+*b. Escreva uma query com os atores que não comecem com a letra "A" e tenham o salário maior do que R$350.000,00*
+SELECT * FROM Actor
+WHERE name NOT LIKE "J%" AND salary > 350000;
+
+*c. Escreva uma query com os atores que possuam "G" ou "g" em qualquer parte do nome.* 
+SELECT * FROM Actor
+WHERE name LIKE "%G%" OR name LIKE "%g%" 
+
+*d. Escreva uma query com os atores que tenham a letra "a" ou "A" ou "g" ou "G" no nome e o salário entre R$350.000,00 e R$900.000,00*
+SELECT * FROM Actor
+WHERE (name LIKE "%G%" OR name LIKE "%g%" or name LIKE "%A%" OR name LIKE "%a%") 
+and (salary between 350000 and 900000)
+
+
+### Exercicio 5
+INSERT INTO Movies (id, name, sipnosi, release_date, rating)
+VALUES(
+  "001", 
+  "Se Eu Fosse Você",
+  "Cláudio e Helena são casados há muitos anos e enfrentam a rotina do casamento. Um dia eles são atingidos por um fenômeno inexplicável e trocam de corpos",
+  "2006-01-06", 
+  7
+),
+(
+  "002", 
+  "Doce de mãe",
+  "Dona Picucha, uma animada senhora de 85 anos, sempre causa grandes confusões. A vida dela e dos seus quatro filhos sofre uma reviravolta depois que Zaida, empregada e amiga de Dona Picucha, anuncia que vai se casar e não poderá mais morar com ela",
+  "2012-12-27", 
+  10
+),
+(
+  "003", 
+  "Dona Flor e Seus Dois Maridos",
+  "Dona Flor é uma sedutora professora de culinária casada com Vadinho, que só quer saber de farras e jogatina nas boates. A vida de abusos acaba por acarretar sua morte precoce.",
+  "2017-11-01", 
+  8
+),
+(
+  "004", 
+ "Que Horas Ela Volta?",
+  "A pernambucana Val se mudou para São Paulo com o intuito de proporcionar melhores condições de vida para a filha, Jéssica. Anos depois, a garota lhe telefona, dizendo que quer ir para a cidade prestar vestibular. Os chefes de Val recebem a menina de braços abertos, porém o seu comportamento complica as relações na casa.",
+  "2017-11-01", 
+  9
+);
+
+select * from Movies
+
+
+### Exercicio 6
+Escreva uma query que:
+
+a. Retorne o id, título e avaliação a partir de um id específico;
+select  id, title, rating from Movies where id = '001';
+
+b. Retorne um filme a partir de um nome específico;
+select  * from Movies where title = 'Que Horas Ela Volta?';
+
+c. Retorne o id, título e sinopse dos filmes com avaliação mínima de `7`
+select  id, title, synopsis from Movies where rating >=7;
+
+
+### Exercicio 7
+Escreva uma query que:
+
+a. Retorna um filme cujo título contenha a palavra `vida`
+SELECT * FROM Movies
+WHERE title LIKE "%vida%";
+
+b. Realize a pesquisa de um filme, ou seja: pesquise se o termo de busca está contido no título ou na sinopse. Utilize qualquer `TERMO DE BUSCA` para exemplificar.
+SELECT * FROM Movies
+WHERE title LIKE "%TERMO DE BUSCA%" OR
+      synopsis LIKE "%TERMO DE BUSCA%"
+
+c. Procure por todos os filmes que já tenham lançado
+SELECT * FROM Movies
+WHERE release_date < "2020-05-04";
+
+d. Procure por algum filme que já tenha lançado, com o termo de busca contido no título ou sinopse e com a avaliação maior do que `7`.
+SELECT * FROM Movies
+WHERE release_date < "2020-05-04" AND 
+      (title LIKE "%TERMO DE BUSCA%" OR
+      synopsis LIKE "%TERMO DE BUSCA%") AND rating > 7;

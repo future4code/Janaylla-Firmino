@@ -1,9 +1,18 @@
-GET 'http://localhost:3003/'
+GET http://localhost:3003/
 ###
-GET 'http://localhost:3003/actor'
+GET http://localhost:3003/actor
 Content-Type: application/json
 
 {
     "name": "Tony Ramos"
+}
+
+###
+PUT http://localhost:3003/actor/update
+Content-Type: application/json
+
+{
+    "id": "004",
+    "salary": 200000
 }
 

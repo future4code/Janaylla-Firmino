@@ -35,5 +35,42 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:3003/task/16222197664021622213401808
+GET  http://localhost:3003/task/16222198007051622213401808
 Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/user/all
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/task?creatorUserId=1622213401808
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/user
+
+
+###
+POST  http://localhost:3003/task/responsible
+Content-Type: application/json
+
+{
+	"task_id": "16222198007051622213401808",
+	"responsible_user_id": "1622213401808"
+}
+###
+GET  http://localhost:3003/task/16222198007051622213401808/responsible
+
+###
+
+
+POST  http://localhost:3003/task/status/edit
+Content-Type: application/json
+
+{
+	"id": "16222198007051622213401808",
+	"status": "doing"
+}

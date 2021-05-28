@@ -16,9 +16,3 @@ export const validateEmail = (email:string):boolean =>{
     }
     return false
  }
-
-  
- export const maskDateBr = (date:Date):string =>{
-    return date.toLocaleDateString();
-}
-  

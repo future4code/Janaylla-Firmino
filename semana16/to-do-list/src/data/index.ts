@@ -78,7 +78,6 @@ app.get('/user', (req: Request, res: Response) => {
    }
 })
 
-
 // Ex 6
 app.get('/user/all', (req: Request, res: Response) => {
    try {
@@ -122,7 +121,6 @@ app.get('/user/:id', (req: Request, res: Response) => {
 // Ex 3
 app.post('/user/:id', (req: Request, res: Response) => {
    try {
-
       const { id } = req.params;
 
       const { name, nickname, email } = req.body;
@@ -581,6 +579,78 @@ app.delete('/task/:taskId/responsible/:responsibleUserId', (req: Request, res: R
       res.status(400).send({ message: err.message })
    }
 })
+ 
+
+// Ex 20
+app.delete('/user/:id', (req: Request, res: Response) => {
+
+   const deleteUser = (id:string):void => {
+      connection.raw(`DELETE from TodoListUser where id = '${id}'`)
+      .then((result) => {
+            if(result[0].affectedRows === 0){
+            res.status(200).send({ message: "User not delete" })
+         }
+            res.status(200).send({ message: "User delete" })
+      })
+      .catch((er) => {
+         res.status(500).send({ message: 'It was not delete user', e: er })
+      })
+   }
+
+   const deleteTask = (id:string):void =>{
+      connection.raw(`DELETE from TodoListTask where creator_user_id = '${id}'`)
+         .then((result) => {
+            deleteUser(id)
+         })
+         .catch((er) => {
+            res.status(500).send({ message: 'It was not delete tasks', e: er })
+         })
+   }
+   const deleteTasksResponsible = (id:string, clausulas:string):void =>{
+      connection.raw(`DELETE from TodoListResponsibleUserTaskRelation where (task_id = '${id}' or ${clausulas})`)
+         .then(() => {
+            deleteTask(id)
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not delete tasks' })
+         })
+   }
+   const seletTasks =(id:string):void =>{
+      connection.raw(`SELECT * FROM TodoListTask where creator_user_id = '${id}'`)
+      .then((resp) => {
+            let string = resp[0].length? `responsible_user_id = '${resp[0][0].id}'`: "";
+            for(let i=1; i<resp[0].length; i++){
+               string += ` or responsible_user_id = '${resp[0][0].id}' `;
+            }
+            deleteTasksResponsible(id, string)
+
+      })
+      .catch((erro) => {
+         res.status(500).send({ message: erro })
+      })
+   }
+   const idExist = (id:string):void =>{
+      connection.raw(`SELECT id, name FROM TodoListUser where id = '${id}'`)
+      .then((resp) => {
+         if (resp[0].length === 0) {
+            res.status(400).send({ message: 'User not found' })
+         }
+         seletTasks(id)
+      })
+      .catch((erro) => {
+         res.status(500).send({ message: erro })
+      })
+   } 
+   try {
+      const { id } = req.params;
+      idExist(id)
+      
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
 
 
 

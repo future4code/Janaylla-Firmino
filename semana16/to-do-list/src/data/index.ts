@@ -171,43 +171,23 @@ app.post('/user/:id', (req: Request, res: Response) => {
    }
 })
 
-// Ex 7
+// Ex 17 e Ex 13 e EX 7
 app.get('/task', (req: Request, res: Response) => {
    try {
-      const { creatorUserId } = req.query;
+      let where = "";
+      const { query, status, creatorUserId } = req.query;
+      if (!query && !status && !creatorUserId) {
+         throw new Error("Invalid query");
+      }
 
-      connection.raw(`
-      SELECT tl.id as taskId, tl.title, tl.description, 
-      DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
-      tl.creator_user_id as creatorUserId,
-      tl.status,
-      u.nickname as creatorUserNickname
-       FROM TodoListTask tl 
-      JOIN TodoListUser u on u.id = tl.creator_user_id
-      where creator_user_id  = '${creatorUserId}'`)
-         .then((resp) => {
-            if (resp[0].length === 0) {
-               res.status(400).send({ message: 'Tasks not found' })
-            }
-            const task = { ...resp[0][0] }
-            res.status(200).send({ user: task })
-         })
-         .catch((erro) => {
-            res.status(500).send({ message: erro })
-         })
-   }
-   catch (err) {
-      res.status(400).send({ message: err.message })
-   }
-})
-
-
-
-// Ex 17
-app.get('/task/query', (req: Request, res: Response) => {
-   try {
-      const { query } = req.query;
-
+      if(query)
+         where = `tl.title LIKE '%${query}%'`
+      else if(status){
+         where = `tl.status = '${status}'`
+      }
+      else{
+         where = `creator_user_id  = '${creatorUserId}'`
+      }
       connection.raw(`
       SELECT tl.id as taskId, tl.title, tl.description, 
       DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
@@ -216,41 +196,13 @@ app.get('/task/query', (req: Request, res: Response) => {
       u.nickname as creatorUserNickname
       FROM TodoListTask tl 
       JOIN TodoListUser u on u.id = tl.creator_user_id
-      WHERE tl.title LIKE '%${query}%'`)
+      WHERE ${where}`)
          .then((resp) => {
             res.status(200).send({ users: resp[0] })
          })
          .catch((erro) => {
             res.status(500).send({ message: erro })
          })
-   }
-   catch (err) {
-      res.status(400).send({ message: err.message })
-   }
-})
-
-
-// Ex 13
-app.get('/task/status', (req: Request, res: Response) => {
-   try {
-      const { status } = req.query;
-      if (!status || typeof (status) != "string") {
-         throw new Error("Invalid status");
-      }
-      connection.raw(`SELECT tl.id as taskId, tl.title, tl.description, 
-      DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
-      tl.creator_user_id as creatorUserId,
-      u.nickname as creatorUserNickname
-       FROM TodoListTask tl 
-      JOIN TodoListUser u on u.id = tl.creator_user_id
-      where tl.status = '${status}'`)
-         .then((result) => {
-            res.status(400).send({ message: result[0]})
-         })
-         .catch(() => {
-            res.status(500).send({ message: 'It was not possible to update status' })
-         })
-
    }
    catch (err) {
       res.status(400).send({ message: err.message })
@@ -280,7 +232,6 @@ app.get('/task/delay', (req: Request, res: Response) => {
       res.status(400).send({ message: err.message })
    }
 })
-
 
 // Ex 4
 app.put('/task', (req: Request, res: Response) => {

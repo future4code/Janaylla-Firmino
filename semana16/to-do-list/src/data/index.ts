@@ -203,6 +203,87 @@ app.get('/task', (req: Request, res: Response) => {
    }
 })
 
+
+
+// Ex 17
+app.get('/task/query', (req: Request, res: Response) => {
+   try {
+      const { query } = req.query;
+
+      connection.raw(`
+      SELECT tl.id as taskId, tl.title, tl.description, 
+      DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
+      tl.creator_user_id as creatorUserId,
+      tl.status,
+      u.nickname as creatorUserNickname
+      FROM TodoListTask tl 
+      JOIN TodoListUser u on u.id = tl.creator_user_id
+      WHERE tl.title LIKE '%${query}%'`)
+         .then((resp) => {
+            res.status(200).send({ users: resp[0] })
+         })
+         .catch((erro) => {
+            res.status(500).send({ message: erro })
+         })
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
+
+// Ex 13
+app.get('/task/status', (req: Request, res: Response) => {
+   try {
+      const { status } = req.query;
+      if (!status || typeof (status) != "string") {
+         throw new Error("Invalid status");
+      }
+      connection.raw(`SELECT tl.id as taskId, tl.title, tl.description, 
+      DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
+      tl.creator_user_id as creatorUserId,
+      u.nickname as creatorUserNickname
+       FROM TodoListTask tl 
+      JOIN TodoListUser u on u.id = tl.creator_user_id
+      where tl.status = '${status}'`)
+         .then((result) => {
+            res.status(400).send({ message: result[0]})
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not possible to update status' })
+         })
+
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
+// Ex 14
+app.get('/task/delay', (req: Request, res: Response) => {
+   try {
+      connection.raw(`SELECT tl.id as taskId, tl.title, tl.description, 
+      DATE_FORMAT(STR_TO_DATE(tl.limit_date, '%Y-%m-%d'), '%d/%m/%Y') as limit_date,
+      tl.creator_user_id as creatorUserId,
+      tl.status,
+      u.nickname as creatorUserNickname
+       FROM TodoListTask tl 
+      JOIN TodoListUser u on u.id = tl.creator_user_id
+      where tl.status = 'to_do' and tl.limit_date < now()`)
+         .then((result) => {
+            res.status(400).send({ message: result[0]})
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not possible to update status' })
+         })
+
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
+
 // Ex 4
 app.put('/task', (req: Request, res: Response) => {
    try {
@@ -272,31 +353,81 @@ app.get('/task/:id', (req: Request, res: Response) => {
    }
 })
 
-// Ex 9
+// Ex 9 e 12
 app.post('/task/responsible', (req: Request, res: Response) => {
+
+   const addResponsabile = (id:string, index:number, users:string[], taskId:string):void =>{
+      
+         connection.raw(`
+         INSERT INTO TodoListResponsibleUserTaskRelation value 
+         ('${taskId}','${id}')`)
+            .then(() => {
+               if(users.length-1 === index){
+                  res.status(200).send({ message: 'Users adds' })
+               }
+               else{
+                  addResponsabile(users[index], index+1, users, taskId)
+               }
+            }).catch(() => {
+               res.status(500).send({ message: 'It was not possible to add a new Responsible' })
+            })
+
+
+   }
+   const userExist = (id:string, index:number, users:string[], taskId:string):void => {
+
+      connection.raw(`SELECT * FROM TodoListUser u where u.id='${id}'`)
+         .then((resul) => {
+             if(resul[0].length === 0){
+                res.status(400).send({ message: "Invalid id user: " + id})
+            }
+            else if(users.length === index){
+               addResponsabile(users[0], 0, users, taskId)
+             }
+              else{
+                 userExist(users[index], index+1, users, taskId)
+             }
+         })
+         .catch(() => {
+            throw new Error("Invalid id user: "+id);
+         })
+   }
+
+   const taskExist = (id:string, users:string[]):void =>{
+      connection.raw(`SELECT * FROM TodoListTask t where t.id='${id}'`)
+         .then((resul) => {
+            if(resul[0].length === 0)
+               res.status(400).send({ message: "Invalid id task: "+id })
+            else{
+               userExist(users[0], 0, users, id)
+            }
+         })
+         .catch(() => {            
+            res.status(400).send({ message: "Invalid id task: "+id })
+         })
+   }
+
    try {
       const { task_id, responsible_user_id } = req.body;
+ 
       if (!task_id || typeof (task_id) != "string") {
          throw new Error("Invalid task id");
       }
-      if (!responsible_user_id || typeof (responsible_user_id) != "string") {
-         throw new Error("Invalid user id");
+      if (!responsible_user_id || !responsible_user_id.length){
+         throw new Error("Invalid users");
       }
-
-      connection.raw(`
-      INSERT INTO TodoListResponsibleUserTaskRelation value 
-      ('${task_id}','${responsible_user_id}')`)
-         .then(() => {
-            res.status(400).send({ message: 'New Responsible added' })
-         })
-         .catch(() => {
-            res.status(500).send({ message: 'It was not possible to add a new Responsible' })
-         })
+      responsible_user_id.forEach((useID:string) => {
+         if(typeof(useID) != "string"){
+            throw new Error("Invalid id user");
+         }
+      });
+      taskExist(task_id, responsible_user_id);
 
    }
    catch (err) {
       res.status(400).send({ message: err.message })
    }
+
 })
 
 
@@ -322,17 +453,57 @@ app.get('/task/:id/responsible', (req: Request, res: Response) => {
 
 
 
-// Ex 12
+// Ex 12 e 18
 app.post('/task/status/edit', (req: Request, res: Response) => {
+   const tasksUpdate = (id:string, index:number, tasks:string[], status:string):void => {
+      connection.raw(`UPDATE TodoListTask SET status = '${status}' WHERE id = '${tasks[0]}'`)
+         .then((resul) => {
+             if(resul[0].length === 0){
+                res.status(400).send({ message: "Invalid id task: " + id})
+            }
+            else if(tasks.length+1 === index){
+               res.status(200).send({ message: 'Tasks upadate'})
+             }
+              else{
+               tasksUpdate(tasks[index], index+1, tasks, status)
+             }
+         })
+         .catch(() => {
+            throw new Error("Invalid id task: "+id);
+         })
+   }
+
+   const tasksExist = (id:string, index:number, tasks:string[], status:string):void => {
+      connection.raw(`SELECT * FROM TodoListTask t where t.id='${id}'`)
+         .then((resul) => {
+             if(resul[0].length === 0){
+                res.status(200).send({ message: "Invalid id task: " + id})
+            }
+            else if(tasks.length === index){
+               tasksUpdate(tasks[0], 0, tasks, status)
+             }
+              else{
+                  tasksExist(tasks[index], index+1, tasks, status)
+             }
+         })
+         .catch(() => {
+            throw new Error("Invalid id task: "+id);
+         })
+   }
+
+
    try {
-      const { status, id } = req.body;
+      const { status, id, task_ids } = req.body;
       if (!status || typeof (status) != "string") {
          throw new Error("Invalid status");
       }
-      if (!id || typeof (id) != "string") {
+      if (!task_ids && (!id || typeof(id) != "string")) {
          throw new Error("Invalid id");
       }
-      
+      if(!id && (!task_ids || !task_ids.length)){
+         throw new Error("Invalid ids");
+      }
+      if(id){
       connection.raw(`UPDATE TodoListTask SET status = '${status}' WHERE (id = '${id}')`)
          .then(() => {
             res.status(400).send({ message: 'New status update' })
@@ -340,12 +511,77 @@ app.post('/task/status/edit', (req: Request, res: Response) => {
          .catch(() => {
             res.status(500).send({ message: 'It was not possible to update status' })
          })
-
+      }
+      else{
+         tasksExist(task_ids[0], 0, task_ids, status)
+      }
    }
    catch (err) {
       res.status(400).send({ message: err.message })
    }
 })
+
+
+//19
+app.delete('/task/:id', (req: Request, res: Response) => {
+   const deleteTask = (id:string):void =>{
+      connection.raw(`DELETE from TodoListTask where id = '${id}';`)
+         .then((result) => {
+               if(result[0].affectedRows === 0){
+               res.status(200).send({ message: "Task not delete" })
+            }
+               res.status(200).send({ message: "Task delete" })
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not delete tasks' })
+         })
+   }
+   const deleteTasksResponsible = (id:string):void =>{
+      connection.raw(`DELETE from TodoListResponsibleUserTaskRelation where task_id = '${id}'`)
+         .then(() => {
+            deleteTask(id)
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not delete tasks' })
+         })
+   }
+   
+   try {
+      const { id } = req.params;
+      deleteTasksResponsible(id)
+      
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
+
+// Ex 15
+app.delete('/task/:taskId/responsible/:responsibleUserId', (req: Request, res: Response) => {
+   try {
+      const { taskId, responsibleUserId } = req.params;
+      
+      connection.raw(`delete from TodoListResponsibleUserTaskRelation where task_id = '${taskId}' and responsible_user_id = '${responsibleUserId}'`)
+         .then((result) => {
+            
+      console.log(`delete from TodoListResponsibleUserTaskRelation 
+      where task_id = '${taskId}' and responsible_user_id = '${responsibleUserId}'`)
+      
+            if(result[0].affectedRows === 0){
+               res.status(200).send({ message: "Responsable not delete" })
+            }
+               res.status(200).send({ message: "Responsable  delete" })
+         })
+         .catch(() => {
+            res.status(500).send({ message: 'It was not delete' })
+         })
+   }
+   catch (err) {
+      res.status(400).send({ message: err.message })
+   }
+})
+
 
 
 const server = app.listen(process.env.PORT || 3003, () => {

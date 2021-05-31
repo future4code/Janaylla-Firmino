@@ -1,4 +1,4 @@
-import {selectAllUsers, selectUsersby} from '../Querys/userQuerys'
+import {selectAllUsers, selectUsersby, selectUsersOrderby} from '../Querys/userQuerys'
 import express, {Request, Response} from 'express'
 import {UserEnum} from '../types'
 export const getAllUsers = async(req: Request,res: Response): Promise<void> =>{
@@ -65,6 +65,30 @@ export const getUsersByPara = async(req: Request,res: Response): Promise<void> =
       }
       let where = `${by} LIKE '%${para}%'`;
       const users = await selectUsersby(where)
+
+       if(!users.length){
+          res.statusCode = 404
+          throw new Error("No recipes found")
+       }
+
+      res.status(200).send(users)
+      
+   } catch (error) {
+      console.log(error)
+      res.send(error.message || error.sqlMessage)
+   }
+}
+
+export const getUsersOrderBy = async(req: Request,res: Response): Promise<void> =>{
+   try {
+      const orderBy = req.query.order as string || "email";
+      const ord =  String(req.query.asc).toUpperCase() === "DESC"? "DESC" : "ASC";
+
+      if(!(orderBy as UserEnum)){
+         throw new Error("Invalid informed type")
+      }
+      let order = `ORDER BY ${orderBy} ${ord}`;
+      const users = await selectUsersOrderby(order)
 
        if(!users.length){
           res.statusCode = 404

@@ -1,5 +1,5 @@
 import express, {Response, Request} from 'express'
-import {getAllUsers, getUsersByQuery, getUsersByPara} from '../Endpoints/userEndpoints'
+import {getAllUsers, getUsersByQuery, getUsersByPara, getUsersOrderBy} from '../Endpoints/userEndpoints'
 
 import { User } from '../types'
 
@@ -38,6 +38,21 @@ route.get("/byPara/:by/:para", async (req:Request, res:Response) => {
     try {
 
         const user = await getUsersByPara(req, res)
+        res.status(200)
+            .send({ users: user })
+
+    } catch (err) {
+        res
+            .status(400)
+            .send({ message: "Ops! Something is wrong. Try again later" })
+    }
+})
+
+
+route.get("/orderBy", async (req:Request, res:Response) => {
+    try {
+
+        const user = await getUsersOrderBy(req, res)
         res.status(200)
             .send({ users: user })
 

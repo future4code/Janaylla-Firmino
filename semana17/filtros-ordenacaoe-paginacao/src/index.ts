@@ -1,24 +1,12 @@
-import express, { Express } from "express";
-import knex from "knex";
+import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import { AddressInfo } from "net";
+import {userRoute} from './Router/userRouter'
 
-dotenv.config();
-
-export const connection = knex({
-	client: "mysql",
-	connection: {
-    host: process.env.DB_HOST,
-    port: 3306,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-  }
-});
-
-const app: Express = express();
+const app = express();
 app.use(express.json());
+app.use("/", userRoute);
+
 app.use(cors());
 
 const server = app.listen(process.env.PORT || 3003, () => {

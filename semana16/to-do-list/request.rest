@@ -1,0 +1,128 @@
+GET http://localhost:3003
+
+###
+PUT http://localhost:3003/user
+Content-Type: application/json
+
+{
+	"name": "Astro Dev",
+	"nickname": "astrodeve",
+	"email": "astro2@dev.com"
+}
+
+###
+GET  http://localhost:3003/user/1622256399833
+Content-Type: application/json
+
+###
+POST http://localhost:3003/user/1622256399833
+Content-Type: application/json
+
+{
+    "name": "Astro Deve",
+	"email": "astro@dev.com"
+}
+
+###
+PUT http://localhost:3003/task
+Content-Type: application/json
+
+{
+	"title": "Criar banco dos alunos",
+	"description": "Devemos criar o banco dos alunos para o módulo do backend",
+	"limitDate": "31/02/2020",
+	"creatorUserId": "1622256399833"
+}
+
+###
+GET  http://localhost:3003/task/16222564862131622256399833
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/user/all
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/task?creatorUserId=1622256399833
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/user
+
+
+###
+POST  http://localhost:3003/task/16222564862131622256399833
+Content-Type: application/json
+
+{
+	"task_id": "16222198007051622213401808",
+	"responsible_user_id": "1622256399833"
+}
+
+###
+GET  http://localhost:3003/task/16222198007051622213401808/responsible
+
+###
+
+
+POST  http://localhost:3003/task/status/edit
+Content-Type: application/json
+
+{
+	"id": "16222198007051622213401808",
+	"status": "doing"
+}
+
+###
+GET  http://localhost:3003/task?status=to_do
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3003/task?query=aas
+Content-Type: application/json
+
+
+
+###
+GET  http://localhost:3003/task/delay
+Content-Type: application/json
+
+
+###
+DELETE  http://localhost:3003/task/16222198007051622213401808/responsible/1622213401808
+Content-Type: application/json
+
+###
+POST  http://localhost:3003/task/responsible
+Content-Type: application/json
+
+{
+	"task_id": "16222198007051622213401808",
+	"responsible_user_id": ["1622213401808", "1622213401808"] 
+}
+
+
+###
+POST  http://localhost:3003/task/status/edit
+Content-Type: application/json
+
+{
+	"task_ids": ["16222248478691622213401808"],
+	"status": "oiif"
+}
+
+###
+DELETE  http://localhost:3003/task/16222343961011622213401808
+Content-Type: application/json
+
+
+###
+DELETE  http://localhost:3003/user/1622213401808
+Content-Type: application/json
+
+
+

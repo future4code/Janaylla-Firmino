@@ -17,7 +17,6 @@ const getAddressByCEP = async (
           city: response.data.localidade,
           state: response.data.uf
         }
-  
         return address
       } catch (error) {
         return null;

@@ -1,0 +1,12 @@
+###
+GET http://localhost:3003/all
+
+###
+GET http://localhost:3003/byQuery?by=name&name=a
+
+###
+GET http://localhost:3003/byPara/name/a
+
+
+###
+GET http://localhost:3003/orderBy?order=emaiç&asc=asc

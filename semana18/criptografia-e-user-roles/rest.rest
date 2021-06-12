@@ -1,0 +1,25 @@
+### 
+POST http://localhost:3003/user/signUp
+Content-Type: application/json
+
+{
+    "email": "b@asd.com",
+	"password": "123456",
+    "role": "Admin"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "aaaaaa@asd.com",
+	"password": "123456"
+}
+###
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzNzU2Mzc3LWNiOTktNGY4OC04OTA3LWExYTM3NTc0MjA0YyIsImlhdCI6MTYyMzE3NzcyMCwiZXhwIjoxNjIzMTc3NzgwfQ.Y4qgtG4kymKmRVJyZDs6ms27RPa7S81u3qaUGFbCOCg
+
+###
+DELETE http://localhost:3003/user/c98ec464-cd1b-441a-85e1-f419c72809d4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlMmJjZGQzLTM5NjktNDdiOC04ODI2LTNmNDM4MjRhZjZjZSIsImlhdCI6MTYyMzE3OTc4MywiZXhwIjoxNjIzMTc5ODQzfQ.J-kJShskOEcJD-3wnxBM1u4Gppi3FqLKsrGG64wE2tY

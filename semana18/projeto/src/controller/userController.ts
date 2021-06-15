@@ -8,7 +8,7 @@ import { user } from '../types'
 export const userController = {
     create: async (req: Request, res: Response): Promise<any> => {
         try{
-            const {name, password, email} = req.body;
+            let {name, password, email, role} = req.body;
 
             if(!name|| typeof(name) !== "string"){
                 throw new Error("Name not entered")
@@ -20,16 +20,27 @@ export const userController = {
                 throw new Error("Invalid password, password must be more than 5 characters")
             }
             if(!email || typeof(email) !== "string"){
-                throw new Error("Eemail not entered")
+                throw new Error("Email not entered")
+            }
+            if(role && typeof(role)  !== "string"){
+                throw new Error("Role not entered")
+            }
+            if(!role){
+                role = 'normal'
+            }
+            role = role.toLocaleLowerCase();
+            console.log('role', role)
+            if(role != 'normal' &&  role != 'admin' && role !='moderator'){
+                throw new Error("Invalid role")
             }
             const id = generateId();
             const passwordHash = await hash(password)
-            const affectRows = await userModel.create({name, password: passwordHash, email, id});
+            const affectRows = await userModel.create({name, password: passwordHash, email, id, role});
 
             if(!affectRows){
                 throw new Error("User not create, check if email has already been registered")
             }
-            const token = generateToken({id})
+            const token = generateToken({id, role})
             res.status(200).send({message: "User created", token})
 
         }
@@ -58,7 +69,7 @@ export const userController = {
                 throw new Error("Password incorrect")
             }
 
-            const token = generateToken({id: user.id})
+            const token = generateToken({id: user.id, role: user.role})
 
             res.status(200).send({token})
 
@@ -136,14 +147,50 @@ export const userController = {
             }
 
             if(userToFollowId === userAuthentication.id){
-                throw new Error("User not Following")
+                throw new Error("User cannot follow himself")
             }
 
             const affectRows = await userModel.insertFlow(userAuthentication.id, userToFollowId)
             if(!affectRows){
-                throw new Error("User cannot follow himself")
+                throw new Error("User not Following")
             }
             res.status(200).send({message: `user following ${userToFollow.name}` })
+
+        }
+        catch(err){
+            res.status(400).send({message: err.message})
+        }
+    },
+    unfollow:async (req: Request, res: Response): Promise<any> => {
+        try{
+            const token = req.headers.authorization;
+            const userToUnfollowId = req.body.userToUnfollowId;
+            if(!token || typeof(token) !== "string"){
+                throw new Error("Token not entered")
+            }
+            if(!userToUnfollowId){
+                throw new Error("User id not entered")
+            }
+            const userAuthentication = await getData(token);
+
+            const user:user|boolean = await userModel.getById(userAuthentication.id);
+            if(!user || typeof(user) === "boolean"){
+                throw new Error("Uour account was not found")
+            }
+            const userToFollow:user|boolean = await userModel.getById(userToUnfollowId);
+            if(!userToFollow || typeof(userToFollow) === "boolean"){
+                throw new Error("User not found")
+            }
+
+            if(userToUnfollowId === userAuthentication.id){
+                throw new Error("User cannot unfollow himself")
+            }
+
+            const affectRows = await userModel.deleteFlow(userAuthentication.id, userToUnfollowId)
+            if(!affectRows){
+                throw new Error("User not Unfollowing")
+            }
+            res.status(200).send({message: `user unfollowing ${userToFollow.name}` })
 
         }
         catch(err){

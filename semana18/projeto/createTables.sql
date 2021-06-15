@@ -22,3 +22,5 @@ CREATE TABLE cookenu_follow (
     FOREIGN KEY (followed) REFERENCES cookenu_login(id),
 	CONSTRAINT PK_follow  PRIMARY KEY (following, followed)
 )
+
+ALTER TABLE cookenu_login ADD COLUMN role ENUM ('normal', 'admin', 'moderator') DEFAULT 'normal' NOT NULL;

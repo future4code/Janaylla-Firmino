@@ -1,7 +1,7 @@
 import {connection} from '../data/connection'
 import {user} from '../types'
 export const userModel = {
-    create:  async ({id, name, email, password}:user): Promise<boolean> => {
+    create:  async ({id, name, email, password, role}:user): Promise<boolean> => {
         try{
             
             const dbResult  = await connection.raw(`
@@ -9,12 +9,14 @@ export const userModel = {
                     id,
                     name, 
                     email, 
-                    password)
+                    password,
+                    role)
                 VALUE (
                     '${id}',
                     '${name}',
                     '${email}',
-                    '${password}'
+                    '${password}',
+                    '${role}'
                 )
             `)
             return dbResult[0].affectedRows === 1;
@@ -65,6 +67,20 @@ export const userModel = {
                     '${id}',
                     '${followId}'
                 )
+            `)
+            return dbResult[0].affectedRows === 1;
+        }
+        catch(err){
+            console.log(err)
+            return false;
+        }
+    },
+    deleteFlow: async (id:string, followId: string): Promise<boolean> => {
+        try{
+            
+            const dbResult  = await connection.raw(`
+                DELETE FROM cookenu_follow 
+                    WHERE following = '${id}' and followed ='${followId}'
             `)
             return dbResult[0].affectedRows === 1;
         }

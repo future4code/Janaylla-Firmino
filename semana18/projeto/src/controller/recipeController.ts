@@ -61,4 +61,26 @@ export const recipeController = {
             res.status(400).send({message: err.message})
         }
     },
+    getByAll:async (req: Request, res: Response): Promise<any> => {
+        try{
+            const token = req.headers.authorization;
+            if(!token || typeof(token) !== "string"){
+                throw new Error("Token not entered")
+            }
+            const userAuthentication = await getData(token);
+
+            if(!userAuthentication.id){
+                throw new Error("Unauthenticated user")
+            }
+            const recipes = await recipeModel.getAll()
+            if(typeof(recipes) === "boolean"){
+                throw new Error("Recipes not founds")
+            }
+            res.status(200).send(recipes)
+
+        }
+        catch(err){
+            res.status(400).send({message: err.message})
+        }
+    },
 }   

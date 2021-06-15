@@ -3,7 +3,7 @@ import {authenticationData} from '../types';
 import dotenv from "dotenv";
 
 dotenv.config();
-  const expiresIn = "2h";
+  const expiresIn = "30d";
   export  const generateToken = (input: authenticationData): string => {
     const token = jwt.sign(
       {
@@ -20,7 +20,8 @@ dotenv.config();
 export const getData = (token: string): authenticationData => {
   const payload = jwt.verify(token, process.env.JWT_KEY as string) as any;
   const result = {
-    id: payload.id
+    id: payload.id,
+    role: payload.role
   };
   return result;
 };

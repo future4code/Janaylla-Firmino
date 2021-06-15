@@ -14,6 +14,12 @@ export type user = {
   id:  string, 
   name: string, 
   email:  string, 
-  password: string, 
-
+  password: string
+}
+export type recipe = {
+  id:  string, 
+  title: string, 
+  text:  string,
+  creation_date: Date|string,
+  user_id?:string
 }

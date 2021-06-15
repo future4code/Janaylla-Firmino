@@ -7,7 +7,8 @@ dotenv.config();
   export  const generateToken = (input: authenticationData): string => {
     const token = jwt.sign(
       {
-        id: input.id
+        id: input.id, 
+        role: input.role
       },
       process.env.JWT_KEY as string,
       {

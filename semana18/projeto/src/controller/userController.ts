@@ -197,4 +197,38 @@ export const userController = {
             res.status(400).send({message: err.message})
         }
     },
+    delete:async (req: Request, res: Response): Promise<any> => {
+        try{
+            const token = req.headers.authorization;
+            const user_id = req.params.id;
+            if(!token || typeof(token) !== "string"){
+                throw new Error("Token not entered")
+            }
+            if(!user_id){
+                throw new Error("User id not entered")
+            }
+            const userAuthentication = await getData(token);
+            
+            const user:user|boolean = await userModel.getById(userAuthentication.id);
+            if(!user || typeof(user) === "boolean"){
+                throw new Error("Your account was not found")
+            }
+            const userDelete:user|boolean = await userModel.getById(user_id);
+            if(!userDelete || typeof(userDelete) === "boolean"){
+                throw new Error("User not found")
+            }
+            if(user.role !== 'admin'){
+                throw new Error("User does not have permission to perform this action")
+            }
+            const affectRows = await userModel.deleteUser(userDelete.id)
+            if(!affectRows){
+                throw new Error("User not delete")
+            }
+            res.status(200).send({message: `user deleted: ${userDelete.name}` })
+
+        }
+        catch(err){
+            res.status(400).send({message: err.message})
+        }
+    },
 }   

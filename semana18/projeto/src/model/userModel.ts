@@ -45,7 +45,8 @@ export const userModel = {
             const dbResult  = await connection.raw(`
                SELECT id,
                name, 
-               email
+               email,
+               role
                FROM cookenu_login WHERE id = '${id}'
             `)
             return dbResult[0][0];
@@ -81,6 +82,28 @@ export const userModel = {
             const dbResult  = await connection.raw(`
                 DELETE FROM cookenu_follow 
                     WHERE following = '${id}' and followed ='${followId}'
+            `)
+            return dbResult[0].affectedRows === 1;
+        }
+        catch(err){
+            console.log(err)
+            return false;
+        }
+    },
+    deleteUser: async (id:string): Promise<boolean> => {
+        try{
+            
+            await connection.raw(`
+                DELETE FROM cookenu_follow 
+                    WHERE following = '${id}' or followed ='${id}'
+            `)
+             await connection.raw(`
+            DELETE FROM cookenu_recipe 
+                WHERE user_id = '${id}'
+            `)
+            const dbResult  = await connection.raw(`
+            DELETE FROM cookenu_login 
+                WHERE id = '${id}'
             `)
             return dbResult[0].affectedRows === 1;
         }

@@ -1,12 +1,6 @@
 import { app } from "./controller/app"
-import { signup } from './controller/user/signup'
-import { login } from './controller/user/login'
-import { createTask } from './controller/task/createTask'
-import { getTaskById } from './controller/task/getTaskById'
+import { task } from "./routes/task";
+import { user } from "./routes/user";
 
-app.post('/user/signup', signup)
-app.post('/user/login', login)
-
-app.put('/task', createTask)
-app.get('/task/:id', getTaskById)
-
+app.use('/user', user)
+app.use('/task', task)

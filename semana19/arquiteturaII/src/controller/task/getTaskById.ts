@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { getTaskByIdBusiness } from "../../business/task/getTaskByIdBusiness";
-import {selectTaskById} from "../../data/task/selectTaskById";
 
 export const getTaskById = async (
    req: Request,

@@ -7,7 +7,7 @@ export const signup = async (
 ) => {
    try {
       const { name, nickname, email, password, role } = req.body
-
+      
       const token: string = await signupBusiness({
          name, nickname, email, password, role
       })

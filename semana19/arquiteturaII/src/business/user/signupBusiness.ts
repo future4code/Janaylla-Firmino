@@ -1,11 +1,11 @@
 import { hash } from "../../services/hashManager";
 import { insertUser } from "../../data/user/insertUser";
-import { userData } from "../../model/user";
+import { signupInputDTO } from "../../model/user";
 import { generateToken } from "../../services/authenticator";
 import { generateId } from "../../services/idGenerator";
 
 export const signupBusiness = async (
-   userData: userData
+   userData: signupInputDTO
 ):Promise<string> => {
    if (
       !userData.name ||

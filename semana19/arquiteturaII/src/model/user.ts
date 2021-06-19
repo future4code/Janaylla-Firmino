@@ -15,5 +15,11 @@ export type userData = {
    password: string,
    role: USER_ROLES
 }
-
+export type signupInputDTO = {
+   name: string,
+   nickname: string,
+   email: string,
+   password: string,
+   role: USER_ROLES
+}
 export type user = userData & { id: string }

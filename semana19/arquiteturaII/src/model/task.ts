@@ -5,4 +5,6 @@ export type taskData = {
    authorId: string
 }
 
+
 export type task = taskData & { id: string }
+export type taskSelectDTO = taskData & task & { authorNickname: string, status: string }

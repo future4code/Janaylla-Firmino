@@ -8,9 +8,9 @@ export const getPost = async (req: Request, res: Response) => {
 
       const { id } = req.params
 
-      const post = selectPost(id)
+      const post = await selectPost(id)
 
-      if (!post) {
+      if (!post.id) {
          res.statusCode = 404
          message = "Post not found"
          throw new Error(message)

@@ -3,8 +3,9 @@ import { connection } from "../../connection";
 export const selectPost = async (
     id: string
 ) => {
-    const queryResult = await connection("labook_users")
+    const queryResult: any = await connection("labook_posts")
         .select("*")
         .where({ id })
+
     return queryResult[0]
 }

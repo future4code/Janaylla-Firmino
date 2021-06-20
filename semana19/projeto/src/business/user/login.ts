@@ -17,19 +17,19 @@ export const login = async (req: Request, res: Response) => {
            throw new Error(message)
         }
   
-        const queryResult: any = selectUser(email)
+        const userData: any = await selectUser(email)
 
-        if (!queryResult) {
+        if (!userData) {
            res.statusCode = 401
            message = "Invalid credentials"
            throw new Error(message)
         }
-  
+        
         const user: user = {
-           id: queryResult.id,
-           name: queryResult.name,
-           email: queryResult.email,
-           password: queryResult.password
+           id: userData.id,
+           name: userData.name,
+           email: userData.email,
+           password: userData.password
         }
   
         const passwordIsCorrect: boolean = await compare(password, user.password)

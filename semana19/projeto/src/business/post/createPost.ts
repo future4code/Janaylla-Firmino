@@ -1,9 +1,6 @@
-
 import { Request, Response } from "express"
-import { selectUser } from "../../data/user/selectUser";
-import { generateToken, getTokenData } from "../../services/authenticator";
-import {authenticationData, user} from '../../types/user'
-import {compare} from '../../services/hashManager'
+import {  getTokenData } from "../../services/authenticator";
+import {authenticationData} from '../../types/user'
 import { generateId } from "../../services/generateId";
 import { insertPost } from "../../data/post/insertPost";
 

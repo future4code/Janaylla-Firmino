@@ -1,4 +1,4 @@
-import { connection } from "./index"
+import { connection } from "./connection"
 
 connection
    .raw(`
@@ -17,7 +17,15 @@ connection
          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
          author_id VARCHAR(255),
          FOREIGN KEY (author_id) REFERENCES labook_users (id)
-      )
+      );
+
+      CREATE TABLE  IF NOT EXISTS labook_friendship(
+         id VARCHAR(255) PRIMARY KEY,
+         userId1 VARCHAR(255),
+         userId2 VARCHAR(255),
+         FOREIGN KEY (User1) REFERENCES labook_users(id),
+         FOREIGN KEY (User2) REFERENCES labook_users(id)
+      );
    `)
    .then(console.log)
    .catch(console.log)

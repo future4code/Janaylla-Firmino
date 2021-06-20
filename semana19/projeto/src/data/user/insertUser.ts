@@ -7,7 +7,6 @@ export const insertUser = async(
       id: user.id,
       name: user.name,
       email: user.email,
-      password: user.password,
-      role: user.role
-   }).into('User_Arq')
+      password: user.password
+   }).into('labook_users')
 }

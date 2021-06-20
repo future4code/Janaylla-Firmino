@@ -7,4 +7,10 @@ export type authenticationData = {
     name: string,
     email: string,
     password: string
- }
+}
+
+export type friedShip = {
+   id: string,
+   user1: string,
+   user2:string
+}

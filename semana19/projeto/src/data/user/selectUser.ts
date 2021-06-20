@@ -1,11 +1,11 @@
 import { connection } from "../../connection";
 
 export const selectUser = async (
-    id: string
+    email: string
 ) => {
-    const queryResult: any = await connection("labook_posts")
+    const queryResult: any = await connection("labook_users")
     .select("*")
-    .where({ id })
+    .where({ email })
 
     return queryResult[0]
 }

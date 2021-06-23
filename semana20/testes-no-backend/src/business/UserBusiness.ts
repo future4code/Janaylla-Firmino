@@ -12,7 +12,7 @@ export class UserBusiness {
       private hashGenerator: HashGenerator,
       private userDatabase: UserDatabase,
       private tokenGenerator: TokenGenerator
-   ) {}
+   ) { }
 
    public async signup(
       name: string,
@@ -88,6 +88,35 @@ export class UserBusiness {
          throw new CustomError(error.statusCode, error.message)
       }
    }
+
+   public async getUserById(accessToken: string) {
+
+      try {
+         if (!accessToken) {
+            throw new CustomError(422, "Missing token");
+         }
+         const userToken = this.tokenGenerator.verify(accessToken)
+
+         if (!userToken) {
+            throw new CustomError(422, "Missing input");
+         }
+         const user = await this.userDatabase.getUserById(userToken.id);
+
+         if (!user) {
+            throw new CustomError(401, "Invalid credentials");
+         }
+
+         return {
+            id: user.getId,
+            name: user.getName,
+            email: user.getEmail,
+            role: user.getRole
+         };
+      } catch (error) {
+         throw new CustomError(error.statusCode, error.message)
+      }
+   }
+
 }
 
 export default new UserBusiness(
